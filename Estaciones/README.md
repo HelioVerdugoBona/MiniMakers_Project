@@ -1,2 +1,18 @@
 # MiniMakers_Project
-Crear una app per a dispositius Android que inclogui dos subjocs: un joc de tipus "Simon Says" i un altre joc que serà dissenyat en col·laboració amb estudiants d'Educació Infantil, adaptat a les necessitats de nens de  3 anys i que permeti detectar problemes de desenvolupament entre els nens que juguin.  A més, crear una aplicació de sobretaula per analitzar les estadístiques del rendiment dels nens en els jocs.
+
+## Estaciones
+
+### Definición 
+
+
+
+### Funcionamiento de nuetro juego de estaciones
+
+
+
+### Información obtenida en este juego
+
+En el juego se recogeran los siguientes datos y se guardaran en un archivo .json:
+
+El avatar que selecciono cada jugador, el tiempo total que invirtio en completar el juego en formato HH/MM/SS, aunque no deberia de durar mucho más de 20 minutos, el tiempo en formato HH/MM/SS que ha invertido idividualmente en cada nivel. El tiempo 
+promedio que ocurre entre que el jugador hace una respuesta correcta y otra. Los intentos totales del juego (veces que ha fallado). Y intentos invertidos en cada nivel.
