@@ -6,6 +6,7 @@
     <ImageView
         android:id="@+id/ImgAvatar"
         android:layout_width="160dp"
-        android:layout_height="160dp"/>
+        android:layout_height="160dp"
+        android:layout_margin="10dp"/>
 
 </LinearLayout>

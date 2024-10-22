@@ -9,24 +9,29 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+        android:gravity="center">
 
         <TextView
-            android:paddingTop="30dp"
+            android:id="@+id/tituloJuego"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="50sp"
-            android:layout_margin="5dp"
-            android:text="Las Estaciones"
-            />
+            android:text="Descubre las Estaciones"/>
 
-
+    </RelativeLayout>
 
     <GridView
         android:id="@+id/ArrayAvatares"
-        android:paddingStart="100dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:numColumns="4"
+        android:paddingStart="100dp"
         tools:ignore="RtlSymmetry" />
 
 </LinearLayout>
