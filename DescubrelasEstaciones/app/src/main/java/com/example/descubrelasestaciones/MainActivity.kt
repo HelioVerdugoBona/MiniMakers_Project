@@ -1,8 +1,6 @@
 package com.example.descubrelasestaciones
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.AdapterView
 import android.widget.GridView
 import androidx.appcompat.app.AppCompatActivity
 
