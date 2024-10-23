@@ -30,19 +30,19 @@ class ColoresEstaciones: AppCompatActivity()
 
         val estacionOtono = findViewById<RecyclerView>(R.id.recyclerViewOtono)
         var adapterEstacion = MultiEstacionesAdapter(this, estaciones)
-        itemEstacionesList.adapter = adapterEstacion
+         estacionOtono.adapter = adapterEstacion
 
         val estacionInvierno = findViewById<RecyclerView>(R.id.recyclerViewInvierno)
          adapterEstacion = MultiEstacionesAdapter(this, estaciones)
-        itemEstacionesList.adapter = adapterEstacion
+         estacionInvierno.adapter = adapterEstacion
 
         val estacionVernano = findViewById<RecyclerView>(R.id.recyclerViewVernano)
          adapterEstacion = MultiEstacionesAdapter(this, estaciones)
-        itemEstacionesList.adapter = adapterEstacion
+         estacionVernano.adapter = adapterEstacion
 
         val estacionPrimavera = findViewById<RecyclerView>(R.id.recyclerViewPrimavera)
          adapterEstacion = MultiEstacionesAdapter(this, estaciones)
-        itemEstacionesList.adapter = adapterEstacion
+         estacionPrimavera.adapter = adapterEstacion
 
 
         itemEstacionesList.layoutManager = GridLayoutManager(this,4)
