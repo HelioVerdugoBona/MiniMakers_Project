@@ -1,6 +1,8 @@
 package com.example.descubrelasestaciones
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.AdapterView
 import android.widget.GridView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -29,17 +31,17 @@ class MainActivity : AppCompatActivity() {
 
         gridOfAvatares.adapter = adapter
 
-//        gridOfAvatares.onItemClickListener = AdapterView.OnItemClickListener()
-//        {
-//                _, _, i, _ ->
-//            val intent = Intent(this, ColoresEstaciones::class.java)
-//
-//            val avatarElejido = arrayOfAvatares[i]
-//            intent.putExtra(ColoresEstaciones.estacionesConstats.AVATAR, avatarElejido.nombre)
-//            startActivity(intent)
-//
-//
-//        }
+        gridOfAvatares.onItemClickListener = AdapterView.OnItemClickListener()
+        {
+                _, _, i, _ ->
+            val intent = Intent(this, ColoresEstaciones::class.java)
+
+            val avatarElejido = arrayOfAvatares[i]
+            intent.putExtra(ColoresEstaciones.estacionesConstats.AVATAR, avatarElejido.nombre)
+            startActivity(intent)
+
+
+        }
 
     }
 }
