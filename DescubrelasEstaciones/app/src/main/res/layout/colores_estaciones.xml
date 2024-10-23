@@ -2,22 +2,57 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center"
+       android:padding="16dp">
 
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/recyclerViewColores"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Hola">
+       </androidx.recyclerview.widget.RecyclerView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/prueba"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hola">
-    </androidx.recyclerview.widget.RecyclerView>
+   </LinearLayout>
 
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewOtono"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hola" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewInvierno"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_toRightOf="@+id/recyclerViewOtono"
+            />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewVernano"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_toRightOf="@+id/recyclerViewInvierno"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPrimavera"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_toRightOf="@+id/recyclerViewVernano"/>
+
+    </LinearLayout>
 </LinearLayout>

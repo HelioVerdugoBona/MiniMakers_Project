@@ -20,12 +20,12 @@ class ColoresEstaciones: AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.colores_estaciones)
 
-        val itemEstacionesList = findViewById<RecyclerView>(R.id.prueba)
+        val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewColores)
         val adapter = ItemEstacionesAdapter(this, itemsEstaciones)
         itemEstacionesList.adapter = adapter
 
         itemEstacionesList.layoutManager = GridLayoutManager(this,4)
-        
+
 
     }
 
