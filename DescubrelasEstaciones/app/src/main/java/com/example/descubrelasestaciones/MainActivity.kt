@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ColoresEstaciones::class.java)
 
             val avatarElejido = arrayOfAvatares[i]
-            intent.putExtra(ColoresEstaciones.estacionesConstats.AVATAR, avatarElejido.nombre)
+            intent.putExtra(ColoresEstaciones.EstacionesConstats.AVATAR, avatarElejido.nombre)
             startActivity(intent)
 
 

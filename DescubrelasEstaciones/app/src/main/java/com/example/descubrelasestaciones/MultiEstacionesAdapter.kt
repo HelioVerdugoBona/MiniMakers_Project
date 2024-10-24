@@ -12,7 +12,7 @@ class MultiEstacionesAdapter(private val context: Context,
     RecyclerView.Adapter<MultiEstacionesAdapter.MultiEstacionesViewHolder>()
 {
 
-    private val layout = R.layout.item_image
+    val layout = R.layout.item_image
     class MultiEstacionesViewHolder(val view: View) : RecyclerView.ViewHolder(view)
     {
         var imgEstacion: ImageView
@@ -40,8 +40,8 @@ class MultiEstacionesAdapter(private val context: Context,
     }
 
     fun bindEstacion(holder: MultiEstacionesViewHolder, itemEstacion: ItemEstaciones) {
-
         holder.imgEstacion.setImageResource(itemEstacion.imagen)
-
     }
+
+
 }

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ColoresEstaciones: AppCompatActivity()
 {
-    object estacionesConstats
+    object EstacionesConstats
     {
         const val AVATAR = "AVATAR"
     }
@@ -18,10 +18,13 @@ class ColoresEstaciones: AppCompatActivity()
                                         ItemEstaciones(3,"Naranja",R.drawable.descarga),
                                         ItemEstaciones(4,"Azul_Cielo",R.drawable.descarga))
 
-    private val estacionOtono = mutableListOf(ItemEstaciones(1,"Otoño",R.drawable.descarga))
-    private val estacionInvierno = mutableListOf(ItemEstaciones(2,"Invierno",R.drawable.descarga))
-    private val estacionVerano = mutableListOf(ItemEstaciones(3,"Verano",R.drawable.descarga))
-    private val estacionPrimavera = mutableListOf(ItemEstaciones(4,"Primavera",R.drawable.descarga))
+    private val arrayEstacionOtono = mutableListOf(ItemEstaciones(1,"Otoño",R.drawable.descarga))
+
+    private val arrayEstacionInvierno = mutableListOf(ItemEstaciones(2,"Invierno",R.drawable.descarga))
+
+    private val arrayEstacionVerano = mutableListOf(ItemEstaciones(3,"Verano",R.drawable.descarga))
+
+    private val arrayEstacionPrimavera = mutableListOf(ItemEstaciones(4,"Primavera",R.drawable.descarga))
 
      override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,19 +35,19 @@ class ColoresEstaciones: AppCompatActivity()
         itemEstacionesList.adapter = adapter
 
         val estacionOtono = findViewById<RecyclerView>(R.id.recyclerViewOtono)
-        var adapterEstacion = MultiEstacionesAdapter(this, estacionOtono)
+        var adapterEstacion = MultiEstacionesAdapter(this, arrayEstacionOtono)
          estacionOtono.adapter = adapterEstacion
 
         val estacionInvierno = findViewById<RecyclerView>(R.id.recyclerViewInvierno)
-         adapterEstacion = MultiEstacionesAdapter(this, estacionInvierno)
+         adapterEstacion = MultiEstacionesAdapter(this, arrayEstacionInvierno)
          estacionInvierno.adapter = adapterEstacion
 
-        val estacionVernano = findViewById<RecyclerView>(R.id.recyclerViewVernano)
-         adapterEstacion = MultiEstacionesAdapter(this, estacionVerano)
-         estacionVernano.adapter = adapterEstacion
+        val estacionVerano = findViewById<RecyclerView>(R.id.recyclerViewVernano)
+         adapterEstacion = MultiEstacionesAdapter(this, arrayEstacionVerano)
+         estacionVerano.adapter = adapterEstacion
 
         val estacionPrimavera = findViewById<RecyclerView>(R.id.recyclerViewPrimavera)
-         adapterEstacion = MultiEstacionesAdapter(this, estacionPrimavera)
+         adapterEstacion = MultiEstacionesAdapter(this, arrayEstacionPrimavera)
          estacionPrimavera.adapter = adapterEstacion
 
 
@@ -52,8 +55,12 @@ class ColoresEstaciones: AppCompatActivity()
 
         estacionOtono.layoutManager = LinearLayoutManager(this)
         estacionInvierno.layoutManager = LinearLayoutManager(this)
-        estacionVernano.layoutManager = LinearLayoutManager(this)
+        estacionVerano.layoutManager = LinearLayoutManager(this)
         estacionPrimavera.layoutManager = LinearLayoutManager(this)
+
+
+
+
 
     }
 

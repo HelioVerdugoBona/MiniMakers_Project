@@ -49,4 +49,5 @@ class ItemsEstacionesAdapter (private val context: Context,
         estaciones.add(itemEstacion)
         notifyItemRemoved(position)
     }
+
 }
