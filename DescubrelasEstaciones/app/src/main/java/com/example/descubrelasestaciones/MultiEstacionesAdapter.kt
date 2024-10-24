@@ -6,11 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.descubrelasestaciones.ItemsEstacionesAdapter.ItemsEstacionesViewHolder
 
-class MultiEstacionesAdapter (private val context: Context,
-                              private val listaEstacion:MutableList<ItemEstaciones>)
-    : RecyclerView.Adapter<MultiEstacionesAdapter.MultiEstacionesViewHolder>()
+class MultiEstacionesAdapter(private val context: Context,
+                             private val listaEstacion: MutableList<ItemEstaciones>):
+    RecyclerView.Adapter<MultiEstacionesAdapter.MultiEstacionesViewHolder>()
 {
 
     private val layout = R.layout.item_image
