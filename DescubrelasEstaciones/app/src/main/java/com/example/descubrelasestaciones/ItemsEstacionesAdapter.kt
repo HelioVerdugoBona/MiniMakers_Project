@@ -1,16 +1,24 @@
 package com.example.descubrelasestaciones;
 
 import android.content.Context;
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
 class ItemsEstacionesAdapter (private val context: Context,
-                             private val itemsEstaciones: MutableList<ItemEstaciones>):
+                              private val itemsEstaciones: MutableList<ItemEstaciones>):
     RecyclerView.Adapter<ItemsEstacionesAdapter.ItemsEstacionesViewHolder>() {
+
+    val sourceTouchHelper = ItemTouchHelper(ItemTouchHelperCallBack(this) { fromPosition, toPosition ->
+        (fromPosition, toPosition)
+    })
+
+    val destinationTouchHelper  = ItemTouchHelper(ItemTouchHelperCallBack() { fromPosition, toPosition ->
+        (fromPosition, toPosition)
+    })
 
     private val layout = R.layout.item_image
 

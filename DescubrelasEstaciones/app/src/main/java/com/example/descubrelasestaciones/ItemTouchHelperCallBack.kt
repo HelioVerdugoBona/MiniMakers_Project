@@ -4,15 +4,12 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
 class ItemTouchHelperCallBack(private val adapterOrigen: ItemsEstacionesAdapter,
-                              private val adapterDestino: MultiEstacionesAdapter):
+                                       private val onItemMoved: (fromPosition: Int, toPosition: Int) -> Unit):
     ItemTouchHelper.Callback()
 {
-    override fun getMovementFlags(
-        recyclerView: RecyclerView,
-        viewHolder: RecyclerView.ViewHolder
-    ): Int {
 
-        val dragFlags = ItemTouchHelper.UP or ItemTouchHelper.DOWN // Permitir arrastrar hacia arriba o abajo
+    override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+        val dragFlags = ItemTouchHelper.UP or ItemTouchHelper.DOWN // Permitir mover hacia arriba y abajo
         return makeMovementFlags(dragFlags, 0)
     }
 
@@ -21,21 +18,15 @@ class ItemTouchHelperCallBack(private val adapterOrigen: ItemsEstacionesAdapter,
         viewHolder: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder
     ): Boolean {
-
         val fromPosition = viewHolder.adapterPosition
         val toPosition = target.adapterPosition
 
-        if (recyclerView.id == R.id.recyclerViewColores) {
-            adapterOrigen.moveItem(fromPosition, toPosition)
-        } else if (recyclerView.id == R.id.adapterDestino.layout) {
-            adapterDestino.moveItem(fromPosition, toPosition)
-        }
+        onItemMoved(fromPosition, toPosition)
         return true
-    }
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-        TODO("Not yet implemented")
+        // No se maneja swipe en este caso
     }
 
 }
