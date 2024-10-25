@@ -12,13 +12,13 @@ class ItemsEstacionesAdapter (private val context: Context,
                               private val itemsEstaciones: MutableList<ItemEstaciones>):
     RecyclerView.Adapter<ItemsEstacionesAdapter.ItemsEstacionesViewHolder>() {
 
-    val sourceTouchHelper = ItemTouchHelper(ItemTouchHelperCallBack(this) { fromPosition, toPosition ->
+   /* val sourceTouchHelper = ItemTouchHelper(ItemTouchHelperCallBack(this) { fromPosition, toPosition ->
         (fromPosition, toPosition)
     })
 
     val destinationTouchHelper  = ItemTouchHelper(ItemTouchHelperCallBack() { fromPosition, toPosition ->
         (fromPosition, toPosition)
-    })
+    })*/
 
     private val layout = R.layout.item_image
 
@@ -51,11 +51,11 @@ class ItemsEstacionesAdapter (private val context: Context,
 
     }
 
-    fun moveItem(position: Int, estaciones: MutableList<ItemEstaciones>) {
+  /*  fun moveItem(position: Int, estaciones: MutableList<ItemEstaciones>) {
         val itemEstacion = itemsEstaciones[position]
         itemsEstaciones.removeAt(position)
         estaciones.add(itemEstacion)
         notifyItemRemoved(position)
-    }
+    }*/
 
 }
