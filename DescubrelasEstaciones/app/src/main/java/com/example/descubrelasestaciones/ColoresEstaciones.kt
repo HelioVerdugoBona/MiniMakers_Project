@@ -1,6 +1,7 @@
 package com.example.descubrelasestaciones
 
 import android.os.Bundle
+import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,13 +19,13 @@ class ColoresEstaciones: AppCompatActivity()
                                         ItemEstaciones(3,"Naranja",R.drawable.descarga),
                                         ItemEstaciones(4,"Azul_Cielo",R.drawable.descarga))
 
-    private val arrayEstacionOtono = mutableListOf(ItemEstaciones(1,"Otoño",R.drawable.descarga))
+    private val arrayEstacionOtono = mutableListOf(ItemEstaciones(1,"Otoño",R.drawable.tardor))
 
-    private val arrayEstacionInvierno = mutableListOf(ItemEstaciones(2,"Invierno",R.drawable.descarga))
+    private val arrayEstacionInvierno = mutableListOf(ItemEstaciones(2,"Invierno",R.drawable.hivern))
 
-    private val arrayEstacionVerano = mutableListOf(ItemEstaciones(3,"Verano",R.drawable.descarga))
+    private val arrayEstacionVerano = mutableListOf(ItemEstaciones(3,"Verano",R.drawable.estiu))
 
-    private val arrayEstacionPrimavera = mutableListOf(ItemEstaciones(4,"Primavera",R.drawable.descarga))
+    private val arrayEstacionPrimavera = mutableListOf(ItemEstaciones(4,"Primavera",R.drawable.primavera))
 
      override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,7 @@ class ColoresEstaciones: AppCompatActivity()
         val adapter = ItemsEstacionesAdapter(this, itemsEstaciones)
         itemEstacionesList.adapter = adapter
 
+        /*
         val estacionOtono = findViewById<RecyclerView>(R.id.recyclerViewOtono)
         var adapterEstacion = MultiEstacionesAdapter(this, arrayEstacionOtono)
          estacionOtono.adapter = adapterEstacion
@@ -57,10 +59,13 @@ class ColoresEstaciones: AppCompatActivity()
         estacionInvierno.layoutManager = LinearLayoutManager(this)
         estacionVerano.layoutManager = LinearLayoutManager(this)
         estacionPrimavera.layoutManager = LinearLayoutManager(this)
-
-
-
-
+        */
+         
+         itemEstacionesList.onItemClickListener = AdapterView.OnItemClickListener() 
+         {
+                 _, _, i, _ ->
+             
+         }
 
     }
 

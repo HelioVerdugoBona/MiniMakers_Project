@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
 class ItemsEstacionesAdapter (private val context: Context,
-                              private val itemsEstaciones: MutableList<ItemEstaciones>):
+                              private val itemsEstaciones: MutableList<ItemEstaciones>,
+                              private val itemClickListener: (ItemEstaciones) -> Unit):
     RecyclerView.Adapter<ItemsEstacionesAdapter.ItemsEstacionesViewHolder>() {
 
    /* val sourceTouchHelper = ItemTouchHelper(ItemTouchHelperCallBack(this) { fromPosition, toPosition ->
@@ -24,11 +25,17 @@ class ItemsEstacionesAdapter (private val context: Context,
 
     class ItemsEstacionesViewHolder(val view: View) :
         RecyclerView.ViewHolder(view) {
+        fun bind(item: ItemEstaciones) {
+            itemView.setOnClickListener { itemClickListener(item) }
+
+            // Aquí configura tus vistas
+        }
         var imgItemEstaciones: ImageView
 
         init {
             imgItemEstaciones = view.findViewById(R.id.imageView)
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsEstacionesViewHolder {
