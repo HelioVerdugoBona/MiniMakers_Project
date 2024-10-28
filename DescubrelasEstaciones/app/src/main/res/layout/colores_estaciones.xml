@@ -13,46 +13,23 @@
        <androidx.recyclerview.widget.RecyclerView
            android:id="@+id/recyclerViewColores"
            android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           >
-       </androidx.recyclerview.widget.RecyclerView>
+           android:layout_height="wrap_content"/>
 
    </LinearLayout>
 
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:padding="16dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewOtono"
+            android:id="@+id/recylerViewEstaciones"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewInvierno"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_toRightOf="@+id/recyclerViewOtono"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewVernano"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_toRightOf="@+id/recyclerViewInvierno"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewPrimavera"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_toRightOf="@+id/recyclerViewVernano"/>
+            android:layout_margin="16dp"/>
 
     </LinearLayout>
 </LinearLayout>

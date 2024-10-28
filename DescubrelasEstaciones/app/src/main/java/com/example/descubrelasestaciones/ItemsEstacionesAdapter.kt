@@ -9,28 +9,20 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ItemsEstacionesAdapter(
     private val context: Context,
-    private val itemsEstaciones: MutableList<ItemEstaciones>,
-    private val itemClickListener: (ItemEstaciones) -> Unit
+    private val itemsEstaciones: MutableList<ItemEstaciones>
 ) : RecyclerView.Adapter<ItemsEstacionesAdapter.ItemsEstacionesViewHolder>()
 {
-
+    private var longClickListener: ((View, Int) -> Unit)? = null
     private val layout = R.layout.item_image
 
-    class ItemsEstacionesViewHolder(val view: View, private val itemClickListener: (ItemEstaciones) -> Unit) :
-        RecyclerView.ViewHolder(view)
-    {
-        var imgItemEstaciones = view.findViewById<ImageView>(R.id.imageView)
-
-        fun bind(item: ItemEstaciones) {
-            imgItemEstaciones.setImageResource(item.imagen)
-            itemView.setOnClickListener { itemClickListener(item) }
-        }
+    fun setOnLongClickListener(listener: (View, Int) -> Unit) {
+        longClickListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsEstacionesViewHolder
     {
         val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
-        return ItemsEstacionesViewHolder(view, itemClickListener)
+        return ItemsEstacionesViewHolder(view)
     }
 
     override fun getItemCount(): Int = itemsEstaciones.size
@@ -38,5 +30,24 @@ class ItemsEstacionesAdapter(
     override fun onBindViewHolder(holder: ItemsEstacionesViewHolder, position: Int) {
         val itemEstacion = itemsEstaciones[position]
         holder.bind(itemEstacion)
+    }
+
+    inner class ItemsEstacionesViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+    {
+        var imgItemEstaciones = view.findViewById<ImageView>(R.id.imageView)
+
+        fun bind(item: ItemEstaciones) {
+            imgItemEstaciones.setImageResource(item.imagen)
+            itemView.setOnLongClickListener {
+                longClickListener?.invoke(it, adapterPosition)
+                // Cambia la opacidad al arrastrar
+                itemView.alpha = 0.5f  // Reduce la opacidad
+                true
+            }
+        }
+    }
+
+    fun clearAlpha() {
+        notifyDataSetChanged() // Restablece la opacidad de todos los ítems
     }
 }
