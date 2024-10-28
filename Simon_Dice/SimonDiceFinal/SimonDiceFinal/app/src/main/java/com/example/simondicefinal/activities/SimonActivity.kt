@@ -1,4 +1,4 @@
-package com.example.simondicefinal
+package com.example.simondicefinal.activities
 
 import android.graphics.Color
 import android.os.Bundle
@@ -6,8 +6,9 @@ import android.os.Handler
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.simondice.FilesManager
-import com.example.simondice.Partida
+import com.example.simondicefinal.FilesManager
+import com.example.simondicefinal.datamodel.Partida
+import com.example.simondicefinal.R
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.random.Random
@@ -182,7 +183,6 @@ class SimonActivity : AppCompatActivity() {
 
     // Crea una prtida de ejemplo y la guarda en el archivo .json
     private fun partidaEjemplo() {
-
         val ejemplo = Partida("ejemplo", 0, "0min 0s", "00-00-0000")
         partidas.add(ejemplo)
         FilesManager.guardarPartidas(this, partidas)

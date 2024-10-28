@@ -1,6 +1,7 @@
-package com.example.simondice
+package com.example.simondicefinal
 
 import android.content.Context
+import com.example.simondicefinal.datamodel.Partida
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken
 import com.google.gson.Gson
 import java.io.FileReader

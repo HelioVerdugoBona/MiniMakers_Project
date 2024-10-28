@@ -17,10 +17,10 @@ class ColoresEstaciones: AppCompatActivity()
     private var click1 = false
     private var item_id = 0
 
-    private val itemsEstaciones = mutableListOf(ItemEstaciones(1,"Amarillo",R.drawable.descarga),
-                                        ItemEstaciones(2,"Rosa",R.drawable.descarga),
-                                        ItemEstaciones(3,"Naranja",R.drawable.descarga),
-                                        ItemEstaciones(4,"Azul_Cielo",R.drawable.descarga))
+    private val itemsEstaciones = mutableListOf(ItemEstaciones(1,"Amarillo",R.drawable.sol),
+                                        ItemEstaciones(2,"Rosa",R.drawable.flor),
+                                        ItemEstaciones(3,"Naranja",R.drawable.hoja),
+                                        ItemEstaciones(4,"Azul_Cielo",R.drawable.coponieve))
 
 
     private val arrayEstacionVerano = mutableListOf(ItemEstaciones(1,"Verano",R.drawable.estiu))
