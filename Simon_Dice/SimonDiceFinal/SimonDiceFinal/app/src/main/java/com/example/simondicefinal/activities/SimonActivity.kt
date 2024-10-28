@@ -156,7 +156,7 @@ class SimonActivity : AppCompatActivity() {
             guardarPartida(tiempoTotal)
             handler.postDelayed({
                 finish()
-            }, 500)
+            }, 1000)
         }
     }
 
