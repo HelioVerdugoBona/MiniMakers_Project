@@ -40,6 +40,7 @@ class ColoresEstaciones: AppCompatActivity() {
 
         setupRecyclerView(itemEstacionesList, itemsEstaciones)
         setupRecyclerView(arrayEstacionesList, arrayEstaciones)
+
     }
 
     private fun setupRecyclerView(
@@ -53,8 +54,8 @@ class ColoresEstaciones: AppCompatActivity() {
 
         println("El ID del RecyclerView es: ${recyclerView.id}")
 
-
-        if (recyclerView.id == 2131231224) {
+        val itemEstacion = itemsEstaciones[0]
+        if (itemEstacion.nombreItem != "Verano") {
             adapter.setOnLongClickListener { view, i ->
                 val item = itemsEstaciones[i]
 
@@ -65,20 +66,21 @@ class ColoresEstaciones: AppCompatActivity() {
             }
         }
 
-        if (recyclerView.id == 2131231230) {
+        if (itemEstacion.nombreItem == "Verano") {
             recyclerView.setOnDragListener { _, event ->
                 when (event.action) {
                     DragEvent.ACTION_DROP -> {
+                         val draggedItem = event.localState as ItemEstaciones
                         // Obtener el atributo del ítem arrastrado
-                        val draggedAttribute = event.clipData.getItemAt(0).text.toString()
-
+                        //val draggedAttribute = event.clipData.getItemAt(0).text.toString()
                         // Encuentra el ítem de destino (donde se soltó el arrastre)
                         val targetPosition = recyclerView.getChildAdapterPosition(event.localState as View)
+
                         if (targetPosition != RecyclerView.NO_POSITION) {
                             val targetItem = arrayEstaciones[targetPosition]
 
                             // Compara los atributos
-                            if (draggedAttribute == targetItem.id) {
+                            if (draggedItem.id == targetItem.id) {
                                 Log.d("DragAndDrop", "Atributos coinciden")
                             } else {
                                 Log.d("DragAndDrop", "Atributos no coinciden")
@@ -91,7 +93,7 @@ class ColoresEstaciones: AppCompatActivity() {
                         adapter.clearAlpha() // Restablecer la opacidad de todos los ítems
                         true
                     }
-                    else -> true
+                else -> true
                 }
             }
         }
