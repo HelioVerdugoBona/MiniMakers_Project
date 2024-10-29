@@ -18,10 +18,10 @@ class ColoresEstaciones: AppCompatActivity() {
     }
 
     private val itemsEstaciones = mutableListOf(
-        ItemEstaciones("1", "Amarillo", R.drawable.descarga),
-        ItemEstaciones("2", "Rosa", R.drawable.descarga),
-        ItemEstaciones("3", "Naranja", R.drawable.descarga),
-        ItemEstaciones("4", "Azul_Cielo", R.drawable.descarga)
+        ItemEstaciones("1", "Amarillo", R.drawable.coloramarillo),
+        ItemEstaciones("2", "Rosa", R.drawable.colorrosa),
+        ItemEstaciones("3", "Naranja", R.drawable.colornaranja),
+        ItemEstaciones("4", "Azul_Cielo", R.drawable.colorazul)
     )
 
     private val arrayEstaciones = mutableListOf(
