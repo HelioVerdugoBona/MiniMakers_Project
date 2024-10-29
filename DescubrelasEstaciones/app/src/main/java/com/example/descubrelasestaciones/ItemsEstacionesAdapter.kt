@@ -1,6 +1,7 @@
 package com.example.descubrelasestaciones;
 
 import android.content.Context;
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,8 +33,8 @@ class ItemsEstacionesAdapter(
         holder.bind(itemEstacion)
     }
 
-    inner class ItemsEstacionesViewHolder(val view: View) : RecyclerView.ViewHolder(view)
-    {
+    inner class ItemsEstacionesViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+
         var imgItemEstaciones = view.findViewById<ImageView>(R.id.imageView)
 
         fun bind(item: ItemEstaciones) {

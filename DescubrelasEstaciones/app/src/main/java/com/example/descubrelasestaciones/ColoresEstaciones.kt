@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.math.log
 
 class ColoresEstaciones: AppCompatActivity() {
 
@@ -23,26 +24,19 @@ class ColoresEstaciones: AppCompatActivity() {
         ItemEstaciones("4", "Azul_Cielo", R.drawable.descarga)
     )
 
-<<<<<<< Updated upstream
-    private val itemsEstaciones = mutableListOf(ItemEstaciones(1,"Amarillo",R.drawable.sol),
-                                        ItemEstaciones(2,"Rosa",R.drawable.flor),
-                                        ItemEstaciones(3,"Naranja",R.drawable.hoja),
-                                        ItemEstaciones(4,"Azul_Cielo",R.drawable.coponieve))
-=======
     private val arrayEstaciones = mutableListOf(
         ItemEstaciones("1", "Verano", R.drawable.estiu),
         ItemEstaciones("2", "Primavera", R.drawable.primavera),
         ItemEstaciones("3", "Otoño", R.drawable.tardor),
         ItemEstaciones("4", "Invierno", R.drawable.hivern)
     )
->>>>>>> Stashed changes
-
-    val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewColores)
-    val arrayEstacionesList = findViewById<RecyclerView>(R.id.recylerViewEstaciones)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.colores_estaciones)
+
+        val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewColores)
+        val arrayEstacionesList = findViewById<RecyclerView>(R.id.recylerViewEstaciones)
 
         setupRecyclerView(itemEstacionesList, itemsEstaciones)
         setupRecyclerView(arrayEstacionesList, arrayEstaciones)
@@ -57,7 +51,10 @@ class ColoresEstaciones: AppCompatActivity() {
         recyclerView.layoutManager = GridLayoutManager(this,4)
         recyclerView.adapter = adapter
 
-        if (recyclerView == itemEstacionesList) {
+        println("El ID del RecyclerView es: ${recyclerView.id}")
+
+
+        if (recyclerView.id == 2131231224) {
             adapter.setOnLongClickListener { view, i ->
                 val item = itemsEstaciones[i]
 
@@ -67,7 +64,8 @@ class ColoresEstaciones: AppCompatActivity() {
                 view.startDragAndDrop(dragData, dragShadow, view, 0)
             }
         }
-        if (recyclerView == arrayEstacionesList) {
+
+        if (recyclerView.id == 2131231230) {
             recyclerView.setOnDragListener { _, event ->
                 when (event.action) {
                     DragEvent.ACTION_DROP -> {
@@ -99,68 +97,3 @@ class ColoresEstaciones: AppCompatActivity() {
         }
     }
 }
-
-
-
-//         val adapter = ItemsEstacionesAdapter(this, itemsEstaciones) { item ->
-//             Toast.makeText(this, "Clicked: ${item.nombreItem}", Toast.LENGTH_SHORT).show()
-//             click1 = true
-//             item_id = item.id
-//         }
-//         itemEstacionesList.adapter = adapter
-//
-//         var adapterEstacion = MultiEstacionesAdapter(this, arrayEstacionOtono){ item ->
-//            if (click1){
-//                if (item.id == item_id){
-//                    Toast.makeText(this, "Bien", Toast.LENGTH_SHORT).show()
-//                    click1 = false
-//                }else{
-//                    Toast.makeText(this, "Mal", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-//         estacionOtono.adapter = adapterEstacion
-//
-//         adapterEstacion = MultiEstacionesAdapter(this, arrayEstacionInvierno) { item ->
-//             if (click1) {
-//                 if (item.id == item_id) {
-//                     Toast.makeText(this, "Bien", Toast.LENGTH_SHORT).show()
-//                     click1 = false
-//                 } else {
-//                     Toast.makeText(this, "Mal", Toast.LENGTH_SHORT).show()
-//                 }
-//             }
-//         }
-//         estacionInvierno.adapter = adapterEstacion
-//
-//
-//         adapterEstacion = MultiEstacionesAdapter(this, arrayEstacionVerano) { item ->
-//             if (click1) {
-//                 if (item.id == item_id) {
-//                     Toast.makeText(this, "Bien", Toast.LENGTH_SHORT).show()
-//                     click1 = false
-//                 } else {
-//                     Toast.makeText(this, "Mal", Toast.LENGTH_SHORT).show()
-//                 }
-//             }
-//         }
-//         estacionVerano.adapter = adapterEstacion
-//
-//
-//         adapterEstacion = MultiEstacionesAdapter(this, arrayEstacionPrimavera) { item ->
-//             if (click1) {
-//                 if (item.id == item_id) {
-//                     Toast.makeText(this, "Bien", Toast.LENGTH_SHORT).show()
-//                     click1 = false
-//                 } else {
-//                     Toast.makeText(this, "Mal", Toast.LENGTH_SHORT).show()
-//                 }
-//             }
-//         }
-//         estacionPrimavera.adapter = adapterEstacion
-//
-//
-//        estacionOtono.layoutManager = LinearLayoutManager(this)
-//        estacionInvierno.layoutManager = LinearLayoutManager(this)
-//        estacionVerano.layoutManager = LinearLayoutManager(this)
-//        estacionPrimavera.layoutManager = LinearLayoutManager(this)

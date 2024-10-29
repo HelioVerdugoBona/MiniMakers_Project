@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         Avatar("Avatar8",R.drawable.descarga))
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,20 +27,14 @@ class MainActivity : AppCompatActivity() {
         val gridOfAvatares = findViewById<GridView>(R.id.ArrayAvatares)
 
         val adapter = AvataresAdapter(this,R.layout.avatar_item,arrayOfAvatares)
-
         gridOfAvatares.adapter = adapter
 
-        gridOfAvatares.onItemClickListener = AdapterView.OnItemClickListener()
-        {
-                _, _, i, _ ->
+        gridOfAvatares.onItemClickListener = AdapterView.OnItemClickListener { _, _, i, _ ->
+
             val intent = Intent(this, ColoresEstaciones::class.java)
-
-            val avatarElejido = arrayOfAvatares[i]
-            intent.putExtra(ColoresEstaciones.EstacionesConstats.AVATAR, avatarElejido.nombre)
+//            val avatarElejido = arrayOfAvatares[i]
+//            intent.putExtra(ColoresEstaciones.EstacionesConstats.AVATAR, avatarElejido.nombre)
             startActivity(intent)
-
-
         }
-
     }
 }
