@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlin.math.log
 
 class ColoresEstaciones: AppCompatActivity() {
 
@@ -40,7 +39,6 @@ class ColoresEstaciones: AppCompatActivity() {
 
         setupRecyclerView(itemEstacionesList, itemsEstaciones)
         setupRecyclerView(arrayEstacionesList, arrayEstaciones)
-
     }
 
     private fun setupRecyclerView(
@@ -70,17 +68,28 @@ class ColoresEstaciones: AppCompatActivity() {
             recyclerView.setOnDragListener { _, event ->
                 when (event.action) {
                     DragEvent.ACTION_DROP -> {
-                         val draggedItem = event.localState as ItemEstaciones
+                        // val draggedItem = event.localState as ItemEstaciones
                         // Obtener el atributo del ítem arrastrado
-                        //val draggedAttribute = event.clipData.getItemAt(0).text.toString()
+                        val draggedAttribute = event.clipData.getItemAt(0).text.toString()
+                         println("El ID del draggedAttribute es: $draggedAttribute")
+
                         // Encuentra el ítem de destino (donde se soltó el arrastre)
-                        val targetPosition = recyclerView.getChildAdapterPosition(event.localState as View)
+                        val x = event.x
+                        val y = event.y
+                        val viewUnder = recyclerView.findChildViewUnder(x, y)
+                        val targetPosition = if (viewUnder != null) {
+                            recyclerView.getChildAdapterPosition(viewUnder)
+                        } else {
+                            RecyclerView.NO_POSITION
+                        }
+                        println("El targetPosition es: $targetPosition")
+
 
                         if (targetPosition != RecyclerView.NO_POSITION) {
                             val targetItem = arrayEstaciones[targetPosition]
 
                             // Compara los atributos
-                            if (draggedItem.id == targetItem.id) {
+                            if (draggedAttribute == targetItem.id) {
                                 Log.d("DragAndDrop", "Atributos coinciden")
                             } else {
                                 Log.d("DragAndDrop", "Atributos no coinciden")
