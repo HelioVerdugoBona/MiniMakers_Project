@@ -74,7 +74,7 @@ class ColoresEstaciones: AppCompatActivity() {
                     // val draggedItem = event.localState as ItemEstaciones
                     // Obtener el atributo del ítem arrastrado
                     val draggedAttribute = event.clipData.getItemAt(0).text.toString()
-                     println("El ID del draggedAttribute es: $draggedAttribute")
+                    println("El ID del draggedAttribute es: $draggedAttribute")
 
                     // Encuentra el ítem de destino (donde se soltó el arrastre)
                     val x = event.x
@@ -115,6 +115,7 @@ class ColoresEstaciones: AppCompatActivity() {
                     adapterEstacion.clearAlpha() // Restablecer la opacidad de todos los ítems
                     true
                 }
+
             else -> true
             }
         }
