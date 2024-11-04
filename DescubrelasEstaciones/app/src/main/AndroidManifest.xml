@@ -28,6 +28,10 @@
         <activity
             android:name=".SimbolosEstaciones"
             android:screenOrientation="landscape"/>
+
+        <activity
+            android:name=".RopasEstaciones"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

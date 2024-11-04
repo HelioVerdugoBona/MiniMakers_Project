@@ -21,10 +21,10 @@
       </SelectionState>
       <SelectionState runConfigName="MainActivity">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-11-04T18:16:10.355570600Z">
+        <DropdownSelection timestamp="2024-11-04T20:07:28.379335600Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\helio\.android\avd\Medium_Tablet_API_34.avd" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\helio\.android\avd\Medium_Tablet_API_30.avd" />
             </handle>
           </Target>
         </DropdownSelection>

@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class SimbolosEstaciones: AppCompatActivity ()
+class RopasEstaciones: AppCompatActivity ()
 {
 
     private val itemsEstaciones = mutableListOf(
-        ItemEstaciones("1", "Sol", R.drawable.sol),
-        ItemEstaciones("2", "Flor", R.drawable.flor),
-        ItemEstaciones("3", "Hoja", R.drawable.hoja),
-        ItemEstaciones("4", "Copo_Nieve", R.drawable.coponieve)
+        ItemEstaciones("1", "Bañador", R.drawable.banyador),
+        ItemEstaciones("2", "CamiaFlor", R.drawable.camisaprimavera),
+        ItemEstaciones("3", "Chubasquero", R.drawable.chubasquero),
+        ItemEstaciones("4", "Bufanda", R.drawable.bufanda)
     )
 
     private val arrayEstaciones = mutableListOf(
@@ -29,9 +29,9 @@ class SimbolosEstaciones: AppCompatActivity ()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.simbolos_estaciones)
-        val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewSimbolos)
-        val arrayEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewSimbolos2)
+        setContentView(R.layout.ropas_estaciones)
+        val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewRopas)
+        val arrayEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewRopas2)
 
         setupRecyclerView(itemEstacionesList, itemsEstaciones,arrayEstacionesList,arrayEstaciones)
     }
@@ -121,8 +121,7 @@ class SimbolosEstaciones: AppCompatActivity ()
     }
 
     private fun nextLevel() {
-        val intent = Intent(this, RopasEstaciones::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
-
 }
