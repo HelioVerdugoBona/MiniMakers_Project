@@ -25,6 +25,9 @@
         <activity
             android:name=".ColoresEstaciones"
             android:screenOrientation="landscape"/>
+        <activity
+            android:name=".SimbolosEstaciones"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

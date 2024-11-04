@@ -10,17 +10,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class ColoresEstaciones: AppCompatActivity() {
-
-    object EstacionesConstats {
-        const val AVATAR = "AVATAR"
-    }
+class SimbolosEstaciones: AppCompatActivity ()
+{
 
     private val itemsEstaciones = mutableListOf(
-        ItemEstaciones("1", "Amarillo", R.drawable.coloramarillo),
-        ItemEstaciones("2", "Rosa", R.drawable.colorrosa),
-        ItemEstaciones("3", "Naranja", R.drawable.colornaranja),
-        ItemEstaciones("4", "Azul_Cielo", R.drawable.colorazul)
+        ItemEstaciones("1", "Sol", R.drawable.sol),
+        ItemEstaciones("2", "Flor", R.drawable.flor),
+        ItemEstaciones("3", "Hoja", R.drawable.hoja),
+        ItemEstaciones("4", "Copo_Nieve", R.drawable.coponieve)
     )
 
     private val arrayEstaciones = mutableListOf(
@@ -32,10 +29,9 @@ class ColoresEstaciones: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.colores_estaciones)
-
-        val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewColores)
-        val arrayEstacionesList = findViewById<RecyclerView>(R.id.recylerViewEstaciones)
+        setContentView(R.layout.simbolos_estaciones)
+        val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewSimbolos)
+        val arrayEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewSimbolos2)
 
         setupRecyclerView(itemEstacionesList, itemsEstaciones,arrayEstacionesList,arrayEstaciones)
     }
@@ -119,13 +115,13 @@ class ColoresEstaciones: AppCompatActivity() {
                     true
                 }
 
-            else -> true
+                else -> true
             }
         }
     }
 
     private fun nextLevel() {
-        val intent = Intent(this, SimbolosEstaciones::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 
