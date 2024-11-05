@@ -124,7 +124,7 @@ class RopasEstaciones: AppCompatActivity ()
     }
 
     private fun nextLevel() {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, PantallaFinal::class.java)
         startActivity(intent)
     }
 }

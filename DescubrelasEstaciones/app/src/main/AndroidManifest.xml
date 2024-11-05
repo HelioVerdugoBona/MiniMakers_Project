@@ -32,6 +32,9 @@
         <activity
             android:name=".RopasEstaciones"
             android:screenOrientation="landscape"/>
+
+        <activity android:name=".PantallaFinal"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>
