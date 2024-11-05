@@ -9,10 +9,10 @@
         android:src="@drawable/fondofinal"
         android:alpha="0.4"
         android:scaleType="centerCrop"/>
+
    <LinearLayout
        android:layout_width="wrap_content"
        android:layout_height="wrap_content">
-
    </LinearLayout>
 
     <Button

@@ -2,6 +2,7 @@ package com.example.descubrelasestaciones
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.GridView
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
+
 
     private val arrayOfAvatares = mutableListOf(
         Avatar("Caballo",R.drawable.caballo),
@@ -20,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         Avatar("Pollo",R.drawable.pollo),
         Avatar("Cerdo",R.drawable.cerdo))
 
+    private var infoNen = InfoNen("Hola","","","","",
+        "","","","","")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +38,9 @@ class MainActivity : AppCompatActivity() {
         gridOfAvatares.onItemClickListener = AdapterView.OnItemClickListener { _, _, i, _ ->
 
             val intent = Intent(this, ColoresEstaciones::class.java)
-            val avatarElejido = arrayOfAvatares[i]
-            intent.putExtra(ColoresEstaciones.EstacionesConstats.AVATAR, avatarElejido.nombre)
+            infoNen.avatar = arrayOfAvatares[i].nombre
+            Log.d("Nombre Avatar",infoNen.avatar)
+            intent.putExtra(ColoresEstaciones.EstacionesConstats.AVATAR, infoNen.avatar)
             startActivity(intent)
         }
     }

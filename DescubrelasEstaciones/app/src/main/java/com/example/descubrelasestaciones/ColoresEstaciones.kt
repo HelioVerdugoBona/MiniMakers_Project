@@ -3,6 +3,8 @@ package com.example.descubrelasestaciones
 import android.content.ClipData
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.DragEvent
 import android.view.View
@@ -10,13 +12,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.delay
 
 class ColoresEstaciones: AppCompatActivity() {
 
     object EstacionesConstats {
         const val AVATAR = "AVATAR"
     }
+    private var startTime = System.currentTimeMillis()
 
+    private var infoNen = InfoNen("Hola","","","","",
+        "","","","","")
     private val itemsEstaciones = mutableListOf(
         ItemEstaciones("1", "Amarillo", R.drawable.coloramarillo),
         ItemEstaciones("2", "Rosa", R.drawable.colorrosa),
@@ -38,7 +44,10 @@ class ColoresEstaciones: AppCompatActivity() {
         val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewColores)
         val arrayEstacionesList = findViewById<RecyclerView>(R.id.recylerViewEstaciones)
 
+        val intent = intent
+        infoNen.avatar = intent.toString()
         setupRecyclerView(itemEstacionesList, itemsEstaciones,arrayEstacionesList,arrayEstaciones)
+
     }
 
     private fun setupRecyclerView(
@@ -51,7 +60,6 @@ class ColoresEstaciones: AppCompatActivity() {
         recyclerView1.layoutManager = LinearLayoutManager(this)
         recyclerView1.layoutManager = GridLayoutManager(this,4)
         recyclerView1.adapter = adapterItem
-
 
         val adapterEstacion = ItemsEstacionesAdapter(this, arrayEstaciones)
         recyclerView2.layoutManager = LinearLayoutManager(this)
@@ -126,8 +134,10 @@ class ColoresEstaciones: AppCompatActivity() {
     }
 
     private fun nextLevel() {
+        val endTime = System.currentTimeMillis()
+        val elapsedTime = endTime - startTime // en milisegundos
+        Log.d("Timer", "Tiempo transcurrido: ${elapsedTime}ms")
         val intent = Intent(this, SimbolosEstaciones::class.java)
         startActivity(intent)
     }
-
 }
