@@ -19,7 +19,7 @@ class RopasEstaciones: AppCompatActivity ()
     }
 
     private var startTime = System.currentTimeMillis()
-
+    private var intentos = 0
     private var infoNen = InfoNen("Error","Error","Error","Error","Error",
         "Error","Error","Error","Error","Error")
 
@@ -120,6 +120,7 @@ class RopasEstaciones: AppCompatActivity ()
 
                         } else {
                             Log.d("DragAndDrop", "Atributos no coinciden")
+                            intentos++
                         }
                     }
                     true
@@ -140,7 +141,8 @@ class RopasEstaciones: AppCompatActivity ()
         val endTime = System.currentTimeMillis()
         val elapsedTime = endTime - startTime // en milisegundos
         Log.d("Timer", "Tiempo transcurrido: ${elapsedTime}ms")
-        infoNen.tempsNVL3 = elapsedTime.toString()
+        infoNen.tempsNVL3 = (elapsedTime/1000).toString()
+        infoNen.intentsNVL3 = intentos.toString()
         intent.putExtra(PantallaFinal.InfoNens.INFONEN,infoNen)
         startActivity(intent)
     }

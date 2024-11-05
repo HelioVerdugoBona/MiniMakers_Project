@@ -19,7 +19,7 @@ class ColoresEstaciones: AppCompatActivity() {
     }
 
     private var startTime = System.currentTimeMillis()
-
+    private var intentos = 0
     private var infoNen = InfoNen("Error","Error","Error","Error","Error",
         "Error","Error","Error","Error","Error")
 
@@ -118,6 +118,7 @@ class ColoresEstaciones: AppCompatActivity() {
 
                         } else {
                             Log.d("DragAndDrop", "Atributos no coinciden")
+                            intentos++
                         }
                     }
                     true
@@ -137,8 +138,9 @@ class ColoresEstaciones: AppCompatActivity() {
         val endTime = System.currentTimeMillis()
         val elapsedTime = endTime - startTime // en milisegundos
         Log.d("Timer", "Tiempo transcurrido: ${elapsedTime}ms")
-        infoNen.tempsNVL1 = elapsedTime.toString()
+        infoNen.tempsNVL1 = (elapsedTime/1000).toString()
         val intent = Intent(this, SimbolosEstaciones::class.java)
+        infoNen.intentsNVL1 = intentos.toString()
         intent.putExtra(SimbolosEstaciones.SimbolosConstats.INFONEN,infoNen)
         startActivity(intent)
     }

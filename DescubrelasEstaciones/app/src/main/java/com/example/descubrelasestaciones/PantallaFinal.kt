@@ -38,6 +38,8 @@ class PantallaFinal:AppCompatActivity()
         val tmpTotal = infoNen.tempsNVL1.toInt() + infoNen.tempsNVL2.toInt() + infoNen.tempsNVL3.toInt()
         infoNen.tempsTotal = tmpTotal.toString()
         infoNen.tempsProm = (tmpTotal/3).toString()
+        val intentosTotal = infoNen.intentsNVL1.toInt() + infoNen.intentsNVL2.toInt() + infoNen.intentsNVL3.toInt()
+        infoNen.intentsTotals = intentosTotal.toString()
         println("La Info total es:" + " Avatar: " + infoNen.avatar + " Tiempo nivel 1: " + infoNen.tempsNVL1
                 + " Tiempo nivel 2: " + infoNen.tempsNVL2 + " Tiempo nivel 3:  " + infoNen.tempsNVL3
                 + " Tiempo Total: " + infoNen.tempsTotal + " Tiempo Promedio: " + infoNen.tempsProm
