@@ -10,9 +10,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.descubrelasestaciones.ColoresEstaciones.ColoresConstats
 
 class RopasEstaciones: AppCompatActivity ()
 {
+    object RopasConstats {
+        const val INFONEN = "INFONEN"
+    }
+
+    private var startTime = System.currentTimeMillis()
+
+    private var infoNen = InfoNen("Error","Error","Error","Error","Error",
+        "Error","Error","Error","Error","Error")
+
 
     private val itemsEstaciones = mutableListOf(
         ItemEstaciones("1", "Bañador", R.drawable.banyador),
@@ -36,6 +46,8 @@ class RopasEstaciones: AppCompatActivity ()
         val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewRopas)
         val arrayEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewRopas2)
 
+        val intent = intent
+        infoNen = intent.getSerializableExtra(ColoresConstats.INFONEN) as InfoNen
         setupRecyclerView(itemEstacionesList, itemsEstaciones,arrayEstacionesList,arrayEstaciones)
     }
 
@@ -125,6 +137,11 @@ class RopasEstaciones: AppCompatActivity ()
 
     private fun nextLevel() {
         val intent = Intent(this, PantallaFinal::class.java)
+        val endTime = System.currentTimeMillis()
+        val elapsedTime = endTime - startTime // en milisegundos
+        Log.d("Timer", "Tiempo transcurrido: ${elapsedTime}ms")
+        infoNen.tempsNVL3 = elapsedTime.toString()
+        intent.putExtra(PantallaFinal.InfoNens.INFONEN,infoNen)
         startActivity(intent)
     }
 }

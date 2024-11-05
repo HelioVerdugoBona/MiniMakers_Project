@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         Avatar("Pollo",R.drawable.pollo),
         Avatar("Cerdo",R.drawable.cerdo))
 
-    private var infoNen = InfoNen("Hola","","","","",
-        "","","","","")
+    private var infoNen = InfoNen("Error","Error","Error","Error","Error",
+        "Error","Error","Error","Error","Error")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ColoresEstaciones::class.java)
             infoNen.avatar = arrayOfAvatares[i].nombre
             Log.d("Nombre Avatar",infoNen.avatar)
-            intent.putExtra(ColoresEstaciones.EstacionesConstats.AVATAR, infoNen.avatar)
+            intent.putExtra(ColoresEstaciones.ColoresConstats.INFONEN, infoNen)
             startActivity(intent)
         }
     }
