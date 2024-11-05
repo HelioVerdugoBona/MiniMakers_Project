@@ -11,14 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity : AppCompatActivity() {
 
     private val arrayOfAvatares = mutableListOf(
-        Avatar("Avatar1",R.drawable.descarga),
-        Avatar("Avatar2",R.drawable.descarga),
-        Avatar("Avatar3",R.drawable.descarga),
-        Avatar("Avatar4",R.drawable.descarga),
-        Avatar("Avatar5",R.drawable.descarga),
-        Avatar("Avatar6",R.drawable.descarga),
-        Avatar("Avatar7",R.drawable.descarga),
-        Avatar("Avatar8",R.drawable.descarga))
+        Avatar("Caballo",R.drawable.caballo),
+        Avatar("Oveja",R.drawable.oveja),
+        Avatar("Burro",R.drawable.burro),
+        Avatar("Gallina",R.drawable.gallina),
+        Avatar("Conejo",R.drawable.conejo),
+        Avatar("Baca",R.drawable.baca),
+        Avatar("Pollo",R.drawable.pollo),
+        Avatar("Cerdo",R.drawable.cerdo))
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
         gridOfAvatares.onItemClickListener = AdapterView.OnItemClickListener { _, _, i, _ ->
 
             val intent = Intent(this, ColoresEstaciones::class.java)
-//            val avatarElejido = arrayOfAvatares[i]
-//            intent.putExtra(ColoresEstaciones.EstacionesConstats.AVATAR, avatarElejido.nombre)
+            val avatarElejido = arrayOfAvatares[i]
+            intent.putExtra(ColoresEstaciones.EstacionesConstats.AVATAR, avatarElejido.nombre)
             startActivity(intent)
         }
     }
