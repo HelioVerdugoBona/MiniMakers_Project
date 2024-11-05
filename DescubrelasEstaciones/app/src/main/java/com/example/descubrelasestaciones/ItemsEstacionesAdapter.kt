@@ -1,8 +1,10 @@
-package com.example.descubrelasestaciones;
+package com.example.descubrelasestaciones
 
-import android.content.Context;
-import android.media.Image
+import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -37,14 +39,26 @@ class ItemsEstacionesAdapter(
 
         var imgItemEstaciones = view.findViewById<ImageView>(R.id.imageView)
 
+        @SuppressLint("ClickableViewAccessibility")
         fun bind(item: ItemEstaciones) {
             imgItemEstaciones.setImageResource(item.imagen)
-            itemView.setOnLongClickListener {
-                longClickListener?.invoke(it, adapterPosition)
-                // Cambia la opacidad al arrastrar
-                itemView.alpha = 0.5f  // Reduce la opacidad
-                true
+            itemView.setOnTouchListener { view, event ->
+                if (event.action == MotionEvent.ACTION_DOWN) {
+                    // Inicia el arrastre con una sombra personalizada
+                    val dragData = ClipData.newPlainText("id", item.id)
+                    val dragShadow = CustomDragShadowBuilder(view) // Usar la sombra personalizada
+                    itemView.startDragAndDrop(dragData, dragShadow, view, 0)
+                    true
+                } else {
+                    false
+                }
             }
+//            itemView.setOnLongClickListener {
+//                longClickListener?.invoke(it, adapterPosition)
+//                // Cambia la opacidad al arrastrar
+//                itemView.alpha = 0.5f  // Reduce la opacidad
+//                true
+//            }
         }
     }
 

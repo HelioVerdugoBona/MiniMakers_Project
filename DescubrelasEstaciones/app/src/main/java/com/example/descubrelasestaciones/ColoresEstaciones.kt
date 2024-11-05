@@ -67,14 +67,10 @@ class ColoresEstaciones: AppCompatActivity() {
         recyclerView2.adapter = adapterEstacion
 
         val itemEstacion = itemsEstaciones[0]
-        adapterItem.setOnLongClickListener { view, i ->
-            val item = itemsEstaciones[i]
-
-            // Inicia el arrastre con una sombra personalizada
-            val dragData = ClipData.newPlainText("id", item.id)
-            val dragShadow = CustomDragShadowBuilder(view) // Usar la sombra personalizada
-            view.startDragAndDrop(dragData, dragShadow, view, 0)
-        }
+//        adapterItem.setOnLongClickListener { view, i ->
+//            val item = itemsEstaciones[i]
+//
+//        }
 
 
         recyclerView2.setOnDragListener { _, event ->
@@ -127,7 +123,6 @@ class ColoresEstaciones: AppCompatActivity() {
                     adapterEstacion.clearAlpha() // Restablecer la opacidad de todos los ítems
                     true
                 }
-
             else -> true
             }
         }
