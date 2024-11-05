@@ -26,7 +26,7 @@ class RopasEstaciones: AppCompatActivity ()
 
     private val itemsEstaciones = mutableListOf(
         ItemEstaciones("1", "Bañador", R.drawable.banyador),
-        ItemEstaciones("2", "CamiaFlor", R.drawable.camisaprimavera),
+        ItemEstaciones("2", "CamiaFlor", R.drawable.camisetaflor),
         ItemEstaciones("3", "Chubasquero", R.drawable.chubasquero),
         ItemEstaciones("4", "Bufanda", R.drawable.bufanda)
     )
