@@ -3,6 +3,7 @@ package com.example.descubrelasestaciones
 import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.Context
+import android.view.DragEvent
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -15,12 +16,7 @@ class ItemsEstacionesAdapter(
     private val itemsEstaciones: MutableList<ItemEstaciones>
 ) : RecyclerView.Adapter<ItemsEstacionesAdapter.ItemsEstacionesViewHolder>()
 {
-    private var longClickListener: ((View, Int) -> Unit)? = null
     private val layout = R.layout.item_image
-
-    fun setOnLongClickListener(listener: (View, Int) -> Unit) {
-        longClickListener = listener
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsEstacionesViewHolder
     {
@@ -43,26 +39,17 @@ class ItemsEstacionesAdapter(
         fun bind(item: ItemEstaciones) {
             imgItemEstaciones.setImageResource(item.imagen)
             itemView.setOnTouchListener { view, event ->
-                if (event.action == MotionEvent.ACTION_DOWN) {
-                    // Inicia el arrastre con una sombra personalizada
-                    val dragData = ClipData.newPlainText("id", item.id)
-                    val dragShadow = CustomDragShadowBuilder(view) // Usar la sombra personalizada
-                    itemView.startDragAndDrop(dragData, dragShadow, view, 0)
-                    true
-                } else {
-                    false
+
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        val dragData = ClipData.newPlainText("id", item.id)
+                        val dragShadow = View.DragShadowBuilder(view)
+                        itemView.startDragAndDrop(dragData, dragShadow, view, 0)
+                        true
+                    }
+                    else -> false
                 }
             }
-//            itemView.setOnLongClickListener {
-//                longClickListener?.invoke(it, adapterPosition)
-//                // Cambia la opacidad al arrastrar
-//                itemView.alpha = 0.5f  // Reduce la opacidad
-//                true
-//            }
         }
-    }
-
-    fun clearAlpha() {
-        notifyDataSetChanged() // Restablece la opacidad de todos los ítems
     }
 }

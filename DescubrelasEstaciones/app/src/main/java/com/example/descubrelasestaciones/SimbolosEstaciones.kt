@@ -68,16 +68,6 @@ class SimbolosEstaciones: AppCompatActivity ()
         recyclerView2.layoutManager = GridLayoutManager(this,4)
         recyclerView2.adapter = adapterEstacion
 
-        val itemEstacion = itemsEstaciones[0]
-        adapterItem.setOnLongClickListener { view, i ->
-            val item = itemsEstaciones[i]
-
-            // Inicia el arrastre con una sombra personalizada
-            val dragData = ClipData.newPlainText("id", item.id)
-            val dragShadow = CustomDragShadowBuilder(view) // Usar la sombra personalizada
-            view.startDragAndDrop(dragData, dragShadow, view, 0)
-        }
-
 
         recyclerView2.setOnDragListener { _, event ->
             when (event.action) {
@@ -126,8 +116,7 @@ class SimbolosEstaciones: AppCompatActivity ()
                     true
                 }
                 DragEvent.ACTION_DRAG_ENDED -> {
-                    // Restablecer la opacidad del ítem arrastrado
-                    adapterEstacion.clearAlpha() // Restablecer la opacidad de todos los ítems
+
                     true
                 }
 

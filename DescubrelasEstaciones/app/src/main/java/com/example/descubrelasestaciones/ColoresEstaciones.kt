@@ -66,32 +66,25 @@ class ColoresEstaciones: AppCompatActivity() {
         recyclerView2.layoutManager = GridLayoutManager(this,4)
         recyclerView2.adapter = adapterEstacion
 
-        val itemEstacion = itemsEstaciones[0]
-//        adapterItem.setOnLongClickListener { view, i ->
-//            val item = itemsEstaciones[i]
-//
-//        }
 
-
-        recyclerView2.setOnDragListener { _, event ->
+        recyclerView2.setOnDragListener { view, event ->
             when (event.action) {
                 DragEvent.ACTION_DROP -> {
-                    // val draggedItem = event.localState as ItemEstaciones
                     // Obtener el atributo del ítem arrastrado
                     val draggedAttribute = event.clipData.getItemAt(0).text.toString()
-                    println("El ID del draggedAttribute es: $draggedAttribute")
 
                     // Encuentra el ítem de destino (donde se soltó el arrastre)
                     val x = event.x
                     val y = event.y
                     val viewUnder = recyclerView2.findChildViewUnder(x, y)
-                    val targetPosition = if (viewUnder != null) {
+                    val targetPosition =
+                        if (viewUnder != null) {
                         recyclerView2.getChildAdapterPosition(viewUnder)
                     } else {
                         RecyclerView.NO_POSITION
                     }
-                    println("El targetPosition es: $targetPosition")
 
+                    println("El targetPosition es: $targetPosition")
 
                     if (targetPosition != RecyclerView.NO_POSITION) {
                         val targetItem = arrayEstaciones[targetPosition]
@@ -120,8 +113,6 @@ class ColoresEstaciones: AppCompatActivity() {
                     true
                 }
                 DragEvent.ACTION_DRAG_ENDED -> {
-                    // Restablecer la opacidad del ítem arrastrado
-                    adapterEstacion.clearAlpha() // Restablecer la opacidad de todos los ítems
                     true
                 }
             else -> true
