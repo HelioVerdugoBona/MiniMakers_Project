@@ -28,15 +28,13 @@ class ItemsEstacionesAdapter(
     override fun getItemCount(): Int = itemsEstaciones.size
 
     override fun onBindViewHolder(holder: ItemsEstacionesViewHolder, position: Int) {
-
+        val itemEstacion = itemsEstaciones[position]
         if (isDraggable) {
-            holder.itemView.setOnDragListener { _, _ ->
-                val itemEstacion = itemsEstaciones[position]
-                holder.bind(itemEstacion)
-                true
-            }
+            holder.binditem(itemEstacion)
+            true
         } else {
             holder.itemView.setOnDragListener(null)
+            holder.bindestacion(itemEstacion)
         }
 
     }
@@ -46,7 +44,7 @@ class ItemsEstacionesAdapter(
         var imgItemEstaciones = view.findViewById<ImageView>(R.id.imageView)
 
         @SuppressLint("ClickableViewAccessibility")
-        fun bind(item: ItemEstaciones) {
+        fun binditem(item: ItemEstaciones) {
             imgItemEstaciones.setImageResource(item.imagen)
             itemView.setOnTouchListener { view, event ->
 
@@ -60,6 +58,11 @@ class ItemsEstacionesAdapter(
                     else -> false
                 }
             }
+        }
+
+        @SuppressLint("ClickableViewAccessibility")
+        fun bindestacion(item: ItemEstaciones) {
+            imgItemEstaciones.setImageResource(item.imagen)
         }
     }
 }
