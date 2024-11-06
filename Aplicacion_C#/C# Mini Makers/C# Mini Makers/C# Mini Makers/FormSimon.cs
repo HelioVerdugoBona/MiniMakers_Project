@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -189,14 +189,16 @@ namespace C__Mini_Makers
 
             comboBoxNombre.Items.Clear();
             comboBoxFecha.Items.Clear();
+            if(partidas != null)
+            {
+                var nombresUnicos = partidas.Select(partida => partida.nombre).Distinct().OrderBy(n => n);
+                comboBoxNombre.Items.AddRange(nombresUnicos.ToArray());
 
-            var nombresUnicos = partidas.Select(partida => partida.nombre).Distinct().OrderBy(n => n);
-            comboBoxNombre.Items.AddRange(nombresUnicos.ToArray());
+                var fechasUnicas = partidas.Select(partida => partida.fecha).Distinct().OrderBy(f => f);
+                comboBoxFecha.Items.AddRange(fechasUnicas.ToArray());
 
-            var fechasUnicas = partidas.Select(partida => partida.fecha).Distinct().OrderBy(f => f);
-            comboBoxFecha.Items.AddRange(fechasUnicas.ToArray());
+            }
         }
-
         private void buttonReiniciar_Click(object sender, EventArgs e)
         {
             comboBoxNombre.Text = "Filtrar por Nombre";
