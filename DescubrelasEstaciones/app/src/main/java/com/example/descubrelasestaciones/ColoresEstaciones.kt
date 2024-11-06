@@ -56,12 +56,12 @@ class ColoresEstaciones: AppCompatActivity() {
         recyclerView2: RecyclerView,
         arrayEstaciones: MutableList<ItemEstaciones>
     ) {
-        val adapterItem = ItemsEstacionesAdapter(this, itemsEstaciones)
+        val adapterItem = ItemsEstacionesAdapter(this, itemsEstaciones, true)
         recyclerView1.layoutManager = LinearLayoutManager(this)
         recyclerView1.layoutManager = GridLayoutManager(this,4)
         recyclerView1.adapter = adapterItem
 
-        val adapterEstacion = ItemsEstacionesAdapter(this, arrayEstaciones)
+        val adapterEstacion = ItemsEstacionesAdapter(this, arrayEstaciones, false)
         recyclerView2.layoutManager = LinearLayoutManager(this)
         recyclerView2.layoutManager = GridLayoutManager(this,4)
         recyclerView2.adapter = adapterEstacion
@@ -124,6 +124,7 @@ class ColoresEstaciones: AppCompatActivity() {
         val endTime = System.currentTimeMillis()
         val elapsedTime = endTime - startTime // en milisegundos
         Log.d("Timer", "Tiempo transcurrido: ${elapsedTime}ms")
+
         infoNen.tempsNVL1 = (elapsedTime/1000).toString()
         val intent = Intent(this, SimbolosEstaciones::class.java)
         infoNen.intentsNVL1 = intentos.toString()

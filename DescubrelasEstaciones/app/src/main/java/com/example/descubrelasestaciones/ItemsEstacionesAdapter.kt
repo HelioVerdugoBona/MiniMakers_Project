@@ -13,7 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ItemsEstacionesAdapter(
     private val context: Context,
-    private val itemsEstaciones: MutableList<ItemEstaciones>
+    private val itemsEstaciones: MutableList<ItemEstaciones>,
+    private val isDraggable: Boolean
 ) : RecyclerView.Adapter<ItemsEstacionesAdapter.ItemsEstacionesViewHolder>()
 {
     private val layout = R.layout.item_image
@@ -27,8 +28,17 @@ class ItemsEstacionesAdapter(
     override fun getItemCount(): Int = itemsEstaciones.size
 
     override fun onBindViewHolder(holder: ItemsEstacionesViewHolder, position: Int) {
-        val itemEstacion = itemsEstaciones[position]
-        holder.bind(itemEstacion)
+
+        if (isDraggable) {
+            holder.itemView.setOnDragListener { _, _ ->
+                val itemEstacion = itemsEstaciones[position]
+                holder.bind(itemEstacion)
+                true
+            }
+        } else {
+            holder.itemView.setOnDragListener(null)
+        }
+
     }
 
     inner class ItemsEstacionesViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
