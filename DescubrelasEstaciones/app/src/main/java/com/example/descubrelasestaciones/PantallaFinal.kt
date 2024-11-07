@@ -1,8 +1,9 @@
 package com.example.descubrelasestaciones
 
 import android.content.Intent
-import android.icu.text.IDNA.Info
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.descubrelasestaciones.ColoresEstaciones.ColoresConstats
@@ -19,9 +20,22 @@ class PantallaFinal:AppCompatActivity()
 
     private var arrayInfoNen = mutableListOf<InfoNen>()
 
+    private lateinit var mediaPlayer: MediaPlayer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.final_layout)
+
+        if (mediaPlayer != null) {
+            // Configurar la música para que se repita
+            mediaPlayer.isLooping = true
+
+            // Iniciar la reproducción
+            mediaPlayer.start()
+        } else {
+            Log.e("MediaPlayerError", "MediaPlayer no se pudo inicializar.")
+        }
+
         val buttonVolver = findViewById<Button>(R.id.buttonTerminar)
 
         val intent = intent
@@ -64,5 +78,24 @@ class PantallaFinal:AppCompatActivity()
             arrayInfoNen.add(infoNen)
             FileManager.saveUsersStats(this,arrayInfoNen)
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        // Reiniciar la música si se detuvo al pausar la aplicación
+        if (!mediaPlayer.isPlaying) {
+            mediaPlayer.start()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // Pausar la música cuando la actividad no esté visible
+        mediaPlayer.pause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Liberar el MediaPlayer para evitar fugas de memoria
+        mediaPlayer.release()
     }
 }

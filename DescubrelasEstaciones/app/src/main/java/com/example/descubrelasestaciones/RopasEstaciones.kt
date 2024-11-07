@@ -2,6 +2,7 @@ package com.example.descubrelasestaciones
 
 import android.content.ClipData
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.DragEvent
@@ -22,7 +23,7 @@ class RopasEstaciones: AppCompatActivity ()
     private var intentos = 0
     private var infoNen = InfoNen("Error","Error","Error","Error","Error",
         "Error","Error","Error","Error","Error")
-
+    private lateinit var mediaPlayer: MediaPlayer
 
     private val itemsEstaciones = mutableListOf(
         ItemEstaciones("1", "Bañador", R.drawable.banyador),
@@ -42,7 +43,17 @@ class RopasEstaciones: AppCompatActivity ()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.ropas_estaciones)
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+        mediaPlayer = MediaPlayer.create(this, R.raw.musicafondo)
 
+        if (mediaPlayer != null) {
+            // Configurar la música para que se repita
+            mediaPlayer.isLooping = true
+
+            // Iniciar la reproducción
+            mediaPlayer.start()
+        } else {
+            Log.e("MediaPlayerError", "MediaPlayer no se pudo inicializar.")
+        }
         val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewRopas)
         val arrayEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewRopas2)
 
@@ -149,5 +160,24 @@ class RopasEstaciones: AppCompatActivity ()
         infoNen.erradesNVL3 = intentos.toString()
         intent.putExtra(PantallaFinal.InfoNens.INFONEN,infoNen)
         startActivity(intent)
+    }
+    override fun onResume() {
+        super.onResume()
+        // Reiniciar la música si se detuvo al pausar la aplicación
+        if (!mediaPlayer.isPlaying) {
+            mediaPlayer.start()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // Pausar la música cuando la actividad no esté visible
+        mediaPlayer.pause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Liberar el MediaPlayer para evitar fugas de memoria
+        mediaPlayer.release()
     }
 }
