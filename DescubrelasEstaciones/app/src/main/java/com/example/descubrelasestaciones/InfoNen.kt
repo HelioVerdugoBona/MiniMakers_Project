@@ -4,5 +4,5 @@ import java.io.Serializable
 
 class InfoNen (var avatar: String, var tempsTotal: String, var tempsNVL1: String,
                var tempsNVL2: String, var tempsNVL3: String, var tempsProm: String,
-               var intentsTotals: String, var intentsNVL1: String, var intentsNVL2: String,
-               var intentsNVL3: String): Serializable
+               var erradesTotals: String, var erradesNVL1: String, var erradesNVL2: String,
+               var erradesNVL3: String): Serializable

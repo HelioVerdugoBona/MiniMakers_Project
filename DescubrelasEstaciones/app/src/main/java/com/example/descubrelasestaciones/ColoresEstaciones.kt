@@ -1,12 +1,13 @@
 package com.example.descubrelasestaciones
 
-import android.content.ClipData
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.DragEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.alpha
+import androidx.core.view.get
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -72,13 +73,26 @@ class ColoresEstaciones: AppCompatActivity() {
 
         recyclerView2.adapter = adapterEstacion
 
+        recyclerView1.setOnDragListener { view, event ->
+            when (event.action) {
+                DragEvent.ACTION_DRAG_STARTED  -> {
+                    val draggedView = event.localState as? View
+                    draggedView?.alpha = 0f
+                    true
+
+                }else -> true
+
+            }
+        }
 
         recyclerView2.setOnDragListener { view, event ->
             when (event.action) {
                 DragEvent.ACTION_DROP -> {
-                    // Obtener el atributo del ítem arrastrado
-                    val draggedAttribute = event.clipData.getItemAt(0).text.toString()
+                    val draggedView = event.localState as? View
+                    draggedView?.alpha = 1.0f
 
+                    val draggedAttribute = event.clipData.getItemAt(0).text.toString()
+                    view.alpha = 1.0f
                     // Encuentra el ítem de destino (donde se soltó el arrastre)
                     val x = event.x
                     val y = event.y
@@ -119,6 +133,8 @@ class ColoresEstaciones: AppCompatActivity() {
                     true
                 }
                 DragEvent.ACTION_DRAG_ENDED -> {
+                    val draggedView = event.localState as? View
+                    draggedView?.alpha = 1.0f
                     true
                 }
             else -> true
@@ -133,7 +149,7 @@ class ColoresEstaciones: AppCompatActivity() {
 
         infoNen.tempsNVL1 = (elapsedTime/1000).toString()
         val intent = Intent(this, SimbolosEstaciones::class.java)
-        infoNen.intentsNVL1 = intentos.toString()
+        infoNen.erradesNVL1 = intentos.toString()
         intent.putExtra(SimbolosEstaciones.SimbolosConstats.INFONEN,infoNen)
         startActivity(intent)
     }

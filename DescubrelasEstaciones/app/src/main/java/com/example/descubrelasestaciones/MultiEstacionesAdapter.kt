@@ -20,7 +20,8 @@ class MultiEstacionesAdapter(private val context: Context,
         var imgEstacion = view.findViewById<ImageView>(R.id.imageView)
 
         fun bind(item: ItemEstaciones) {
-            itemView.setOnClickListener { itemClickListener(item) }
+            itemView.setOnClickListener { itemClickListener(item)
+                }
         }
 
     }

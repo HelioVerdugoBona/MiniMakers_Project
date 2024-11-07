@@ -70,12 +70,24 @@ class RopasEstaciones: AppCompatActivity ()
         recyclerView2.layoutManager = LinearLayoutManager(this)
         recyclerView2.layoutManager = GridLayoutManager(this,4)
         recyclerView2.adapter = adapterEstacion
+        recyclerView1.setOnDragListener { view, event ->
+            when (event.action) {
+                DragEvent.ACTION_DRAG_STARTED  -> {
+                    val draggedView = event.localState as? View
+                    draggedView?.alpha = 0f
+                    true
 
+                }else -> true
+
+            }
+        }
         recyclerView2.setOnDragListener { _, event ->
             when (event.action) {
                 DragEvent.ACTION_DROP -> {
                     // val draggedItem = event.localState as ItemEstaciones
                     // Obtener el atributo del ítem arrastrado
+                    val draggedView = event.localState as? View
+                    draggedView?.alpha = 1.0f
                     val draggedAttribute = event.clipData.getItemAt(0).text.toString()
                     println("El ID del draggedAttribute es: $draggedAttribute")
 
@@ -118,7 +130,8 @@ class RopasEstaciones: AppCompatActivity ()
                     true
                 }
                 DragEvent.ACTION_DRAG_ENDED -> {
-
+                    val draggedView = event.localState as? View
+                    draggedView?.alpha = 1.0f
                     true
                 }
 
@@ -133,7 +146,7 @@ class RopasEstaciones: AppCompatActivity ()
         val elapsedTime = endTime - startTime // en milisegundos
         Log.d("Timer", "Tiempo transcurrido: ${elapsedTime}ms")
         infoNen.tempsNVL3 = (elapsedTime/1000).toString()
-        infoNen.intentsNVL3 = intentos.toString()
+        infoNen.erradesNVL3 = intentos.toString()
         intent.putExtra(PantallaFinal.InfoNens.INFONEN,infoNen)
         startActivity(intent)
     }
