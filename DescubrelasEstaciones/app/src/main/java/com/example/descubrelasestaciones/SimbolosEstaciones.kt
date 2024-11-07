@@ -57,6 +57,10 @@ class SimbolosEstaciones: AppCompatActivity ()
         recyclerView2: RecyclerView,
         arrayEstaciones: MutableList<ItemEstaciones>
     ) {
+
+        itemsEstaciones.shuffle()
+        arrayEstaciones.shuffle()
+
         val adapterItem = ItemsEstacionesAdapter(this, itemsEstaciones, true)
         recyclerView1.layoutManager = LinearLayoutManager(this)
         recyclerView1.layoutManager = GridLayoutManager(this,4)

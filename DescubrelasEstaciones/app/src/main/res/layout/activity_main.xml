@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -9,29 +9,38 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center">
+        android:layout_height="match_parent"
+        android:src="@drawable/backgroundportada"
+        android:alpha="0.7"
+        android:scaleType="centerCrop"/>
 
-        <TextView
-            android:id="@+id/tituloJuego"
-            android:fontFamily="@font/cherry_bomb_one_regular"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tituloJuego"
+                android:fontFamily="@font/cherry_bomb_one_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="90sp"
+                android:text="Explora les Estacions"/>
+        </LinearLayout>
+        <GridView
+            android:id="@+id/ArrayAvatares"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="90sp"
-            android:text="Explora les Estacions"/>
-
-    </RelativeLayout>
-
-    <GridView
-        android:id="@+id/ArrayAvatares"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:numColumns="4"
-        android:paddingStart="100dp"
-        tools:ignore="RtlSymmetry" />
-
-</LinearLayout>
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:numColumns="4"
+            android:paddingStart="100dp"
+            tools:ignore="RtlSymmetry"/>
+    </LinearLayout>
+</FrameLayout>
