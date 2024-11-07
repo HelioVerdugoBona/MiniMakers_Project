@@ -72,7 +72,6 @@ class ColoresEstaciones: AppCompatActivity() {
                 DragEvent.ACTION_DROP -> {
                     // Obtener el atributo del ítem arrastrado
                     val draggedAttribute = event.clipData.getItemAt(0).text.toString()
-
                     // Encuentra el ítem de destino (donde se soltó el arrastre)
                     val x = event.x
                     val y = event.y
@@ -127,7 +126,7 @@ class ColoresEstaciones: AppCompatActivity() {
 
         infoNen.tempsNVL1 = (elapsedTime/1000).toString()
         val intent = Intent(this, SimbolosEstaciones::class.java)
-        infoNen.intentsNVL1 = intentos.toString()
+        infoNen.erradesNVL1 = intentos.toString()
         intent.putExtra(SimbolosEstaciones.SimbolosConstats.INFONEN,infoNen)
         startActivity(intent)
     }

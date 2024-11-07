@@ -131,7 +131,7 @@ class SimbolosEstaciones: AppCompatActivity ()
         val elapsedTime = endTime - startTime // en milisegundos
         Log.d("Timer", "Tiempo transcurrido: ${elapsedTime}ms")
         infoNen.tempsNVL2 = (elapsedTime/1000).toString()
-        infoNen.intentsNVL2 = intentos.toString()
+        infoNen.erradesNVL2 = intentos.toString()
         intent.putExtra(RopasEstaciones.RopasConstats.INFONEN,infoNen)
         startActivity(intent)
     }
