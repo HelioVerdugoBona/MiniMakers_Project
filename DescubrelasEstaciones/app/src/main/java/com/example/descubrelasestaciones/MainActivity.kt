@@ -52,10 +52,10 @@ class MainActivity : AppCompatActivity() {
 
         gridOfAvatares.onItemClickListener = AdapterView.OnItemClickListener { _, _, i, _ ->
 
-            val intent = Intent(this, ColoresEstaciones::class.java)
+            val intent = Intent(this, Tutorial::class.java)
             infoNen.avatar = arrayOfAvatares[i].nombre
             Log.d("Nombre Avatar", infoNen.avatar)
-            intent.putExtra(ColoresEstaciones.ColoresConstats.INFONEN, infoNen)
+            intent.putExtra(Tutorial.TutoriaConstats.INFONEN, infoNen)
             startActivity(intent)
 
         }

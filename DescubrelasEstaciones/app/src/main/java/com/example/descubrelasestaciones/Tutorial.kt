@@ -10,38 +10,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.descubrelasestaciones.ColoresEstaciones.ColoresConstats
 
-class SimbolosEstaciones: AppCompatActivity ()
+
+class Tutorial:AppCompatActivity()
 {
 
-    object SimbolosConstats {
+    object TutoriaConstats {
         const val INFONEN = "INFONEN"
     }
 
-    private var startTime = System.currentTimeMillis()
-    private var intentos = 0
-    private var infoNen = InfoNen("Error","Error","Error","Error","Error",
-        "Error","Error","Error","Error","Error")
     private lateinit var mediaPlayer: MediaPlayer
 
-    private val itemsEstaciones = mutableListOf(
-        ItemEstaciones("1", "Sol", R.drawable.sol),
-        ItemEstaciones("2", "Flor", R.drawable.flor),
-        ItemEstaciones("3", "Hoja", R.drawable.hoja),
-        ItemEstaciones("4", "Copo_Nieve", R.drawable.coponieve)
-    )
+    private var infoNen = InfoNen("Error","Error","Error","Error","Error",
+        "Error","Error","Error","Error","Error")
 
-    private val arrayEstaciones = mutableListOf(
-        ItemEstaciones("1", "Verano", R.drawable.estiu),
-        ItemEstaciones("2", "Primavera", R.drawable.primavera),
-        ItemEstaciones("3", "Otoño", R.drawable.tardor),
-        ItemEstaciones("4", "Invierno", R.drawable.hivern)
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.simbolos_estaciones)
+        setContentView(R.layout.tutorial_layout)
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
         mediaPlayer = MediaPlayer.create(this, R.raw.musicafondo)
 
@@ -55,13 +41,22 @@ class SimbolosEstaciones: AppCompatActivity ()
             Log.e("MediaPlayerError", "MediaPlayer no se pudo inicializar.")
         }
 
-        val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewSimbolos)
-        val arrayEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewSimbolos2)
+        val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewTutorial)
+        val arrayEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewTutorialEstaciones)
 
         val intent = intent
-        infoNen = intent.getSerializableExtra(ColoresConstats.INFONEN) as InfoNen
+        infoNen = intent.getSerializableExtra(TutoriaConstats.INFONEN) as InfoNen
         setupRecyclerView(itemEstacionesList, itemsEstaciones,arrayEstacionesList,arrayEstaciones)
+
     }
+
+    private val itemsEstaciones = mutableListOf(
+        ItemEstaciones("3", "Naranja", R.drawable.colornaranja)
+    )
+
+    private val arrayEstaciones = mutableListOf(
+        ItemEstaciones("3", "Otoño", R.drawable.tardor)
+    )
 
     private fun setupRecyclerView(
         recyclerView1: RecyclerView,
@@ -76,12 +71,13 @@ class SimbolosEstaciones: AppCompatActivity ()
         val adapterItem = ItemsEstacionesAdapter(this, itemsEstaciones, true)
         recyclerView1.layoutManager = LinearLayoutManager(this)
         recyclerView1.layoutManager = GridLayoutManager(this,4)
-        recyclerView1.adapter = adapterItem
 
+        recyclerView1.adapter = adapterItem
 
         val adapterEstacion = ItemsEstacionesAdapter(this, arrayEstaciones, false)
         recyclerView2.layoutManager = LinearLayoutManager(this)
         recyclerView2.layoutManager = GridLayoutManager(this,4)
+
         recyclerView2.adapter = adapterEstacion
 
         recyclerView1.setOnDragListener { view, event ->
@@ -96,27 +92,26 @@ class SimbolosEstaciones: AppCompatActivity ()
             }
         }
 
-        recyclerView2.setOnDragListener { _, event ->
+        recyclerView2.setOnDragListener { view, event ->
             when (event.action) {
                 DragEvent.ACTION_DROP -> {
-                    // val draggedItem = event.localState as ItemEstaciones
-                    // Obtener el atributo del ítem arrastrado
                     val draggedView = event.localState as? View
                     draggedView?.alpha = 1.0f
-                    val draggedAttribute = event.clipData.getItemAt(0).text.toString()
-                    println("El ID del draggedAttribute es: $draggedAttribute")
 
+                    val draggedAttribute = event.clipData.getItemAt(0).text.toString()
+                    view.alpha = 1.0f
                     // Encuentra el ítem de destino (donde se soltó el arrastre)
                     val x = event.x
                     val y = event.y
                     val viewUnder = recyclerView2.findChildViewUnder(x, y)
-                    val targetPosition = if (viewUnder != null) {
-                        recyclerView2.getChildAdapterPosition(viewUnder)
-                    } else {
-                        RecyclerView.NO_POSITION
-                    }
-                    println("El targetPosition es: $targetPosition")
+                    val targetPosition =
+                        if (viewUnder != null) {
+                            recyclerView2.getChildAdapterPosition(viewUnder)
+                        } else {
+                            RecyclerView.NO_POSITION
+                        }
 
+                    println("El targetPosition es: $targetPosition")
 
                     if (targetPosition != RecyclerView.NO_POSITION) {
                         val targetItem = arrayEstaciones[targetPosition]
@@ -139,7 +134,6 @@ class SimbolosEstaciones: AppCompatActivity ()
 
                         } else {
                             Log.d("DragAndDrop", "Atributos no coinciden")
-                            intentos++
                         }
                     }
                     true
@@ -149,39 +143,19 @@ class SimbolosEstaciones: AppCompatActivity ()
                     draggedView?.alpha = 1.0f
                     true
                 }
-
                 else -> true
             }
         }
     }
 
     private fun nextLevel() {
-        val intent = Intent(this, RopasEstaciones::class.java)
-        val endTime = System.currentTimeMillis()
-        val elapsedTime = endTime - startTime // en milisegundos
-        Log.d("Timer", "Tiempo transcurrido: ${elapsedTime}ms")
-        infoNen.tempsNVL2 = (elapsedTime/1000).toString()
-        infoNen.erradesNVL2 = intentos.toString()
-        intent.putExtra(RopasEstaciones.RopasConstats.INFONEN,infoNen)
+        val intent = Intent(this, ColoresEstaciones::class.java)
+        intent.putExtra(ColoresEstaciones.ColoresConstats.INFONEN, infoNen)
         startActivity(intent)
     }
-    override fun onResume() {
-        super.onResume()
-        // Reiniciar la música si se detuvo al pausar la aplicación
-        if (!mediaPlayer.isPlaying) {
-            mediaPlayer.start()
-        }
-    }
 
-    override fun onPause() {
-        super.onPause()
-        // Pausar la música cuando la actividad no esté visible
-        mediaPlayer.pause()
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        // Liberar el MediaPlayer para evitar fugas de memoria
-        mediaPlayer.release()
-    }
+
+
+
 }

@@ -35,6 +35,9 @@
 
         <activity android:name=".PantallaFinal"
             android:screenOrientation="landscape"/>
+
+        <activity android:name=".Tutorial"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

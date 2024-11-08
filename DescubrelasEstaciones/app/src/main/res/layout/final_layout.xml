@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -10,20 +11,21 @@
         android:alpha="0.4"
         android:scaleType="centerCrop"/>
 
-   <LinearLayout
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¡¡Felicidades!!"
+        android:textSize="200sp"
+        android:fontFamily="@font/cherry_bomb_one_regular"
+        android:layout_gravity="center|center_horizontal"
+        />
+
+   <Button
+       android:id="@+id/buttonTerminar"
        android:layout_width="wrap_content"
-       android:layout_height="wrap_content">
-       <Button
-           android:id="@+id/buttonTerminar"
-           android:layout_marginTop="350dp"
-           android:layout_marginStart="600dp"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="Terminar"
-           />
-   </LinearLayout>
-
-
-
+       android:layout_height="wrap_content"
+       android:text="Terminar"
+       android:layout_gravity="bottom|right"
+       />
 
 </FrameLayout>
