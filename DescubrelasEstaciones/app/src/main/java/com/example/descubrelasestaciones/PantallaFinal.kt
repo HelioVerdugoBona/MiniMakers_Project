@@ -25,7 +25,7 @@ class PantallaFinal:AppCompatActivity()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.final_layout)
-
+        mediaPlayer = MediaPlayer.create(this, R.raw.musicafondo)
         if (mediaPlayer != null) {
             // Configurar la música para que se repita
             mediaPlayer.isLooping = true
