@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         Avatar("Burro",R.drawable.burro),
         Avatar("Gallina",R.drawable.gallina),
         Avatar("Conejo",R.drawable.conejo),
-        Avatar("Baca",R.drawable.vaca),
+        Avatar("Vaca",R.drawable.vaca),
         Avatar("Pollo",R.drawable.pollo),
         Avatar("Cerdo",R.drawable.cerdo))
 
