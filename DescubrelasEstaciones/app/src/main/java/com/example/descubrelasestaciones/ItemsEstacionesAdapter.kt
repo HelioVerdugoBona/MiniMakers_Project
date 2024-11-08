@@ -36,7 +36,6 @@ class ItemsEstacionesAdapter(
             holder.itemView.setOnDragListener(null)
             holder.bindestacion(itemEstacion)
         }
-
     }
 
     inner class ItemsEstacionesViewHolder(val view: View) : RecyclerView.ViewHolder(view) {

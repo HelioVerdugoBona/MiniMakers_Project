@@ -4,21 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-11-06T19:15:05.713723Z">
+        <DropdownSelection timestamp="2024-11-08T12:07:47.227531400Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/Fer/.android/avd/Medium_Tablet_API_30.avd" />
-            </handle>
-          </Target>
-        </DropdownSelection>
-        <DialogSelection />
-      </SelectionState>
-      <SelectionState runConfigName="MainActivity">
-        <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-11-07T18:24:35.501640200Z">
-          <Target type="DEFAULT_BOOT">
-            <handle>
-              <DeviceId pluginId="PhysicalDevice" identifier="serial=R52MC11B7QF" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\facun\.android\avd\Medium_Tablet_API_30.avd" />
             </handle>
           </Target>
         </DropdownSelection>
