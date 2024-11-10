@@ -7,8 +7,6 @@ import android.util.Log
 import android.view.DragEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.alpha
-import androidx.core.view.get
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
