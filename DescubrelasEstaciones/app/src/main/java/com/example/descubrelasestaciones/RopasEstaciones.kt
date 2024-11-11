@@ -71,13 +71,11 @@ class RopasEstaciones: AppCompatActivity ()
         arrayEstaciones.shuffle()
 
         val adapterItem = ItemsEstacionesAdapter(this, itemsEstaciones, true)
-        recyclerView1.layoutManager = LinearLayoutManager(this)
         recyclerView1.layoutManager = GridLayoutManager(this,4)
         recyclerView1.adapter = adapterItem
 
 
         val adapterEstacion = ItemsEstacionesAdapter(this, arrayEstaciones, false)
-        recyclerView2.layoutManager = LinearLayoutManager(this)
         recyclerView2.layoutManager = GridLayoutManager(this,4)
         recyclerView2.adapter = adapterEstacion
         recyclerView1.setOnDragListener { view, event ->

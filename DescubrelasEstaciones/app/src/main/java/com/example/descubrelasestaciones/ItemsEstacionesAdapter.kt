@@ -15,12 +15,10 @@ class ItemsEstacionesAdapter(
     private val context: Context,
     private val itemsEstaciones: MutableList<ItemEstaciones>,
     private val isDraggable: Boolean
-) : RecyclerView.Adapter<ItemsEstacionesAdapter.ItemsEstacionesViewHolder>()
-{
+) : RecyclerView.Adapter<ItemsEstacionesAdapter.ItemsEstacionesViewHolder>() {
     private val layout = R.layout.item_image
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsEstacionesViewHolder
-    {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsEstacionesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
         return ItemsEstacionesViewHolder(view)
     }
@@ -30,23 +28,21 @@ class ItemsEstacionesAdapter(
     override fun onBindViewHolder(holder: ItemsEstacionesViewHolder, position: Int) {
         val itemEstacion = itemsEstaciones[position]
         if (isDraggable) {
-            holder.binditem(itemEstacion)
-            true
+            holder.bindItemDraggable(itemEstacion)
         } else {
             holder.itemView.setOnDragListener(null)
-            holder.bindestacion(itemEstacion)
+            holder.bindItemNonDraggable(itemEstacion)
         }
     }
 
     inner class ItemsEstacionesViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
-        var imgItemEstaciones = view.findViewById<ImageView>(R.id.imageView)
+        private val imgItemEstaciones = view.findViewById<ImageView>(R.id.imageView)
 
         @SuppressLint("ClickableViewAccessibility")
-        fun binditem(item: ItemEstaciones) {
+        fun bindItemDraggable(item: ItemEstaciones) {
             imgItemEstaciones.setImageResource(item.imagen)
             itemView.setOnTouchListener { view, event ->
-
                 when (event.action) {
                     MotionEvent.ACTION_DOWN -> {
                         val dragData = ClipData.newPlainText("id", item.id)
@@ -59,9 +55,9 @@ class ItemsEstacionesAdapter(
             }
         }
 
-        @SuppressLint("ClickableViewAccessibility")
-        fun bindestacion(item: ItemEstaciones) {
+        fun bindItemNonDraggable(item: ItemEstaciones) {
             imgItemEstaciones.setImageResource(item.imagen)
         }
     }
 }
+

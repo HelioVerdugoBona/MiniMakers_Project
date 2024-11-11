@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <!-- Fondo -->
     <ImageView
@@ -10,34 +9,24 @@
         android:layout_height="match_parent"
         android:src="@drawable/background"
         android:alpha="0.4"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop" />
 
     <!-- RecyclerView en la esquina superior derecha -->
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTutorial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|end"
-        android:layout_margin="16dp"> <!-- margen opcional para separarlo del borde -->
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewTutorial"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="800dp" />
 
     <!-- RecyclerView en la esquina inferior izquierda -->
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTutorialEstaciones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
-        android:layout_margin="16dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewTutorialEstaciones"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp" />
 
 </FrameLayout>
