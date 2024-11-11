@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.DragEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -129,6 +130,7 @@ class SimbolosEstaciones: AppCompatActivity ()
                                 if (draggedAttribute == item.id) {
                                     iterator.remove() // Elimina usando el iterador
                                     adapterItem.notifyDataSetChanged()
+                                    viewUnder?.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
                                     break // Salir del bucle después de eliminar
                                 }
                             }

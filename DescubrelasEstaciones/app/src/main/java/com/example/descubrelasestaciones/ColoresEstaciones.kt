@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.DragEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -131,7 +132,7 @@ class ColoresEstaciones: AppCompatActivity() {
                                 if (draggedAttribute == item.id) {
                                     iterator.remove() // Elimina usando el iterador
                                     adapterItem.notifyDataSetChanged()
-                                    recyclerView2.setBackgroundColor(R.color.green)
+                                    viewUnder?.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
                                     break // Salir del bucle después de eliminar
                                 }
                             }
