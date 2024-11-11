@@ -14,10 +14,12 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieAnimation"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_gravity="center"
-        android:rotation="-30"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="140dp"
+        android:layout_gravity="top|end"
+        android:layout_width="800dp"
+        android:layout_height="800dp"
+        android:rotation="-20"
         app:lottie_rawRes="@raw/dedoanimacion"
         app:lottie_autoPlay="true"
         app:lottie_loop="true" />
