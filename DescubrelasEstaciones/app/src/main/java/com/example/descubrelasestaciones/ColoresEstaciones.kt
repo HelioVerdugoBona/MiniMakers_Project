@@ -1,5 +1,6 @@
 package com.example.descubrelasestaciones
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -63,6 +64,7 @@ class ColoresEstaciones: AppCompatActivity() {
 
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun setupRecyclerView(
         recyclerView1: RecyclerView,
         itemsEstaciones: MutableList<ItemEstaciones>,
@@ -129,6 +131,7 @@ class ColoresEstaciones: AppCompatActivity() {
                                 if (draggedAttribute == item.id) {
                                     iterator.remove() // Elimina usando el iterador
                                     adapterItem.notifyDataSetChanged()
+                                    recyclerView2.setBackgroundColor(R.color.green)
                                     break // Salir del bucle después de eliminar
                                 }
                             }
