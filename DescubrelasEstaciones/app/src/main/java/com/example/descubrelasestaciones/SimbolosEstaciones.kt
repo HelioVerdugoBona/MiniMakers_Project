@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.example.descubrelasestaciones.ColoresEstaciones.ColoresConstats
 
 class SimbolosEstaciones: AppCompatActivity ()
@@ -24,7 +25,21 @@ class SimbolosEstaciones: AppCompatActivity ()
     private var intentos = 0
     private var infoNen = InfoNen("Error","Error","Error","Error","Error",
         "Error","Error","Error","Error","Error")
+
     private lateinit var mediaPlayer: MediaPlayer
+
+    private lateinit var anmCorrect1: LottieAnimationView
+    private lateinit var anmCorrect2: LottieAnimationView
+    private lateinit var anmCorrect3: LottieAnimationView
+    private lateinit var anmCorrect4: LottieAnimationView
+
+    private val arrayAnimations by lazy {
+        mutableListOf (anmCorrect1,
+            anmCorrect2,
+            anmCorrect3,
+            anmCorrect4)
+
+    }
 
     private val itemsEstaciones = mutableListOf(
         ItemEstaciones("1", "Sol", R.drawable.sol),
@@ -45,6 +60,11 @@ class SimbolosEstaciones: AppCompatActivity ()
         setContentView(R.layout.simbolos_estaciones)
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
         mediaPlayer = MediaPlayer.create(this, R.raw.musicafondo)
+
+        anmCorrect1 = findViewById(R.id.ANMCorrect1)
+        anmCorrect2 = findViewById(R.id.ANMCorrect2)
+        anmCorrect3 = findViewById(R.id.ANMCorrect3)
+        anmCorrect4 = findViewById(R.id.ANMCorrect4)
 
         if (mediaPlayer != null) {
             // Configurar la música para que se repita
@@ -72,7 +92,6 @@ class SimbolosEstaciones: AppCompatActivity ()
     ) {
 
         itemsEstaciones.shuffle()
-        arrayEstaciones.shuffle()
 
         val adapterItem = ItemsEstacionesAdapter(this, itemsEstaciones, true)
         recyclerView1.layoutManager = LinearLayoutManager(this)
@@ -131,6 +150,7 @@ class SimbolosEstaciones: AppCompatActivity ()
                                     iterator.remove() // Elimina usando el iterador
                                     adapterItem.notifyDataSetChanged()
                                     viewUnder?.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
+                                    runAnimatic(item.id.toInt()-1)
                                     break // Salir del bucle después de eliminar
                                 }
                             }
@@ -167,6 +187,12 @@ class SimbolosEstaciones: AppCompatActivity ()
         intent.putExtra(RopasEstaciones.RopasConstats.INFONEN,infoNen)
         startActivity(intent)
     }
+
+    private fun runAnimatic(index: Int){
+        arrayAnimations[index].visibility = View.VISIBLE
+        arrayAnimations[index].playAnimation()
+    }
+
     override fun onResume() {
         super.onResume()
         // Reiniciar la música si se detuvo al pausar la aplicación
