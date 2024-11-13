@@ -208,7 +208,11 @@ class SimbolosEstaciones: AppCompatActivity ()
         infoNen.tempsNVL2 = (elapsedTime/1000).toString()
         infoNen.erradesNVL2 = intentos.toString()
         intent.putExtra(RopasEstaciones.RopasConstats.INFONEN,infoNen)
-        startActivity(intent)
+        lifecycleScope.launch {
+            delay(500)
+            startActivity(intent)
+        }
+
     }
 
     private fun runAnimatic(index: Int, arrayAnimations: MutableList<LottieAnimationView>){

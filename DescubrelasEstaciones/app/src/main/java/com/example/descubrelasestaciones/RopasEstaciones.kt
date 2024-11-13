@@ -198,7 +198,10 @@ class RopasEstaciones: AppCompatActivity ()
         infoNen.tempsNVL3 = (elapsedTime/1000).toString()
         infoNen.erradesNVL3 = intentos.toString()
         intent.putExtra(PantallaFinal.InfoNens.INFONEN,infoNen)
-        startActivity(intent)
+        lifecycleScope.launch {
+            delay(500)
+            startActivity(intent)
+        }
     }
 
     private fun runAnimatic(index: Int, arrayAnimations: MutableList<LottieAnimationView>){

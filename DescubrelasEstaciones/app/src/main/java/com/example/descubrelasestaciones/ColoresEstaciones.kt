@@ -203,12 +203,15 @@ class ColoresEstaciones: AppCompatActivity() {
         val endTime = System.currentTimeMillis()
         val elapsedTime = endTime - startTime // en milisegundos
         Log.d("Timer", "Tiempo transcurrido: ${elapsedTime}ms")
-
         infoNen.tempsNVL1 = (elapsedTime/1000).toString()
         val intent = Intent(this, SimbolosEstaciones::class.java)
         infoNen.erradesNVL1 = intentos.toString()
         intent.putExtra(SimbolosEstaciones.SimbolosConstats.INFONEN,infoNen)
-        startActivity(intent)
+        lifecycleScope.launch {
+            delay(500)
+            startActivity(intent)
+        }
+
     }
 
     private fun runAnimatic(index: Int, arrayAnimations: MutableList<LottieAnimationView>){
