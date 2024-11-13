@@ -8,12 +8,13 @@ import android.util.Log
 import android.view.DragEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.lottie.Lottie
 import com.airbnb.lottie.LottieAnimationView
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class ColoresEstaciones: AppCompatActivity() {
@@ -33,11 +34,24 @@ class ColoresEstaciones: AppCompatActivity() {
     private lateinit var anmCorrect3: LottieAnimationView
     private lateinit var anmCorrect4: LottieAnimationView
 
-    private val arrayAnimations by lazy {
+    private val arrayAnimationsCorrect by lazy {
         mutableListOf (anmCorrect1,
                         anmCorrect2,
                         anmCorrect3,
                         anmCorrect4)
+
+    }
+
+    private lateinit var anmIncorrect1: LottieAnimationView
+    private lateinit var anmIncorrect2: LottieAnimationView
+    private lateinit var anmIncorrect3: LottieAnimationView
+    private lateinit var anmIncorrect4: LottieAnimationView
+
+    private val arrayAnimationsIncorrect by lazy {
+        mutableListOf (anmIncorrect1,
+                        anmIncorrect2,
+                        anmIncorrect3,
+                        anmIncorrect4)
 
     }
 
@@ -63,6 +77,11 @@ class ColoresEstaciones: AppCompatActivity() {
         anmCorrect2 = findViewById(R.id.ANMCorrect2)
         anmCorrect3 = findViewById(R.id.ANMCorrect3)
         anmCorrect4 = findViewById(R.id.ANMCorrect4)
+
+        anmIncorrect1 = findViewById(R.id.ANMIncorrect1)
+        anmIncorrect2 = findViewById(R.id.ANMIncorrect2)
+        anmIncorrect3 = findViewById(R.id.ANMIncorrect3)
+        anmIncorrect4 = findViewById(R.id.ANMIncorrect4)
 
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
         mediaPlayer = MediaPlayer.create(this, R.raw.musicafondo)
@@ -152,8 +171,8 @@ class ColoresEstaciones: AppCompatActivity() {
                                 if (draggedAttribute == item.id) {
                                     iterator.remove() // Elimina usando el iterador
                                     adapterItem.notifyDataSetChanged()
-                                    viewUnder?.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
-                                    runAnimatic(item.id.toInt()-1)
+                                    // viewUnder?.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
+                                    runAnimatic(targetItem.id.toInt()-1,arrayAnimationsCorrect)
                                     break // Salir del bucle después de eliminar
                                 }
                             }
@@ -163,6 +182,7 @@ class ColoresEstaciones: AppCompatActivity() {
                             Log.d("DragAndDrop", "Atributos coinciden")
 
                         } else {
+                            runAnimatic(targetItem.id.toInt()-1,arrayAnimationsIncorrect)
                             Log.d("DragAndDrop", "Atributos no coinciden")
                             intentos++
                         }
@@ -191,9 +211,13 @@ class ColoresEstaciones: AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun runAnimatic(index: Int){
+    private fun runAnimatic(index: Int, arrayAnimations: MutableList<LottieAnimationView>){
         arrayAnimations[index].visibility = View.VISIBLE
         arrayAnimations[index].playAnimation()
+        lifecycleScope.launch {
+            delay(1500)
+            arrayAnimations[index].visibility = View.GONE
+        }
     }
 
     override fun onResume() {
