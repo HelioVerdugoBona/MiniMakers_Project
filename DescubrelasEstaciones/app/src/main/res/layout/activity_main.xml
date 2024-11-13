@@ -32,7 +32,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="90sp"
-                android:text="Explora les Estacions"/>
+                android:text="Explora les Estacions"
+                android:textColor="@color/white"/>
         </LinearLayout>
         <GridView
             android:id="@+id/ArrayAvatares"
