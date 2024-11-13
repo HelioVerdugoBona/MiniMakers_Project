@@ -7,12 +7,13 @@ import android.util.Log
 import android.view.DragEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.example.descubrelasestaciones.ColoresEstaciones.ColoresConstats
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class RopasEstaciones: AppCompatActivity ()
 {
@@ -32,7 +33,7 @@ class RopasEstaciones: AppCompatActivity ()
     private lateinit var anmCorrect3: LottieAnimationView
     private lateinit var anmCorrect4: LottieAnimationView
 
-    private val arrayAnimations by lazy {
+    private val arrayAnimationsCorrect by lazy {
         mutableListOf (anmCorrect1,
             anmCorrect2,
             anmCorrect3,
@@ -40,6 +41,19 @@ class RopasEstaciones: AppCompatActivity ()
 
     }
 
+    private lateinit var anmIncorrect1: LottieAnimationView
+    private lateinit var anmIncorrect2: LottieAnimationView
+    private lateinit var anmIncorrect3: LottieAnimationView
+    private lateinit var anmIncorrect4: LottieAnimationView
+
+    private val arrayAnimationsIncorrect by lazy {
+        mutableListOf(
+            anmIncorrect1,
+            anmIncorrect2,
+            anmIncorrect3,
+            anmIncorrect4
+        )
+    }
     private val itemsEstaciones = mutableListOf(
         ItemEstaciones("1", "Bañador", R.drawable.banyador),
         ItemEstaciones("2", "CamiaFlor", R.drawable.camisetaflor),
@@ -64,6 +78,11 @@ class RopasEstaciones: AppCompatActivity ()
         anmCorrect2 = findViewById(R.id.ANMCorrect2)
         anmCorrect3 = findViewById(R.id.ANMCorrect3)
         anmCorrect4 = findViewById(R.id.ANMCorrect4)
+
+        anmIncorrect1 = findViewById(R.id.ANMIncorrect1)
+        anmIncorrect2 = findViewById(R.id.ANMIncorrect2)
+        anmIncorrect3 = findViewById(R.id.ANMIncorrect3)
+        anmIncorrect4 = findViewById(R.id.ANMIncorrect4)
 
         if (mediaPlayer != null) {
             // Configurar la música para que se repita
@@ -142,8 +161,8 @@ class RopasEstaciones: AppCompatActivity ()
                                 if (draggedAttribute == item.id) {
                                     iterator.remove() // Elimina usando el iterador
                                     adapterItem.notifyDataSetChanged()
-                                    viewUnder?.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
-                                    runAnimatic(item.id.toInt()-1)
+                                    // viewUnder?.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
+                                    runAnimatic(targetItem.id.toInt()-1,arrayAnimationsCorrect)
                                     break // Salir del bucle después de eliminar
                                 }
                             }
@@ -153,6 +172,7 @@ class RopasEstaciones: AppCompatActivity ()
                             Log.d("DragAndDrop", "Atributos coinciden")
 
                         } else {
+                            runAnimatic(targetItem.id.toInt()-1,arrayAnimationsIncorrect)
                             Log.d("DragAndDrop", "Atributos no coinciden")
                             intentos++
                         }
@@ -178,12 +198,19 @@ class RopasEstaciones: AppCompatActivity ()
         infoNen.tempsNVL3 = (elapsedTime/1000).toString()
         infoNen.erradesNVL3 = intentos.toString()
         intent.putExtra(PantallaFinal.InfoNens.INFONEN,infoNen)
-        startActivity(intent)
+        lifecycleScope.launch {
+            delay(500)
+            startActivity(intent)
+        }
     }
 
-    private fun runAnimatic(index: Int){
+    private fun runAnimatic(index: Int, arrayAnimations: MutableList<LottieAnimationView>){
         arrayAnimations[index].visibility = View.VISIBLE
         arrayAnimations[index].playAnimation()
+        lifecycleScope.launch {
+            delay(1500)
+            arrayAnimations[index].visibility = View.GONE
+        }
     }
 
     override fun onResume() {

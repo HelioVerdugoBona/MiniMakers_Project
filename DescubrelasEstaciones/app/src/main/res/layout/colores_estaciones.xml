@@ -88,4 +88,50 @@
         app:lottie_autoPlay="false"
         app:lottie_loop="false" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ANMIncorrect1"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="bottom|start"
+        android:layout_marginBottom="40dp"
+        android:visibility="invisible"
+        app:lottie_rawRes="@raw/animacionincorrecto"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ANMIncorrect2"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="150dp"
+        android:visibility="invisible"
+        app:lottie_rawRes="@raw/animacionincorrecto"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ANMIncorrect3"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="40dp"
+        android:layout_marginStart="150dp"
+        android:visibility="invisible"
+        app:lottie_rawRes="@raw/animacionincorrecto"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ANMIncorrect4"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="40dp"
+        android:visibility="invisible"
+        app:lottie_rawRes="@raw/animacionincorrecto"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false" />
+
 </FrameLayout>
