@@ -84,7 +84,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="40dp"
         android:visibility="invisible"
-        app:lottie_rawRes="@raw/animacionincorrecto"
+        app:lottie_rawRes="@raw/animacioncorrecta"
         app:lottie_autoPlay="false"
         app:lottie_loop="false" />
 

@@ -126,7 +126,7 @@ class SimbolosEstaciones: AppCompatActivity ()
         recyclerView2.layoutManager = GridLayoutManager(this,4)
         recyclerView2.adapter = adapterEstacion
 
-        recyclerView1.setOnDragListener { view, event ->
+        recyclerView1.setOnDragListener { _, event ->
             when (event.action) {
                 DragEvent.ACTION_DRAG_STARTED  -> {
                     val draggedView = event.localState as? View
