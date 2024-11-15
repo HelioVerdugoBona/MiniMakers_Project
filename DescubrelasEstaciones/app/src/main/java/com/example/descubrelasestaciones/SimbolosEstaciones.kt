@@ -28,7 +28,8 @@ class SimbolosEstaciones: AppCompatActivity ()
     private var infoNen = InfoNen("Error","Error","Error","Error","Error",
         "Error","Error","Error","Error","Error")
 
-    private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var musica: MediaPlayer
+    private lateinit var correctSFX: MediaPlayer
 
     private lateinit var anmCorrect1: LottieAnimationView
     private lateinit var anmCorrect2: LottieAnimationView
@@ -76,7 +77,8 @@ class SimbolosEstaciones: AppCompatActivity ()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.simbolos_estaciones)
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-        mediaPlayer = MediaPlayer.create(this, R.raw.musicafondo)
+        musica = MediaPlayer.create(this, R.raw.musicafondo)
+        correctSFX = MediaPlayer.create(this, R.raw.correctsfx)
 
         anmCorrect1 = findViewById(R.id.ANMCorrect1)
         anmCorrect2 = findViewById(R.id.ANMCorrect2)
@@ -88,12 +90,12 @@ class SimbolosEstaciones: AppCompatActivity ()
         anmIncorrect3 = findViewById(R.id.ANMIncorrect3)
         anmIncorrect4 = findViewById(R.id.ANMIncorrect4)
 
-        if (mediaPlayer != null) {
+        if (musica != null) {
             // Configurar la música para que se repita
-            mediaPlayer.isLooping = true
+            musica.isLooping = true
 
             // Iniciar la reproducción
-            mediaPlayer.start()
+            musica.start()
         } else {
             Log.e("MediaPlayerError", "MediaPlayer no se pudo inicializar.")
         }
@@ -173,6 +175,7 @@ class SimbolosEstaciones: AppCompatActivity ()
                                     adapterItem.notifyDataSetChanged()
                                     // viewUnder?.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
                                     runAnimatic(targetItem.id.toInt()-1,arrayAnimationsCorrect)
+                                    correctSFX.start()
                                     break // Salir del bucle después de eliminar
                                 }
                             }
@@ -227,20 +230,20 @@ class SimbolosEstaciones: AppCompatActivity ()
     override fun onResume() {
         super.onResume()
         // Reiniciar la música si se detuvo al pausar la aplicación
-        if (!mediaPlayer.isPlaying) {
-            mediaPlayer.start()
+        if (!musica.isPlaying) {
+            musica.start()
         }
     }
 
     override fun onPause() {
         super.onPause()
         // Pausar la música cuando la actividad no esté visible
-        mediaPlayer.pause()
+        musica.pause()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         // Liberar el MediaPlayer para evitar fugas de memoria
-        mediaPlayer.release()
+        musica.release()
     }
 }
