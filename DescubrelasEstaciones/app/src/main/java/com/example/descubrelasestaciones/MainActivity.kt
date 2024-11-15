@@ -7,7 +7,11 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.GridView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 
 class MainActivity : AppCompatActivity() {
@@ -33,10 +37,20 @@ class MainActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility =
             (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
 
-        val gridOfAvatares = findViewById<GridView>(R.id.ArrayAvatares)
+        val recyclerViewAvatares = findViewById<RecyclerView>(R.id.ArrayAvatares)
 
-        val adapter = AvataresAdapter(this, R.layout.avatar_item, arrayOfAvatares)
-        gridOfAvatares.adapter = adapter
+        val adapter = AvataresAdapter(this, arrayOfAvatares){ avatar ->
+
+            val intent = Intent(this, Tutorial::class.java)
+            infoNen.avatar = avatar.nombre
+            Log.d("Nombre Avatar", infoNen.avatar)
+            intent.putExtra(Tutorial.TutoriaConstats.INFONEN, infoNen)
+            startActivity(intent)
+
+        }
+
+        recyclerViewAvatares.adapter = adapter
+        recyclerViewAvatares.layoutManager = GridLayoutManager(this,4)
 
         mediaPlayer = MediaPlayer.create(this, R.raw.musicafondo)
 
@@ -48,16 +62,6 @@ class MainActivity : AppCompatActivity() {
             mediaPlayer.start()
         } else {
             Log.e("MediaPlayerError", "MediaPlayer no se pudo inicializar.")
-        }
-
-        gridOfAvatares.onItemClickListener = AdapterView.OnItemClickListener { _, _, i, _ ->
-
-            val intent = Intent(this, Tutorial::class.java)
-            infoNen.avatar = arrayOfAvatares[i].nombre
-            Log.d("Nombre Avatar", infoNen.avatar)
-            intent.putExtra(Tutorial.TutoriaConstats.INFONEN, infoNen)
-            startActivity(intent)
-
         }
     }
 

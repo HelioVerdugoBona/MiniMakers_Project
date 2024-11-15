@@ -3,7 +3,6 @@ package com.example.descubrelasestaciones
 import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.Context
-import android.view.DragEvent
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -35,7 +34,7 @@ class ItemsEstacionesAdapter(
         }
     }
 
-    inner class ItemsEstacionesViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    inner class ItemsEstacionesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val imgItemEstaciones = view.findViewById<ImageView>(R.id.imageView)
 

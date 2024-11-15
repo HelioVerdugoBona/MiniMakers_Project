@@ -22,26 +22,28 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center">
             <TextView
                 android:id="@+id/tituloJuego"
                 android:fontFamily="@font/cherry_bomb_one_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="90sp"
+                android:textSize="130sp"
                 android:text="Explora les Estacions"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                />
         </LinearLayout>
-        <GridView
-            android:id="@+id/ArrayAvatares"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:numColumns="4"
-            android:paddingStart="100dp"
-            tools:ignore="RtlSymmetry"/>
+            android:layout_height="wrap_content"
+            android:gravity="center">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ArrayAvatares"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>
