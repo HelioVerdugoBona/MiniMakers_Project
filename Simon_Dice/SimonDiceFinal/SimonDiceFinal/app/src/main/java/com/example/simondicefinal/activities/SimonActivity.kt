@@ -148,12 +148,8 @@ class SimonActivity : AppCompatActivity() {
             val tiempoFinal = System.currentTimeMillis()
             val tiempoTranscurrido = (tiempoFinal - tiempoInicial) / 1000
 
-            val minutes = tiempoTranscurrido / 60
-            val seconds = tiempoTranscurrido % 60
-
-            val tiempoTotal = "$minutes min $seconds s"
             activarBotones(false, btnVerde, btnRojo, btnAzul, btnAmarillo)
-            guardarPartida(tiempoTotal)
+            guardarPartida(tiempoTranscurrido)
             handler.postDelayed({
                 finish()
             }, 1000)
@@ -176,14 +172,14 @@ class SimonActivity : AppCompatActivity() {
         val formateador = DateTimeFormatter.ofPattern("dd-MM-yyyy")
         val fechaFormatada = fechaActual.format(formateador)
 
-        val partida = Partida(nombre, secuencia.size, tiempoTotal, fechaFormatada)
+        val partida = Partida(nombre, secuencia.size, tiempoTranscurrido, fechaFormatada)
         partidas.add(partida)
         FilesManager.guardarPartidas(this, partidas)
     }
 
     // Crea una prtida de ejemplo y la guarda en el archivo .json
     private fun partidaEjemplo() {
-        val ejemplo = Partida("ejemplo", 0, "0min 0s", "00-00-0000")
+        val ejemplo = Partida("ejemplo", 0, 0, "00-00-0000")
         partidas.add(ejemplo)
         FilesManager.guardarPartidas(this, partidas)
     }
