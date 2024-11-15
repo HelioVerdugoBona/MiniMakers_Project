@@ -4,9 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.DragEvent
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -177,7 +180,13 @@ class ColoresEstaciones: AppCompatActivity() {
                                 }
                             }
                             if(itemsEstaciones.size == 0){
-                                nextLevel()
+                                val txtFelicitar: TextView = findViewById(R.id.txtFelicitar)
+                                txtFelicitar.visibility = View.VISIBLE
+
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    txtFelicitar.visibility = View.INVISIBLE
+                                    nextLevel()
+                                }, 2000)
                             }
                             Log.d("DragAndDrop", "Atributos coinciden")
 

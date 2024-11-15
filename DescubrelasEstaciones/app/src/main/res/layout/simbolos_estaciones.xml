@@ -131,5 +131,6 @@
         app:lottie_rawRes="@raw/animacionincorrecto"
         app:lottie_autoPlay="false"
         app:lottie_loop="false" />
-
+    <include
+        layout="@layout/felicitar"/>
 </FrameLayout>

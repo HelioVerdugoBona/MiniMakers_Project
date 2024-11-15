@@ -63,6 +63,18 @@ class MainActivity : AppCompatActivity() {
         } else {
             Log.e("MediaPlayerError", "MediaPlayer no se pudo inicializar.")
         }
+<<<<<<< Updated upstream
+=======
+
+        gridOfAvatares.onItemClickListener = AdapterView.OnItemClickListener { _, _, i, _ ->
+
+            val intent = Intent(this, Tutorial::class.java)
+            infoNen.avatar = arrayOfAvatares[i].nombre
+            Log.d("Nombre Avatar", infoNen.avatar)
+            intent.putExtra(Tutorial.TutoriaConstats.INFONEN, infoNen)
+            startActivity(intent)
+        }
+>>>>>>> Stashed changes
     }
 
     override fun onResume() {

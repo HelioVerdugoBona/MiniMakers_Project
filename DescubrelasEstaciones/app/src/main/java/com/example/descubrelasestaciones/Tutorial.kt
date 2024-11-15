@@ -3,9 +3,12 @@ package com.example.descubrelasestaciones
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.DragEvent
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +31,7 @@ class Tutorial:AppCompatActivity()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.tutorial_layout)
+
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
         mediaPlayer = MediaPlayer.create(this, R.raw.musicafondo)
 
@@ -124,8 +128,16 @@ class Tutorial:AppCompatActivity()
                                     break // Salir del bucle después de eliminar
                                 }
                             }
-                            if(itemsEstaciones.size == 0){
-                                nextLevel()
+                            if(itemsEstaciones.size == 0){ // Aqui pasa al siguiente nivel
+
+                                val txtFelicitar: TextView = findViewById(R.id.txtFelicitar)
+                                txtFelicitar.visibility = View.VISIBLE
+
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    txtFelicitar.visibility = View.INVISIBLE
+                                    nextLevel()
+                                }, 2000)
+
                             }
                             Log.d("DragAndDrop", "Atributos coinciden")
 
