@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         Avatar("Pollo",R.drawable.pollo),
         Avatar("Cerdo",R.drawable.cerdo))
 
-    private var infoNen = InfoNen("Error","Error","Error","Error","Error",
-        "Error","Error","Error","Error","Error")
+    private var infoNen = InfoNen("Error",0,0,0,0,
+        0.00,"Error","Error","Error","Error")
 
     private lateinit var mediaPlayer: MediaPlayer
 
@@ -59,18 +59,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             Log.e("MediaPlayerError", "MediaPlayer no se pudo inicializar.")
         }
-<<<<<<< Updated upstream
-=======
-
-        gridOfAvatares.onItemClickListener = AdapterView.OnItemClickListener { _, _, i, _ ->
-
-            val intent = Intent(this, Tutorial::class.java)
-            infoNen.avatar = arrayOfAvatares[i].nombre
-            Log.d("Nombre Avatar", infoNen.avatar)
-            intent.putExtra(Tutorial.TutoriaConstats.INFONEN, infoNen)
-            startActivity(intent)
-        }
->>>>>>> Stashed changes
     }
 
     override fun onResume() {

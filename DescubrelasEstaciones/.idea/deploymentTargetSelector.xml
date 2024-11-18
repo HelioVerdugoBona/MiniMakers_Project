@@ -2,21 +2,9 @@
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
-      <SelectionState runConfigName="app">
-        <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-11-08T14:20:37.769Z">
-          <Target type="DEFAULT_BOOT">
-            <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/Fer/.android/avd/Medium_Tablet_API_30.avd" />
-            </handle>
-          </Target>
-        </DropdownSelection>
-        <DialogSelection />
-      </SelectionState>
-<<<<<<< Updated upstream
       <SelectionState runConfigName="MainActivity">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-11-14T18:53:01.390847100Z">
+        <DropdownSelection timestamp="2024-11-15T18:59:15.959729Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\helio\.android\avd\Medium_Tablet_API_34.avd" />
@@ -25,8 +13,6 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-=======
->>>>>>> Stashed changes
     </selectionStates>
   </component>
 </project>

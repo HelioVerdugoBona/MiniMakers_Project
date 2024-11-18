@@ -16,8 +16,8 @@ class PantallaFinal:AppCompatActivity()
         const val INFONEN = "INFONEN"
     }
 
-    private var infoNen = InfoNen("Error","Error","Error","Error","Error",
-        "Error","Error","Error","Error","Error")
+    private var infoNen = InfoNen("Error",0,0,0,0,
+        0.00,"Error","Error","Error","Error")
 
     private var arrayInfoNen = mutableListOf<InfoNen>()
 
@@ -54,9 +54,9 @@ class PantallaFinal:AppCompatActivity()
     }
 
     private fun setAllInformation(infoNen: InfoNen) {
-        val tmpTotal = infoNen.tempsNVL1.toInt() + infoNen.tempsNVL2.toInt() + infoNen.tempsNVL3.toInt()
-        infoNen.tempsTotal = tmpTotal.toString()
-        infoNen.tempsProm = (tmpTotal/3).toString()
+        val tmpTotal = infoNen.tempsNVL1 + infoNen.tempsNVL2 + infoNen.tempsNVL3
+        infoNen.tempsTotal = tmpTotal
+        infoNen.tempsProm = (tmpTotal/3).toDouble()
         val intentosTotal = infoNen.erradesNVL1.toInt() + infoNen.erradesNVL2.toInt() + infoNen.erradesNVL3.toInt()
         infoNen.erradesTotals = intentosTotal.toString()
         println("La Info total es:" + " Avatar: " + infoNen.avatar + " Tiempo nivel 1: " + infoNen.tempsNVL1
@@ -68,19 +68,19 @@ class PantallaFinal:AppCompatActivity()
 
         if(!FileManager.comproveFile(this))
         {
-            val exemple = InfoNen("Exemple","Exemple","Exemple",
-                "Exemple","Exemple","Exemple","Exemple",
-                "Exemple","Exemple","Exemple")
+            val exemple = InfoNen("Error",0,0,0,0,
+            0.00,"Error","Error","Error","Error")
 
             arrayInfoNen.add(exemple)
 
             FileManager.saveUsersStats(this,arrayInfoNen)
 
-        }else{
-            arrayInfoNen = FileManager.getUsersStats(this) as ArrayList<InfoNen>
-            arrayInfoNen.add(infoNen)
-            FileManager.saveUsersStats(this,arrayInfoNen)
         }
+
+        arrayInfoNen = FileManager.getUsersStats(this) as ArrayList<InfoNen>
+        arrayInfoNen.add(infoNen)
+        FileManager.saveUsersStats(this,arrayInfoNen)
+
     }
     override fun onResume() {
         super.onResume()

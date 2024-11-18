@@ -26,8 +26,8 @@ class RopasEstaciones: AppCompatActivity ()
 
     private var startTime = System.currentTimeMillis()
     private var intentos = 0
-    private var infoNen = InfoNen("Error","Error","Error","Error","Error",
-        "Error","Error","Error","Error","Error")
+    private var infoNen = InfoNen("Error",0,0,0,0,
+        0.00,"Error","Error","Error","Error")
 
     private lateinit var musica: MediaPlayer
     private lateinit var correctSFX: MediaPlayer
@@ -207,7 +207,7 @@ class RopasEstaciones: AppCompatActivity ()
         val endTime = System.currentTimeMillis()
         val elapsedTime = endTime - startTime // en milisegundos
         Log.d("Timer", "Tiempo transcurrido: ${elapsedTime}ms")
-        infoNen.tempsNVL3 = (elapsedTime/1000).toString()
+        infoNen.tempsNVL3 = (elapsedTime/1000).toInt()
         infoNen.erradesNVL3 = intentos.toString()
         intent.putExtra(PantallaFinal.InfoNens.INFONEN,infoNen)
         lifecycleScope.launch {

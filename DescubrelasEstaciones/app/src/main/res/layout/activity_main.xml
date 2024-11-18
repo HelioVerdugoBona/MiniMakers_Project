@@ -24,6 +24,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:gravity="center">
             <TextView
                 android:id="@+id/tituloJuego"
@@ -38,11 +39,13 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
             android:gravity="center">
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/ArrayAvatares"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
                     />
         </LinearLayout>
     </LinearLayout>

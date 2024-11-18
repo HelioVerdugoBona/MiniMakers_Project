@@ -28,8 +28,8 @@ class ColoresEstaciones: AppCompatActivity() {
 
     private var startTime = System.currentTimeMillis()
     private var intentos = 0
-    private var infoNen = InfoNen("Error","Error","Error","Error","Error",
-        "Error","Error","Error","Error","Error")
+    private var infoNen = InfoNen("Error",0,0,0,0,
+        0.00,"Error","Error","Error","Error")
     private lateinit var musica: MediaPlayer
     private lateinit var correctSFX: MediaPlayer
 
@@ -215,7 +215,7 @@ class ColoresEstaciones: AppCompatActivity() {
         val endTime = System.currentTimeMillis()
         val elapsedTime = endTime - startTime // en milisegundos
         Log.d("Timer", "Tiempo transcurrido: ${elapsedTime}ms")
-        infoNen.tempsNVL1 = (elapsedTime/1000).toString()
+        infoNen.tempsNVL1 = ((elapsedTime/1000).toInt())
         val intent = Intent(this, SimbolosEstaciones::class.java)
         infoNen.erradesNVL1 = intentos.toString()
         intent.putExtra(SimbolosEstaciones.SimbolosConstats.INFONEN,infoNen)

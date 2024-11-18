@@ -24,9 +24,8 @@ class Tutorial:AppCompatActivity()
 
     private lateinit var mediaPlayer: MediaPlayer
 
-    private var infoNen = InfoNen("Error","Error","Error","Error","Error",
-        "Error","Error","Error","Error","Error")
-
+    private var infoNen = InfoNen("Error",0,0,0,0,
+        0.00,"Error","Error","Error","Error")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
