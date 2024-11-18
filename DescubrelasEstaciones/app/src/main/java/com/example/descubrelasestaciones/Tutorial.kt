@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 
 
 class Tutorial:AppCompatActivity()
@@ -23,9 +24,13 @@ class Tutorial:AppCompatActivity()
     }
 
     private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var confetti: MediaPlayer
+    private lateinit var yay: MediaPlayer
 
     private var infoNen = InfoNen("Error",0,0,0,0,
         0.00,"Error","Error","Error","Error")
+
+    private lateinit var anmConfetti: LottieAnimationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +38,10 @@ class Tutorial:AppCompatActivity()
 
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
         mediaPlayer = MediaPlayer.create(this, R.raw.musicafondo)
+
+        anmConfetti = findViewById(R.id.ANMConfetti)
+        confetti = MediaPlayer.create(this, R.raw.confetti)
+        yay = MediaPlayer.create(this, R.raw.yay)
 
         if (mediaPlayer != null) {
             // Configurar la música para que se repita
@@ -131,11 +140,12 @@ class Tutorial:AppCompatActivity()
 
                                 val txtFelicitar: TextView = findViewById(R.id.txtFelicitar)
                                 txtFelicitar.visibility = View.VISIBLE
-
+                                anmConfetti.playAnimation()
+                                confetti.start()
+                                yay.start()
                                 Handler(Looper.getMainLooper()).postDelayed({
-                                    txtFelicitar.visibility = View.INVISIBLE
                                     nextLevel()
-                                }, 2000)
+                                }, 1500)
 
                             }
                             Log.d("DragAndDrop", "Atributos coinciden")
@@ -161,9 +171,5 @@ class Tutorial:AppCompatActivity()
         intent.putExtra(ColoresEstaciones.ColoresConstats.INFONEN, infoNen)
         startActivity(intent)
     }
-
-
-
-
 
 }

@@ -12,6 +12,14 @@
         android:src="@drawable/background"
         android:alpha="0.4"
         android:scaleType="centerCrop"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ANMConfetti"
+        android:layout_width="800dp"
+        android:layout_height="800dp"
+        android:layout_gravity="center"
+        app:lottie_autoPlay="false"
+        app:lottie_rawRes="@raw/animacionconfetti2"
+        app:lottie_loop="false"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

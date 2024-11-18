@@ -33,6 +33,8 @@ class SimbolosEstaciones: AppCompatActivity ()
 
     private lateinit var musica: MediaPlayer
     private lateinit var correctSFX: MediaPlayer
+    private lateinit var confetti: MediaPlayer
+    private lateinit var yay: MediaPlayer
 
     private lateinit var anmCorrect1: LottieAnimationView
     private lateinit var anmCorrect2: LottieAnimationView
@@ -47,20 +49,7 @@ class SimbolosEstaciones: AppCompatActivity ()
 
     }
 
-    private lateinit var anmIncorrect1: LottieAnimationView
-    private lateinit var anmIncorrect2: LottieAnimationView
-    private lateinit var anmIncorrect3: LottieAnimationView
-    private lateinit var anmIncorrect4: LottieAnimationView
-
-    private val arrayAnimationsIncorrect by lazy {
-        mutableListOf(
-            anmIncorrect1,
-            anmIncorrect2,
-            anmIncorrect3,
-            anmIncorrect4
-        )
-    }
-
+    private lateinit var anmConfetti: LottieAnimationView
 
     private val itemsEstaciones = mutableListOf(
         ItemEstaciones("1", "Sol", R.drawable.sol),
@@ -82,16 +71,14 @@ class SimbolosEstaciones: AppCompatActivity ()
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
         musica = MediaPlayer.create(this, R.raw.musicafondo)
         correctSFX = MediaPlayer.create(this, R.raw.correctsfx)
+        confetti = MediaPlayer.create(this, R.raw.confetti)
+        yay = MediaPlayer.create(this, R.raw.yay)
 
         anmCorrect1 = findViewById(R.id.ANMCorrect1)
         anmCorrect2 = findViewById(R.id.ANMCorrect2)
         anmCorrect3 = findViewById(R.id.ANMCorrect3)
         anmCorrect4 = findViewById(R.id.ANMCorrect4)
-
-        anmIncorrect1 = findViewById(R.id.ANMIncorrect1)
-        anmIncorrect2 = findViewById(R.id.ANMIncorrect2)
-        anmIncorrect3 = findViewById(R.id.ANMIncorrect3)
-        anmIncorrect4 = findViewById(R.id.ANMIncorrect4)
+        anmConfetti = findViewById(R.id.ANMConfetti)
 
         if (musica != null) {
             // Configurar la música para que se repita
@@ -185,16 +172,16 @@ class SimbolosEstaciones: AppCompatActivity ()
                             if(itemsEstaciones.size == 0){
                                 val txtFelicitar: TextView = findViewById(R.id.txtFelicitar)
                                 txtFelicitar.visibility = View.VISIBLE
-
+                                anmConfetti.playAnimation()
+                                confetti.start()
+                                yay.start()
                                 Handler(Looper.getMainLooper()).postDelayed({
-                                    txtFelicitar.visibility = View.INVISIBLE
                                     nextLevel()
-                                }, 2000)
+                                }, 1500)
                             }
                             Log.d("DragAndDrop", "Atributos coinciden")
 
                         } else {
-                            runAnimatic(targetItem.id.toInt()-1,arrayAnimationsIncorrect)
                             Log.d("DragAndDrop", "Atributos no coinciden")
                             intentos++
                         }
