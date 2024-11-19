@@ -166,10 +166,17 @@ class ColoresEstaciones: AppCompatActivity() {
                                 val item = iterator.next()
                                 if (draggedAttribute == item.id) {
                                     iterator.remove() // Elimina usando el iterador
+
                                     adapterItem.notifyDataSetChanged()
                                     // viewUnder?.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
                                     runAnimatic(targetItem.id.toInt()-1,arrayAnimationsCorrect)
                                     correctSFX.start()
+                                    Handler(Looper.getMainLooper()).postDelayed({
+                                        if (viewUnder != null) {
+                                            viewUnder.visibility = View.INVISIBLE
+                                        }
+                                    }, 500)
+
                                     break // Salir del bucle después de eliminar
                                 }
                             }

@@ -166,6 +166,12 @@ class SimbolosEstaciones: AppCompatActivity ()
                                     // viewUnder?.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
                                     runAnimatic(targetItem.id.toInt()-1,arrayAnimationsCorrect)
                                     correctSFX.start()
+                                    Handler(Looper.getMainLooper()).postDelayed({
+                                        if (viewUnder != null) {
+                                            viewUnder.visibility = View.INVISIBLE
+                                        }
+                                    }, 500)
+                                    adapterEstacion.notifyDataSetChanged()
                                     break // Salir del bucle después de eliminar
                                 }
                             }
