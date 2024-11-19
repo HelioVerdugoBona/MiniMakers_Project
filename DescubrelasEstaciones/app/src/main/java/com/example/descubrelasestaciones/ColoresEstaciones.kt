@@ -46,7 +46,6 @@ class ColoresEstaciones: AppCompatActivity() {
                         anmCorrect2,
                         anmCorrect3,
                         anmCorrect4)
-
     }
 
     private lateinit var anmConfetti: LottieAnimationView
@@ -75,7 +74,7 @@ class ColoresEstaciones: AppCompatActivity() {
         anmCorrect4 = findViewById(R.id.ANMCorrect4)
         anmConfetti = findViewById(R.id.ANMConfetti)
 
-            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
         musica = MediaPlayer.create(this, R.raw.musicafondo)
         correctSFX = MediaPlayer.create(this, R.raw.correctsfx)
         confetti = MediaPlayer.create(this, R.raw.confetti)
@@ -154,17 +153,17 @@ class ColoresEstaciones: AppCompatActivity() {
                         RecyclerView.NO_POSITION
                     }
 
-                    println("El targetPosition es: $targetPosition")
-
                     if (targetPosition != RecyclerView.NO_POSITION) {
                         val targetItem = arrayEstaciones[targetPosition]
 
                         // Compara los atributos
                         if (draggedAttribute == targetItem.id) {
                             val iterator = itemsEstaciones.iterator()
+
                             while (iterator.hasNext()) {
                                 val item = iterator.next()
                                 if (draggedAttribute == item.id) {
+
                                     iterator.remove() // Elimina usando el iterador
 
                                     adapterItem.notifyDataSetChanged()
@@ -217,6 +216,7 @@ class ColoresEstaciones: AppCompatActivity() {
         val intent = Intent(this, SimbolosEstaciones::class.java)
         infoNen.erradesNVL1 = intentos.toString()
         intent.putExtra(SimbolosEstaciones.SimbolosConstats.INFONEN,infoNen)
+
         lifecycleScope.launch {
             delay(500)
             startActivity(intent)
