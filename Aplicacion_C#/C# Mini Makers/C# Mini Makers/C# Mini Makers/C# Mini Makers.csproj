@@ -124,9 +124,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Image\Estaciones.png" />
-    <Content Include="Image\Participantes.png" />
-    <Content Include="Image\SimonDice.png" />
+    <None Include="Properties\Image\Alerta.png" />
+    <Content Include="Properties\Image\Estaciones.png" />
+    <Content Include="Properties\Image\Flecha.png" />
+    <Content Include="Properties\Image\Linea.png" />
+    <Content Include="Properties\Image\Participantes.png" />
+    <Content Include="Properties\Image\SimonDice.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

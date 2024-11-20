@@ -10,7 +10,7 @@ namespace C__Mini_Makers
     {
         public String nombre { get; set; }
         public int rondas { get; set; }
-        public String tiempo { get; set; }
+        public int tiempo { get; set; }
         public String fecha { get; set; }
     }
 }

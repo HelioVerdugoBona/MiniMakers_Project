@@ -8,15 +8,15 @@ namespace C__Mini_Makers
 {
     internal class PartidasEstaciones
     {
-        public String nombre {  get; set; }
-        public String tiempo1 { get; set; }
-        public String tiempo2 { get; set; }
-        public String tiempo3 { get; set; }
-        public String tiempoTotal { get; set; }
-        public int intento1 { get; set; }
-        public int intento2 { get; set; }
-        public int intento3 { get; set; }
-        public int intentosTotales { get; set; }
-        public String fecha { get; set; }
+        public String avatar {  get; set; }
+        public int tempsNVL1 { get; set; }
+        public int tempsNVL2 { get; set; }
+        public int tempsNVL3 { get; set; }
+        public int tempsTotal { get; set; }
+        public int erradesNVL1 { get; set; }
+        public int erradesNVL2 { get; set; }
+        public int erradesNVL3 { get; set; }
+        public int erradesTotals { get; set; }
+        public String data { get; set; }
     }
 }
