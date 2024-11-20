@@ -68,10 +68,10 @@ class RopasEstaciones: AppCompatActivity ()
         anmCorrect4 = findViewById(R.id.ANMCorrect4)
         anmConfetti = findViewById(R.id.ANMConfetti)
 
-        itemsEstaciones.addAll(mutableListOf( ItemEstaciones("1", "Amarillo", R.drawable.coloramarillo,MediaPlayer.create(this, R.raw.groc)),
-            ItemEstaciones("2", "Rosa", R.drawable.colorrosa,MediaPlayer.create(this, R.raw.rosa)),
-            ItemEstaciones("3", "Naranja", R.drawable.colornaranja,MediaPlayer.create(this, R.raw.taronja)),
-            ItemEstaciones("4", "Azul_Cielo", R.drawable.colorazul,MediaPlayer.create(this, R.raw.blau))))
+        itemsEstaciones.addAll(mutableListOf( ItemEstaciones("1", "Banyador", R.drawable.banyador,MediaPlayer.create(this, R.raw.samarreta)),
+            ItemEstaciones("2", "Samarreta", R.drawable.camisetaflor,MediaPlayer.create(this, R.raw.samarreta)),
+            ItemEstaciones("3", "Impermeable", R.drawable.chubasquero,MediaPlayer.create(this, R.raw.impermeable)),
+            ItemEstaciones("4", "Bufanda", R.drawable.bufanda,MediaPlayer.create(this, R.raw.bufanda))))
 
         arrayEstaciones.addAll(mutableListOf(ItemEstaciones("1", "Verano", R.drawable.estiu,MediaPlayer.create(this, R.raw.estiu)),
             ItemEstaciones("2", "Primavera", R.drawable.primavera,MediaPlayer.create(this, R.raw.primavera)),
@@ -116,8 +116,16 @@ class RopasEstaciones: AppCompatActivity ()
                 DragEvent.ACTION_DRAG_STARTED  -> {
                     val draggedView = event.localState as? View
                     draggedView?.alpha = 0f
-                    true
 
+                    val targetPosition =
+                        if (draggedView != null) {
+                            recyclerView1.getChildAdapterPosition(draggedView)
+                        } else {
+                            RecyclerView.NO_POSITION
+                        }
+                    val item = itemsEstaciones[targetPosition]
+                    item.sound.start()
+                    true
                 }else -> true
 
             }
@@ -146,7 +154,7 @@ class RopasEstaciones: AppCompatActivity ()
 
                     if (targetPosition != RecyclerView.NO_POSITION) {
                         val targetItem = arrayEstaciones[targetPosition]
-
+                        targetItem.sound.start()
                         // Compara los atributos
                         if (draggedAttribute == targetItem.id) {
                             val iterator = itemsEstaciones.iterator()
@@ -173,12 +181,14 @@ class RopasEstaciones: AppCompatActivity ()
                                 anmConfetti.playAnimation()
                                 confetti.start()
                                 yay.start()
-
                                 Handler(Looper.getMainLooper()).postDelayed({
                                     aconseguit.start()
                                     anmConfetti.playAnimation()
                                     confetti.start()
                                 }, 2000)
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    nextLevel()
+                                }, 2500)
                             }
                             Log.d("DragAndDrop", "Atributos coinciden")
 

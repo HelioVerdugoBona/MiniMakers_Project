@@ -58,11 +58,6 @@ class SimbolosEstaciones: AppCompatActivity ()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.simbolos_estaciones)
-        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-        musica = MediaPlayer.create(this, R.raw.musicafondo)
-        correctSFX = MediaPlayer.create(this, R.raw.correctsfx)
-        confetti = MediaPlayer.create(this, R.raw.confetti)
-        yay = MediaPlayer.create(this, R.raw.yay)
 
         anmCorrect1 = findViewById(R.id.ANMCorrect1)
         anmCorrect2 = findViewById(R.id.ANMCorrect2)
@@ -70,10 +65,16 @@ class SimbolosEstaciones: AppCompatActivity ()
         anmCorrect4 = findViewById(R.id.ANMCorrect4)
         anmConfetti = findViewById(R.id.ANMConfetti)
 
-        itemsEstaciones.addAll(mutableListOf( ItemEstaciones("1", "Amarillo", R.drawable.coloramarillo,MediaPlayer.create(this, R.raw.groc)),
-            ItemEstaciones("2", "Rosa", R.drawable.colorrosa,MediaPlayer.create(this, R.raw.rosa)),
-            ItemEstaciones("3", "Naranja", R.drawable.colornaranja,MediaPlayer.create(this, R.raw.taronja)),
-            ItemEstaciones("4", "Azul_Cielo", R.drawable.colorazul,MediaPlayer.create(this, R.raw.blau))))
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+        musica = MediaPlayer.create(this, R.raw.musicafondo)
+        correctSFX = MediaPlayer.create(this, R.raw.correctsfx)
+        confetti = MediaPlayer.create(this, R.raw.confetti)
+        yay = MediaPlayer.create(this, R.raw.yay)
+
+        itemsEstaciones.addAll(mutableListOf( ItemEstaciones("1", "Sol", R.drawable.sol,MediaPlayer.create(this, R.raw.sol)),
+            ItemEstaciones("2", "Flor", R.drawable.flor,MediaPlayer.create(this, R.raw.flor)),
+            ItemEstaciones("3", "Fulla", R.drawable.hoja,MediaPlayer.create(this, R.raw.fulla)),
+            ItemEstaciones("4", "FlocDeNeu", R.drawable.coponieve,MediaPlayer.create(this, R.raw.flocdeneu))))
 
         arrayEstaciones.addAll(mutableListOf(ItemEstaciones("1", "Verano", R.drawable.estiu,MediaPlayer.create(this, R.raw.estiu)),
             ItemEstaciones("2", "Primavera", R.drawable.primavera,MediaPlayer.create(this, R.raw.primavera)),
@@ -123,6 +124,15 @@ class SimbolosEstaciones: AppCompatActivity ()
                 DragEvent.ACTION_DRAG_STARTED  -> {
                     val draggedView = event.localState as? View
                     draggedView?.alpha = 0f
+
+                    val targetPosition =
+                        if (draggedView != null) {
+                            recyclerView1.getChildAdapterPosition(draggedView)
+                        } else {
+                            RecyclerView.NO_POSITION
+                        }
+                    val item = itemsEstaciones[targetPosition]
+                    item.sound.start()
                     true
 
                 }else -> true
@@ -154,7 +164,7 @@ class SimbolosEstaciones: AppCompatActivity ()
 
                     if (targetPosition != RecyclerView.NO_POSITION) {
                         val targetItem = arrayEstaciones[targetPosition]
-
+                        targetItem.sound.start()
                         // Compara los atributos
                         if (draggedAttribute == targetItem.id) {
                             val iterator = itemsEstaciones.iterator()

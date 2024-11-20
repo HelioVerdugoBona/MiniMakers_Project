@@ -15,32 +15,26 @@ class PantallaFinal:AppCompatActivity()
     object InfoNens {
         const val INFONEN = "INFONEN"
     }
-
     private var infoNen = InfoNen("Error",0,0,0,0,
         0.00,"Error","Error","Error","Error")
-
     private var arrayInfoNen = mutableListOf<InfoNen>()
-
     private lateinit var mediaPlayer: MediaPlayer
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.final_layout)
-
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
         mediaPlayer = MediaPlayer.create(this, R.raw.musicafondo)
         if (mediaPlayer != null) {
             // Configurar la música para que se repita
             mediaPlayer.isLooping = true
-
             // Iniciar la reproducción
             mediaPlayer.start()
         } else {
             Log.e("MediaPlayerError", "MediaPlayer no se pudo inicializar.")
         }
-
         val buttonVolver = findViewById<Button>(R.id.buttonTerminar)
-
         val intent = intent
         infoNen = intent.getSerializableExtra(ColoresConstats.INFONEN) as InfoNen
         setAllInformation(infoNen)
@@ -50,7 +44,6 @@ class PantallaFinal:AppCompatActivity()
             startActivity(intent)
             finish()
         }
-
     }
 
     private fun setAllInformation(infoNen: InfoNen) {
@@ -65,22 +58,17 @@ class PantallaFinal:AppCompatActivity()
                 + " Intentos Nivel 1: " + infoNen.erradesNVL1 + " Intentos Nivel 2: " + infoNen.erradesNVL2
                 + " Intentos Nivel 3: " + infoNen.erradesNVL3 + " IntentosTotales: " + infoNen.erradesTotals)
 
-
         if(!FileManager.comproveFile(this))
         {
             val exemple = InfoNen("Error",0,0,0,0,
             0.00,"Error","Error","Error","Error")
-
             arrayInfoNen.add(exemple)
-
             FileManager.saveUsersStats(this,arrayInfoNen)
-
         }
 
         arrayInfoNen = FileManager.getUsersStats(this) as ArrayList<InfoNen>
         arrayInfoNen.add(infoNen)
         FileManager.saveUsersStats(this,arrayInfoNen)
-
     }
     override fun onResume() {
         super.onResume()
