@@ -33,6 +33,7 @@ class RopasEstaciones: AppCompatActivity ()
     private lateinit var correctSFX: MediaPlayer
     private lateinit var confetti: MediaPlayer
     private lateinit var yay: MediaPlayer
+    private lateinit var aconseguit: MediaPlayer
 
     private lateinit var anmCorrect1: LottieAnimationView
     private lateinit var anmCorrect2: LottieAnimationView
@@ -49,19 +50,8 @@ class RopasEstaciones: AppCompatActivity ()
 
     private lateinit var anmConfetti: LottieAnimationView
 
-    private val itemsEstaciones = mutableListOf(
-        ItemEstaciones("1", "Bañador", R.drawable.banyador,MediaPlayer.create(this, R.raw.samarreta)),
-        ItemEstaciones("2", "CamiaFlor", R.drawable.camisetaflor,MediaPlayer.create(this, R.raw.samarreta)),
-        ItemEstaciones("3", "Chubasquero", R.drawable.chubasquero,MediaPlayer.create(this, R.raw.impermeable)),
-        ItemEstaciones("4", "Bufanda", R.drawable.bufanda,MediaPlayer.create(this, R.raw.bufanda))
-    )
-
-    private val arrayEstaciones = mutableListOf(
-        ItemEstaciones("1", "Verano", R.drawable.estiu,MediaPlayer.create(this, R.raw.estiu)),
-        ItemEstaciones("2", "Primavera", R.drawable.primavera,MediaPlayer.create(this, R.raw.primavera)),
-        ItemEstaciones("3", "Otoño", R.drawable.tardor,MediaPlayer.create(this, R.raw.tardor)),
-        ItemEstaciones("4", "Invierno", R.drawable.hivern,MediaPlayer.create(this, R.raw.hivern))
-    )
+    private val itemsEstaciones = mutableListOf<ItemEstaciones>()
+    private val arrayEstaciones = mutableListOf<ItemEstaciones>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,6 +67,16 @@ class RopasEstaciones: AppCompatActivity ()
         anmCorrect3 = findViewById(R.id.ANMCorrect3)
         anmCorrect4 = findViewById(R.id.ANMCorrect4)
         anmConfetti = findViewById(R.id.ANMConfetti)
+
+        itemsEstaciones.addAll(mutableListOf( ItemEstaciones("1", "Amarillo", R.drawable.coloramarillo,MediaPlayer.create(this, R.raw.groc)),
+            ItemEstaciones("2", "Rosa", R.drawable.colorrosa,MediaPlayer.create(this, R.raw.rosa)),
+            ItemEstaciones("3", "Naranja", R.drawable.colornaranja,MediaPlayer.create(this, R.raw.taronja)),
+            ItemEstaciones("4", "Azul_Cielo", R.drawable.colorazul,MediaPlayer.create(this, R.raw.blau))))
+
+        arrayEstaciones.addAll(mutableListOf(ItemEstaciones("1", "Verano", R.drawable.estiu,MediaPlayer.create(this, R.raw.estiu)),
+            ItemEstaciones("2", "Primavera", R.drawable.primavera,MediaPlayer.create(this, R.raw.primavera)),
+            ItemEstaciones("3", "Otoño", R.drawable.tardor,MediaPlayer.create(this, R.raw.tardor)),
+            ItemEstaciones("4", "Invierno", R.drawable.hivern,MediaPlayer.create(this, R.raw.hivern))))
 
         if (musica != null) {
             // Configurar la música para que se repita
@@ -173,9 +173,12 @@ class RopasEstaciones: AppCompatActivity ()
                                 anmConfetti.playAnimation()
                                 confetti.start()
                                 yay.start()
+
                                 Handler(Looper.getMainLooper()).postDelayed({
-                                    nextLevel()
-                                }, 1500)
+                                    aconseguit.start()
+                                    anmConfetti.playAnimation()
+                                    confetti.start()
+                                }, 2000)
                             }
                             Log.d("DragAndDrop", "Atributos coinciden")
 

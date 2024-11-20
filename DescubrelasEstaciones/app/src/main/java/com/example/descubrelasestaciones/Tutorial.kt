@@ -26,23 +26,17 @@ class Tutorial:AppCompatActivity()
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var confetti: MediaPlayer
     private lateinit var yay: MediaPlayer
-    private lateinit var taronja: MediaPlayer
-    private lateinit var tardor: MediaPlayer
+    private lateinit var aconseguit: MediaPlayer
 
-    private var infoNen = InfoNen("Error",0,0,0,0,
+     private var infoNen = InfoNen("Error",0,0,0,0,
         0.00,"Error","Error","Error","Error")
 
     private lateinit var anmConfetti: LottieAnimationView
 
-    private val itemsEstaciones by lazy {
-        mutableListOf(
-        ItemEstaciones("3", "Naranja", R.drawable.colornaranja,taronja)
-    ) }
+    private val itemsEstaciones = mutableListOf<ItemEstaciones>()
 
-    private val arrayEstaciones by lazy {
-        mutableListOf(
-        ItemEstaciones("3", "Otoño", R.drawable.tardor,tardor)
-    ) }
+    private val arrayEstaciones = mutableListOf<ItemEstaciones>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,9 +48,9 @@ class Tutorial:AppCompatActivity()
         anmConfetti = findViewById(R.id.ANMConfetti)
         confetti = MediaPlayer.create(this, R.raw.confetti)
         yay = MediaPlayer.create(this, R.raw.yay)
-        taronja = MediaPlayer.create(this, R.raw.taronja)
-        tardor = MediaPlayer.create(this, R.raw.tardor)
-
+        itemsEstaciones.add(ItemEstaciones("3", "Naranja", R.drawable.colornaranja,MediaPlayer.create(this, R.raw.taronja)))
+        arrayEstaciones.add(ItemEstaciones("3", "Otoño", R.drawable.tardor,MediaPlayer.create(this, R.raw.tardor)))
+        aconseguit = MediaPlayer.create(this, R.raw.hohasaconseguit)
 
         if (mediaPlayer != null) {
             // Configurar la música para que se repita
@@ -95,18 +89,18 @@ class Tutorial:AppCompatActivity()
         recyclerView2.layoutManager = GridLayoutManager(this,4)
         recyclerView2.adapter = adapterEstacion
 
-        recyclerView1.setOnDragListener { view, event ->
+        recyclerView1.setOnDragListener { _, event ->
             when (event.action) {
                 DragEvent.ACTION_DRAG_STARTED  -> {
                     val draggedView = event.localState as? View
                     draggedView?.alpha = 0f
+
                     val targetPosition =
                     if (draggedView != null) {
                             recyclerView1.getChildAdapterPosition(draggedView)
                         } else {
                             RecyclerView.NO_POSITION
                         }
-
                     val item = itemsEstaciones[targetPosition]
                     item.sound.start()
                     true
@@ -157,6 +151,8 @@ class Tutorial:AppCompatActivity()
                                 anmConfetti.playAnimation()
                                 confetti.start()
                                 yay.start()
+
+                                aconseguit.start()
                                 Handler(Looper.getMainLooper()).postDelayed({
                                     nextLevel()
                                 }, 1500)
