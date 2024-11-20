@@ -52,17 +52,17 @@ class SimbolosEstaciones: AppCompatActivity ()
     private lateinit var anmConfetti: LottieAnimationView
 
     private val itemsEstaciones = mutableListOf(
-        ItemEstaciones("1", "Sol", R.drawable.sol),
-        ItemEstaciones("2", "Flor", R.drawable.flor),
-        ItemEstaciones("3", "Hoja", R.drawable.hoja),
-        ItemEstaciones("4", "Copo_Nieve", R.drawable.coponieve)
+        ItemEstaciones("1", "Sol", R.drawable.sol,MediaPlayer.create(this,R.raw.sol)),
+        ItemEstaciones("2", "Flor", R.drawable.flor,MediaPlayer.create(this,R.raw.flor)),
+        ItemEstaciones("3", "Hoja", R.drawable.hoja,MediaPlayer.create(this,R.raw.fulla)),
+        ItemEstaciones("4", "Copo_Nieve", R.drawable.coponieve,MediaPlayer.create(this,R.raw.flocdeneu))
     )
 
     private val arrayEstaciones = mutableListOf(
-        ItemEstaciones("1", "Verano", R.drawable.estiu),
-        ItemEstaciones("2", "Primavera", R.drawable.primavera),
-        ItemEstaciones("3", "Otoño", R.drawable.tardor),
-        ItemEstaciones("4", "Invierno", R.drawable.hivern)
+        ItemEstaciones("1", "Verano", R.drawable.estiu,MediaPlayer.create(this, R.raw.estiu)),
+        ItemEstaciones("2", "Primavera", R.drawable.primavera,MediaPlayer.create(this, R.raw.primavera)),
+        ItemEstaciones("3", "Otoño", R.drawable.tardor,MediaPlayer.create(this, R.raw.tardor)),
+        ItemEstaciones("4", "Invierno", R.drawable.hivern,MediaPlayer.create(this, R.raw.hivern))
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

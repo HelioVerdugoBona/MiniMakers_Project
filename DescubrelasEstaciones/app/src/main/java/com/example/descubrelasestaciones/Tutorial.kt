@@ -26,11 +26,23 @@ class Tutorial:AppCompatActivity()
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var confetti: MediaPlayer
     private lateinit var yay: MediaPlayer
+    private lateinit var taronja: MediaPlayer
+    private lateinit var tardor: MediaPlayer
 
     private var infoNen = InfoNen("Error",0,0,0,0,
         0.00,"Error","Error","Error","Error")
 
     private lateinit var anmConfetti: LottieAnimationView
+
+    private val itemsEstaciones by lazy {
+        mutableListOf(
+        ItemEstaciones("3", "Naranja", R.drawable.colornaranja,taronja)
+    ) }
+
+    private val arrayEstaciones by lazy {
+        mutableListOf(
+        ItemEstaciones("3", "Otoño", R.drawable.tardor,tardor)
+    ) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +54,9 @@ class Tutorial:AppCompatActivity()
         anmConfetti = findViewById(R.id.ANMConfetti)
         confetti = MediaPlayer.create(this, R.raw.confetti)
         yay = MediaPlayer.create(this, R.raw.yay)
+        taronja = MediaPlayer.create(this, R.raw.taronja)
+        tardor = MediaPlayer.create(this, R.raw.tardor)
+
 
         if (mediaPlayer != null) {
             // Configurar la música para que se repita
@@ -52,7 +67,6 @@ class Tutorial:AppCompatActivity()
         } else {
             Log.e("MediaPlayerError", "MediaPlayer no se pudo inicializar.")
         }
-
         val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewTutorial)
         val arrayEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewTutorialEstaciones)
 
@@ -61,14 +75,6 @@ class Tutorial:AppCompatActivity()
         setupRecyclerView(itemEstacionesList, itemsEstaciones,arrayEstacionesList,arrayEstaciones)
 
     }
-
-    private val itemsEstaciones = mutableListOf(
-        ItemEstaciones("3", "Naranja", R.drawable.colornaranja)
-    )
-
-    private val arrayEstaciones = mutableListOf(
-        ItemEstaciones("3", "Otoño", R.drawable.tardor)
-    )
 
     private fun setupRecyclerView(
         recyclerView1: RecyclerView,
@@ -94,8 +100,16 @@ class Tutorial:AppCompatActivity()
                 DragEvent.ACTION_DRAG_STARTED  -> {
                     val draggedView = event.localState as? View
                     draggedView?.alpha = 0f
-                    true
+                    val targetPosition =
+                    if (draggedView != null) {
+                            recyclerView1.getChildAdapterPosition(draggedView)
+                        } else {
+                            RecyclerView.NO_POSITION
+                        }
 
+                    val item = itemsEstaciones[targetPosition]
+                    item.sound.start()
+                    true
                 }else -> true
 
             }
@@ -124,7 +138,7 @@ class Tutorial:AppCompatActivity()
 
                     if (targetPosition != RecyclerView.NO_POSITION) {
                         val targetItem = arrayEstaciones[targetPosition]
-
+                        targetItem.sound.start()
                         // Compara los atributos
                         if (draggedAttribute == targetItem.id) {
                             val iterator = itemsEstaciones.iterator()

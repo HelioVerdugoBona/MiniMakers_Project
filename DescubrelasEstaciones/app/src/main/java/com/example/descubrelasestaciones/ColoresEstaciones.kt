@@ -35,6 +35,7 @@ class ColoresEstaciones: AppCompatActivity() {
     private lateinit var correctSFX: MediaPlayer
     private lateinit var confetti: MediaPlayer
     private lateinit var yay: MediaPlayer
+    private lateinit var aconseguit: MediaPlayer
 
     private lateinit var anmCorrect1: LottieAnimationView
     private lateinit var anmCorrect2: LottieAnimationView
@@ -51,17 +52,17 @@ class ColoresEstaciones: AppCompatActivity() {
     private lateinit var anmConfetti: LottieAnimationView
 
     private val itemsEstaciones = mutableListOf(
-        ItemEstaciones("1", "Amarillo", R.drawable.coloramarillo),
-        ItemEstaciones("2", "Rosa", R.drawable.colorrosa),
-        ItemEstaciones("3", "Naranja", R.drawable.colornaranja),
-        ItemEstaciones("4", "Azul_Cielo", R.drawable.colorazul)
+        ItemEstaciones("1", "Amarillo", R.drawable.coloramarillo,MediaPlayer.create(this, R.raw.groc)),
+        ItemEstaciones("2", "Rosa", R.drawable.colorrosa,MediaPlayer.create(this, R.raw.rosa)),
+        ItemEstaciones("3", "Naranja", R.drawable.colornaranja,MediaPlayer.create(this, R.raw.taronja)),
+        ItemEstaciones("4", "Azul_Cielo", R.drawable.colorazul,MediaPlayer.create(this, R.raw.blau))
     )
 
     private val arrayEstaciones = mutableListOf(
-        ItemEstaciones("1", "Verano", R.drawable.estiu),
-        ItemEstaciones("2", "Primavera", R.drawable.primavera),
-        ItemEstaciones("3", "Otoño", R.drawable.tardor),
-        ItemEstaciones("4", "Invierno", R.drawable.hivern)
+        ItemEstaciones("1", "Verano", R.drawable.estiu,MediaPlayer.create(this, R.raw.estiu)),
+        ItemEstaciones("2", "Primavera", R.drawable.primavera,MediaPlayer.create(this, R.raw.primavera)),
+        ItemEstaciones("3", "Otoño", R.drawable.tardor,MediaPlayer.create(this, R.raw.tardor)),
+        ItemEstaciones("4", "Invierno", R.drawable.hivern,MediaPlayer.create(this, R.raw.hivern))
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,7 +80,7 @@ class ColoresEstaciones: AppCompatActivity() {
         correctSFX = MediaPlayer.create(this, R.raw.correctsfx)
         confetti = MediaPlayer.create(this, R.raw.confetti)
         yay = MediaPlayer.create(this, R.raw.yay)
-
+        aconseguit = MediaPlayer.create(this, R.raw.hohasaconseguit)
 
         if (musica != null) {
             // Configurar la música para que se repita
@@ -127,8 +128,16 @@ class ColoresEstaciones: AppCompatActivity() {
                 DragEvent.ACTION_DRAG_STARTED  -> {
                     val draggedView = event.localState as? View
                     draggedView?.alpha = 0f
-                    true
 
+                    val targetPosition =
+                        if (draggedView != null) {
+                            recyclerView1.getChildAdapterPosition(draggedView)
+                        } else {
+                            RecyclerView.NO_POSITION
+                        }
+                    val item = itemsEstaciones[targetPosition]
+                    item.sound.start()
+                    true
                 }else -> true
 
             }
@@ -155,7 +164,7 @@ class ColoresEstaciones: AppCompatActivity() {
 
                     if (targetPosition != RecyclerView.NO_POSITION) {
                         val targetItem = arrayEstaciones[targetPosition]
-
+                        targetItem.sound.start()
                         // Compara los atributos
                         if (draggedAttribute == targetItem.id) {
                             val iterator = itemsEstaciones.iterator()
@@ -182,9 +191,12 @@ class ColoresEstaciones: AppCompatActivity() {
                             if(itemsEstaciones.size == 0){
                                 val txtFelicitar: TextView = findViewById(R.id.txtFelicitar)
                                 txtFelicitar.visibility = View.VISIBLE
-                                anmConfetti.playAnimation()
-                                confetti.start()
-                                yay.start()
+                                aconseguit.start()
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    anmConfetti.playAnimation()
+                                    confetti.start()
+                                    yay.start()
+                                }, 1000)
                                 Handler(Looper.getMainLooper()).postDelayed({
                                     nextLevel()
                                 }, 1500)
