@@ -50,17 +50,17 @@ class RopasEstaciones: AppCompatActivity ()
     private lateinit var anmConfetti: LottieAnimationView
 
     private val itemsEstaciones = mutableListOf(
-        ItemEstaciones("1", "Bañador", R.drawable.banyador),
-        ItemEstaciones("2", "CamiaFlor", R.drawable.camisetaflor),
-        ItemEstaciones("3", "Chubasquero", R.drawable.chubasquero),
-        ItemEstaciones("4", "Bufanda", R.drawable.bufanda)
+        ItemEstaciones("1", "Bañador", R.drawable.banyador,MediaPlayer.create(this, R.raw.samarreta)),
+        ItemEstaciones("2", "CamiaFlor", R.drawable.camisetaflor,MediaPlayer.create(this, R.raw.samarreta)),
+        ItemEstaciones("3", "Chubasquero", R.drawable.chubasquero,MediaPlayer.create(this, R.raw.impermeable)),
+        ItemEstaciones("4", "Bufanda", R.drawable.bufanda,MediaPlayer.create(this, R.raw.bufanda))
     )
 
     private val arrayEstaciones = mutableListOf(
-        ItemEstaciones("1", "Verano", R.drawable.estiu),
-        ItemEstaciones("2", "Primavera", R.drawable.primavera),
-        ItemEstaciones("3", "Otoño", R.drawable.tardor),
-        ItemEstaciones("4", "Invierno", R.drawable.hivern)
+        ItemEstaciones("1", "Verano", R.drawable.estiu,MediaPlayer.create(this, R.raw.estiu)),
+        ItemEstaciones("2", "Primavera", R.drawable.primavera,MediaPlayer.create(this, R.raw.primavera)),
+        ItemEstaciones("3", "Otoño", R.drawable.tardor,MediaPlayer.create(this, R.raw.tardor)),
+        ItemEstaciones("4", "Invierno", R.drawable.hivern,MediaPlayer.create(this, R.raw.hivern))
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
