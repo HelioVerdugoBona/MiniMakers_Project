@@ -146,7 +146,7 @@ class SimonActivity : AppCompatActivity() {
         } else {
             // Guardar el tiempo que ha durado la partida
             val tiempoFinal = System.currentTimeMillis()
-            val tiempoTranscurrido = (tiempoFinal - tiempoInicial) / 1000
+            val tiempoTranscurrido = ((tiempoFinal - tiempoInicial) / 1000).toInt()
 
             activarBotones(false, btnVerde, btnRojo, btnAzul, btnAmarillo)
             guardarPartida(tiempoTranscurrido)
@@ -165,7 +165,7 @@ class SimonActivity : AppCompatActivity() {
     }
 
     // Obtener el registro de partidas guardadas y guardar la nueva partida en el archivo .json
-    private fun guardarPartida(tiempoTotal: String) {
+    private fun guardarPartida(tiempoTranscurrido: Int) {
         partidas = FilesManager.obtenerPartidas(this)
 
         val fechaActual = LocalDateTime.now()

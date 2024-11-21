@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19152850-0c29-471a-98d7-33084a5b274b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../DescubrelasEstaciones/app/src/main/java/com/example/descubrelasestaciones/ColoresEstaciones.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../DescubrelasEstaciones/app/src/main/java/com/example/descubrelasestaciones/ColoresEstaciones.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DescubrelasEstaciones/app/src/main/java/com/example/descubrelasestaciones/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../DescubrelasEstaciones/app/src/main/java/com/example/descubrelasestaciones/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DescubrelasEstaciones/app/src/main/java/com/example/descubrelasestaciones/Tutorial.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../DescubrelasEstaciones/app/src/main/java/com/example/descubrelasestaciones/Tutorial.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,9 +20,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2oUIHCl0auPf0G9yGXDCg5LHBVu" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -35,7 +37,7 @@
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/Fer/MiniMakers_Project/Simon_Dice/SimonDiceFinal"
+    "last_opened_file_path": "C:/Users/helio/Documents/GitHub/MiniMakers_Project/MiniMakers_Project/Simon_Dice/SimonDiceFinal/SimonDiceFinal"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

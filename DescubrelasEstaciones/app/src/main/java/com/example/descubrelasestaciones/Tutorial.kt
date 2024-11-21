@@ -3,8 +3,6 @@ package com.example.descubrelasestaciones
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.DragEvent
 import android.view.View
