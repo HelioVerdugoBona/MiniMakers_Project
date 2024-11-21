@@ -25,13 +25,13 @@ class MainActivity : AppCompatActivity() {
     private var infoNen = InfoNen("Error",0,0,0,0,
         0.00,"Error","Error","Error","Error")
 
-    private lateinit var mediaPlayer: MediaPlayer
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         window.decorView.systemUiVisibility =
             (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+
+        startMusic()
 
         val recyclerViewAvatares = findViewById<RecyclerView>(R.id.ArrayAvatares)
 
@@ -44,40 +44,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
-
         recyclerViewAvatares.adapter = adapter
         recyclerViewAvatares.layoutManager = GridLayoutManager(this,4)
-
-        mediaPlayer = MediaPlayer.create(this, R.raw.musicafondo)
-
-        if (mediaPlayer != null) {
-            // Configurar la música para que se repita
-            mediaPlayer.isLooping = true
-
-            // Iniciar la reproducción
-            mediaPlayer.start()
-        } else {
-            Log.e("MediaPlayerError", "MediaPlayer no se pudo inicializar.")
-        }
     }
 
-    override fun onResume() {
-        super.onResume()
-        // Reiniciar la música si se detuvo al pausar la aplicación
-        if (!mediaPlayer.isPlaying) {
-            mediaPlayer.start()
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        // Pausar la música cuando la actividad no esté visible
-        mediaPlayer.pause()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // Liberar el MediaPlayer para evitar fugas de memoria
-        mediaPlayer.release()
+    private fun startMusic() {
+        val intent = Intent(this, BackgroundSound::class.java)
+        startService(intent)
     }
 }

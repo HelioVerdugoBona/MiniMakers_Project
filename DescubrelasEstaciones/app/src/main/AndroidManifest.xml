@@ -38,6 +38,8 @@
 
         <activity android:name=".Tutorial"
             android:screenOrientation="landscape"/>
+
+        <service android:name=".BackgroundSound"/>
     </application>
 
 </manifest>

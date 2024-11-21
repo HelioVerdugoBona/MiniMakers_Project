@@ -1,9 +1,7 @@
 package com.example.descubrelasestaciones
 
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -18,22 +16,11 @@ class PantallaFinal:AppCompatActivity()
     private var infoNen = InfoNen("Error",0,0,0,0,
         0.00,"Error","Error","Error","Error")
     private var arrayInfoNen = mutableListOf<InfoNen>()
-    private lateinit var mediaPlayer: MediaPlayer
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.final_layout)
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-        mediaPlayer = MediaPlayer.create(this, R.raw.musicafondo)
-        if (mediaPlayer != null) {
-            // Configurar la música para que se repita
-            mediaPlayer.isLooping = true
-            // Iniciar la reproducción
-            mediaPlayer.start()
-        } else {
-            Log.e("MediaPlayerError", "MediaPlayer no se pudo inicializar.")
-        }
         val buttonVolver = findViewById<Button>(R.id.buttonTerminar)
         val intent = intent
         infoNen = intent.getSerializableExtra(ColoresConstats.INFONEN) as InfoNen
@@ -41,9 +28,15 @@ class PantallaFinal:AppCompatActivity()
         buttonVolver.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java) // Reemplaza `MainActivity` con la actividad que deseas abrir
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            endMusic()
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun endMusic() {
+        val intent = Intent(this,BackgroundSound::class.java)
+        stopService(intent)
     }
 
     private fun setAllInformation(infoNen: InfoNen) {
@@ -69,24 +62,5 @@ class PantallaFinal:AppCompatActivity()
         arrayInfoNen = FileManager.getUsersStats(this) as ArrayList<InfoNen>
         arrayInfoNen.add(infoNen)
         FileManager.saveUsersStats(this,arrayInfoNen)
-    }
-    override fun onResume() {
-        super.onResume()
-        // Reiniciar la música si se detuvo al pausar la aplicación
-        if (!mediaPlayer.isPlaying) {
-            mediaPlayer.start()
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        // Pausar la música cuando la actividad no esté visible
-        mediaPlayer.pause()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // Liberar el MediaPlayer para evitar fugas de memoria
-        mediaPlayer.release()
     }
 }

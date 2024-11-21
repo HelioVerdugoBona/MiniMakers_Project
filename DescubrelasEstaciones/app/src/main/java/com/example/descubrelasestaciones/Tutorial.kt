@@ -10,10 +10,13 @@ import android.view.DragEvent
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class Tutorial:AppCompatActivity()
@@ -52,15 +55,6 @@ class Tutorial:AppCompatActivity()
         arrayEstaciones.add(ItemEstaciones("3", "Otoño", R.drawable.tardor,MediaPlayer.create(this, R.raw.tardor)))
         aconseguit = MediaPlayer.create(this, R.raw.hohasaconseguit)
 
-        if (mediaPlayer != null) {
-            // Configurar la música para que se repita
-            mediaPlayer.isLooping = true
-
-            // Iniciar la reproducción
-            mediaPlayer.start()
-        } else {
-            Log.e("MediaPlayerError", "MediaPlayer no se pudo inicializar.")
-        }
         val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewTutorial)
         val arrayEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewTutorialEstaciones)
 
@@ -145,18 +139,16 @@ class Tutorial:AppCompatActivity()
                                 }
                             }
                             if(itemsEstaciones.size == 0){ // Aqui pasa al siguiente nivel
-
                                 val txtFelicitar: TextView = findViewById(R.id.txtFelicitar)
-                                txtFelicitar.visibility = View.VISIBLE
-                                anmConfetti.playAnimation()
-                                confetti.start()
-                                yay.start()
-
-                                aconseguit.start()
-                                Handler(Looper.getMainLooper()).postDelayed({
+                                lifecycleScope.launch {
+                                    delay(1000)
+                                    txtFelicitar.visibility = View.VISIBLE
+                                    aconseguit.start()
+                                    anmConfetti.playAnimation()
+                                    confetti.start()
+                                    delay(2500)
                                     nextLevel()
-                                }, 1500)
-
+                                }
                             }
                             Log.d("DragAndDrop", "Atributos coinciden")
 

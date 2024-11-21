@@ -31,7 +31,6 @@ class ColoresEstaciones: AppCompatActivity() {
     private var infoNen = InfoNen("Error",0,0,0,0,
         0.00,"Error","Error","Error","Error")
 
-    private lateinit var musica: MediaPlayer
     private lateinit var correctSFX: MediaPlayer
     private lateinit var confetti: MediaPlayer
     private lateinit var yay: MediaPlayer
@@ -65,7 +64,6 @@ class ColoresEstaciones: AppCompatActivity() {
         anmConfetti = findViewById(R.id.ANMConfetti)
 
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-        musica = MediaPlayer.create(this, R.raw.musicafondo)
         correctSFX = MediaPlayer.create(this, R.raw.correctsfx)
         confetti = MediaPlayer.create(this, R.raw.confetti)
         yay = MediaPlayer.create(this, R.raw.yay)
@@ -80,16 +78,6 @@ class ColoresEstaciones: AppCompatActivity() {
             ItemEstaciones("2", "Primavera", R.drawable.primavera,MediaPlayer.create(this, R.raw.primavera)),
             ItemEstaciones("3", "Otoño", R.drawable.tardor,MediaPlayer.create(this, R.raw.tardor)),
             ItemEstaciones("4", "Invierno", R.drawable.hivern,MediaPlayer.create(this, R.raw.hivern))))
-
-        if (musica != null) {
-            // Configurar la música para que se repita
-            musica.isLooping = true
-
-            // Iniciar la reproducción
-            musica.start()
-        } else {
-            Log.e("MediaPlayerError", "MediaPlayer no se pudo inicializar.")
-        }
 
         val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewColores)
         val arrayEstacionesList = findViewById<RecyclerView>(R.id.recylerViewEstaciones)
@@ -189,15 +177,15 @@ class ColoresEstaciones: AppCompatActivity() {
                             }
                             if(itemsEstaciones.size == 0){
                                 val txtFelicitar: TextView = findViewById(R.id.txtFelicitar)
-                                txtFelicitar.visibility = View.VISIBLE
-                                Handler(Looper.getMainLooper()).postDelayed({
+                                lifecycleScope.launch {
+                                    delay(1000)
+                                    txtFelicitar.visibility = View.VISIBLE
                                     aconseguit.start()
                                     anmConfetti.playAnimation()
                                     confetti.start()
-                                }, 2000)
-                                Handler(Looper.getMainLooper()).postDelayed({
+                                    delay(2500)
                                     nextLevel()
-                                }, 2500)
+                                }
                             }
                             Log.d("DragAndDrop", "Atributos coinciden")
 
@@ -219,6 +207,7 @@ class ColoresEstaciones: AppCompatActivity() {
     }
 
     private fun nextLevel() {
+
         val endTime = System.currentTimeMillis()
         val elapsedTime = endTime - startTime // en milisegundos
         Log.d("Timer", "Tiempo transcurrido: ${elapsedTime}ms")
@@ -241,25 +230,5 @@ class ColoresEstaciones: AppCompatActivity() {
             delay(1500)
             arrayAnimations[index].visibility = View.GONE
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        // Reiniciar la música si se detuvo al pausar la aplicación
-        if (!musica.isPlaying) {
-            musica.start()
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        // Pausar la música cuando la actividad no esté visible
-        musica.pause()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // Liberar el MediaPlayer para evitar fugas de memoria
-        musica.release()
     }
 }
