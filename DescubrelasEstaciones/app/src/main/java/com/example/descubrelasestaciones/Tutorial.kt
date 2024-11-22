@@ -78,7 +78,7 @@ class Tutorial:AppCompatActivity()
         recyclerView1.adapter = adapterItem
 
         val adapterEstacion = ItemsEstacionesAdapter(this, arrayEstaciones, false)
-        recyclerView2.layoutManager = GridLayoutManager(this,4)
+        recyclerView2.layoutManager = GridLayoutManager(this,1)
         recyclerView2.adapter = adapterEstacion
 
         recyclerView1.setOnDragListener { _, event ->
