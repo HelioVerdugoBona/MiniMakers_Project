@@ -12,17 +12,23 @@ class BackgroundSound : Service() {
     override fun onCreate() {
         super.onCreate()
         mediaPlayer =
-            MediaPlayer.create(this, R.raw.musicafondo) // Agrega tu archivo de audio en res/raw
+            MediaPlayer.create(this, R.raw.musicafondo)
         mediaPlayer.isLooping = true // Repetir audio
         mediaPlayer.setVolume(1.0f, 1.0f)
     }
 
-    override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        if (intent == null) {
+            // Manejar caso nulo, opcionalmente puedes registrar un log
+            return START_STICKY
+        }
+
         if (!mediaPlayer.isPlaying) {
             mediaPlayer.start()
         }
         return START_STICKY
     }
+
 
     override fun onDestroy() {
         if (mediaPlayer != null) {

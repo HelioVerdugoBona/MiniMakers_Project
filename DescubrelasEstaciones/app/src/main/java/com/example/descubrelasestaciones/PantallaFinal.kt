@@ -1,6 +1,7 @@
 package com.example.descubrelasestaciones
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -17,10 +18,15 @@ class PantallaFinal:AppCompatActivity()
         0.00,"Error","Error","Error","Error")
     private var arrayInfoNen = mutableListOf<InfoNen>()
 
+    private lateinit var aconseguit: MediaPlayer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.final_layout)
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+        aconseguit = MediaPlayer.create(this, R.raw.felicitats)
+        aconseguit.start()
+
         val buttonVolver = findViewById<Button>(R.id.buttonTerminar)
         val intent = intent
         infoNen = intent.getSerializableExtra(ColoresConstats.INFONEN) as InfoNen
