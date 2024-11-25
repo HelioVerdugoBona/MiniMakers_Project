@@ -12,7 +12,6 @@
         android:layout_gravity="center"
         android:fontFamily="@font/cherry_bomb_one_regular"
         android:textSize="60dp"
-        android:text="Ho has aconseguit!"
         android:textColor="#333333"
         android:visibility="invisible"/>
 </FrameLayout>
