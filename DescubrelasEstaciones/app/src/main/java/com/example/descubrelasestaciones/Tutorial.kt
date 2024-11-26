@@ -142,8 +142,8 @@ class Tutorial:AppCompatActivity()
                             if(itemsEstaciones.size == 0){ // Aqui pasa al siguiente nivel
                                 val txtFelicitarView: TextView = findViewById(R.id.txtFelicitar)
                                 val  txtFelicitar = "Ho has aconseguit!"
-
                                 lifecycleScope.launch {
+                                    delay(1000)
                                     txtFelicitarView.visibility = View.VISIBLE
                                     animateTxt(txtFelicitarView, txtFelicitar)
                                     aconseguit.start()

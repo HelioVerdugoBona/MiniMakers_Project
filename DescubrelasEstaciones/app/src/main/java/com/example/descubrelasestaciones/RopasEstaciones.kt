@@ -170,10 +170,12 @@ class RopasEstaciones: AppCompatActivity ()
                                 }
                             }
                             if(itemsEstaciones.size == 0){
-                                val txtFelicitar: TextView = findViewById(R.id.txtFelicitar)
+                                val txtFelicitarView: TextView = findViewById(R.id.txtFelicitar)
+                                val  txtFelicitar = "Ho has aconseguit!"
                                 lifecycleScope.launch {
                                     delay(1000)
-                                    txtFelicitar.visibility = View.VISIBLE
+                                    txtFelicitarView.visibility = View.VISIBLE
+                                    animateTxt(txtFelicitarView, txtFelicitar)
                                     aconseguit.start()
                                     anmConfetti.playAnimation()
                                     confetti.start()
