@@ -7,6 +7,11 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.descubrelasestaciones.adapters.AvataresAdapter
+import com.example.descubrelasestaciones.classes.Avatar
+import com.example.descubrelasestaciones.classes.InfoNen
+import com.example.descubrelasestaciones.misc.BackgroundSound
+import com.example.descubrelasestaciones.niveles.Tutorial
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +24,8 @@ class MainActivity : AppCompatActivity() {
         Avatar("Conejo",R.drawable.conejo),
         Avatar("Vaca",R.drawable.vaca),
         Avatar("Pollo",R.drawable.pollo),
-        Avatar("Cerdo",R.drawable.cerdo))
+        Avatar("Cerdo",R.drawable.cerdo)
+    )
 
     private var infoNen = InfoNen("Error",0,0,0,0,
         0.00,"Error","Error","Error","Error")

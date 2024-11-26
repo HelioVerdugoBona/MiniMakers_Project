@@ -1,4 +1,4 @@
-package com.example.descubrelasestaciones
+package com.example.descubrelasestaciones.adapters
 
 import android.annotation.SuppressLint
 import android.content.ClipData
@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.descubrelasestaciones.classes.ItemEstaciones
+import com.example.descubrelasestaciones.R
 
 class ItemsEstacionesAdapter(
     private val context: Context,

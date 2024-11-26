@@ -1,4 +1,4 @@
-package com.example.descubrelasestaciones
+package com.example.descubrelasestaciones.classes
 
 import java.io.Serializable
 

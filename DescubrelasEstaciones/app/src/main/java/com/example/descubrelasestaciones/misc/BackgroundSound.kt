@@ -1,9 +1,10 @@
-package com.example.descubrelasestaciones
+package com.example.descubrelasestaciones.misc
 
 import android.app.Service
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.IBinder
+import com.example.descubrelasestaciones.R
 
 
 class BackgroundSound : Service() {

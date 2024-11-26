@@ -1,10 +1,13 @@
-package com.example.descubrelasestaciones
+package com.example.descubrelasestaciones.niveles
 
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.DragEvent
 import android.view.View
@@ -15,56 +18,88 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import com.example.descubrelasestaciones.classes.ItemEstaciones
+import com.example.descubrelasestaciones.adapters.ItemsEstacionesAdapter
+import com.example.descubrelasestaciones.R
+import com.example.descubrelasestaciones.classes.InfoNen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
-class Tutorial:AppCompatActivity()
-{
+class ColoresEstaciones: AppCompatActivity() {
 
-    object TutoriaConstats {
+    object ColoresConstats {
         const val INFONEN = "INFONEN"
     }
 
-    private lateinit var mediaPlayer: MediaPlayer
+    private var startTime = System.currentTimeMillis()
+    private var intentos = 0
+    private var infoNen = InfoNen("Error",0,0,0,0,
+        0.00,"Error","Error","Error","Error")
+
+    private lateinit var correctSFX: MediaPlayer
     private lateinit var confetti: MediaPlayer
     private lateinit var yay: MediaPlayer
     private lateinit var aconseguit: MediaPlayer
 
-     private var infoNen = InfoNen("Error",0,0,0,0,
-        0.00,"Error","Error","Error","Error")
+    private lateinit var anmCorrect1: LottieAnimationView
+    private lateinit var anmCorrect2: LottieAnimationView
+    private lateinit var anmCorrect3: LottieAnimationView
+    private lateinit var anmCorrect4: LottieAnimationView
+
+    private val arrayAnimationsCorrect by lazy {
+        mutableListOf (anmCorrect1,
+                        anmCorrect2,
+                        anmCorrect3,
+                        anmCorrect4)
+    }
 
     private lateinit var anmConfetti: LottieAnimationView
 
     private val itemsEstaciones = mutableListOf<ItemEstaciones>()
     private val arrayEstaciones = mutableListOf<ItemEstaciones>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.tutorial_layout)
+        setContentView(R.layout.colores_estaciones)
+
+        anmCorrect1 = findViewById(R.id.ANMCorrect1)
+        anmCorrect2 = findViewById(R.id.ANMCorrect2)
+        anmCorrect3 = findViewById(R.id.ANMCorrect3)
+        anmCorrect4 = findViewById(R.id.ANMCorrect4)
+        anmConfetti = findViewById(R.id.ANMConfetti)
 
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-        mediaPlayer = MediaPlayer.create(this, R.raw.musicafondo)
-
-        anmConfetti = findViewById(R.id.ANMConfetti)
+        correctSFX = MediaPlayer.create(this, R.raw.correctsfx)
         confetti = MediaPlayer.create(this, R.raw.confetti)
         yay = MediaPlayer.create(this, R.raw.yay)
-        itemsEstaciones.add(ItemEstaciones("3", "Naranja", R.drawable.colornaranja,MediaPlayer.create(this, R.raw.taronja)))
-        arrayEstaciones.add(ItemEstaciones("3", "Otoño", R.drawable.tardor,MediaPlayer.create(this, R.raw.tardor)))
         aconseguit = MediaPlayer.create(this, R.raw.hohasaconseguit)
 
-        val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewTutorial)
-        val arrayEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewTutorialEstaciones)
+        itemsEstaciones.addAll(mutableListOf( ItemEstaciones("1", "Amarillo", R.drawable.coloramarillo,MediaPlayer.create(this, R.raw.groc)),
+            ItemEstaciones("2", "Rosa", R.drawable.colorrosa,MediaPlayer.create(this, R.raw.rosa)),
+            ItemEstaciones("3", "Naranja", R.drawable.colornaranja,MediaPlayer.create(this, R.raw.taronja)),
+            ItemEstaciones("4", "Azul_Cielo", R.drawable.colorazul,MediaPlayer.create(this, R.raw.blau))
+        ))
+
+        arrayEstaciones.addAll(mutableListOf(
+            ItemEstaciones("1", "Verano", R.drawable.estiu,MediaPlayer.create(this, R.raw.estiu)),
+            ItemEstaciones("2", "Primavera", R.drawable.primavera,MediaPlayer.create(this, R.raw.primavera)),
+            ItemEstaciones("3", "Otoño", R.drawable.tardor,MediaPlayer.create(this, R.raw.tardor)),
+            ItemEstaciones("4", "Invierno", R.drawable.hivern,MediaPlayer.create(this, R.raw.hivern))
+        ))
+
+        val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewColores)
+        val arrayEstacionesList = findViewById<RecyclerView>(R.id.recylerViewEstaciones)
 
         val intent = intent
-        infoNen = intent.getSerializableExtra(TutoriaConstats.INFONEN) as InfoNen
+        infoNen = intent.getSerializableExtra(ColoresConstats.INFONEN) as InfoNen
         setupRecyclerView(itemEstacionesList, itemsEstaciones,arrayEstacionesList,arrayEstaciones)
 
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun setupRecyclerView(
         recyclerView1: RecyclerView,
         itemsEstaciones: MutableList<ItemEstaciones>,
@@ -73,25 +108,27 @@ class Tutorial:AppCompatActivity()
     ) {
 
         itemsEstaciones.shuffle()
-        arrayEstaciones.shuffle()
 
         val adapterItem = ItemsEstacionesAdapter(this, itemsEstaciones, true)
         recyclerView1.layoutManager = LinearLayoutManager(this)
+        recyclerView1.layoutManager = GridLayoutManager(this,4)
 
         recyclerView1.adapter = adapterItem
 
         val adapterEstacion = ItemsEstacionesAdapter(this, arrayEstaciones, false)
-        recyclerView2.layoutManager = GridLayoutManager(this,1)
+        recyclerView2.layoutManager = LinearLayoutManager(this)
+        recyclerView2.layoutManager = GridLayoutManager(this,4)
+
         recyclerView2.adapter = adapterEstacion
 
-        recyclerView1.setOnDragListener { _, event ->
+        recyclerView1.setOnDragListener { view, event ->
             when (event.action) {
                 DragEvent.ACTION_DRAG_STARTED  -> {
                     val draggedView = event.localState as? View
                     draggedView?.alpha = 0f
 
                     val targetPosition =
-                    if (draggedView != null) {
+                        if (draggedView != null) {
                             recyclerView1.getChildAdapterPosition(draggedView)
                         } else {
                             RecyclerView.NO_POSITION
@@ -118,12 +155,10 @@ class Tutorial:AppCompatActivity()
                     val viewUnder = recyclerView2.findChildViewUnder(x, y)
                     val targetPosition =
                         if (viewUnder != null) {
-                            recyclerView2.getChildAdapterPosition(viewUnder)
-                        } else {
-                            RecyclerView.NO_POSITION
-                        }
-
-                    println("El targetPosition es: $targetPosition")
+                        recyclerView2.getChildAdapterPosition(viewUnder)
+                    } else {
+                        RecyclerView.NO_POSITION
+                    }
 
                     if (targetPosition != RecyclerView.NO_POSITION) {
                         val targetItem = arrayEstaciones[targetPosition]
@@ -131,15 +166,27 @@ class Tutorial:AppCompatActivity()
                         // Compara los atributos
                         if (draggedAttribute == targetItem.id) {
                             val iterator = itemsEstaciones.iterator()
+
                             while (iterator.hasNext()) {
                                 val item = iterator.next()
                                 if (draggedAttribute == item.id) {
+
                                     iterator.remove() // Elimina usando el iterador
+
                                     adapterItem.notifyDataSetChanged()
+                                    // viewUnder?.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
+                                    runAnimatic(targetItem.id.toInt()-1,arrayAnimationsCorrect)
+                                    correctSFX.start()
+                                    Handler(Looper.getMainLooper()).postDelayed({
+                                        if (viewUnder != null) {
+                                            viewUnder.visibility = View.INVISIBLE
+                                        }
+                                    }, 500)
+
                                     break // Salir del bucle después de eliminar
                                 }
                             }
-                            if(itemsEstaciones.size == 0){ // Aqui pasa al siguiente nivel
+                            if(itemsEstaciones.size == 0){
                                 val txtFelicitarView: TextView = findViewById(R.id.txtFelicitar)
                                 val  txtFelicitar = "Ho has aconseguit!"
                                 lifecycleScope.launch {
@@ -148,7 +195,7 @@ class Tutorial:AppCompatActivity()
                                     aconseguit.start()
                                     anmConfetti.playAnimation()
                                     confetti.start()
-                                    delay(1500)
+                                    delay(2500)
                                     nextLevel()
                                 }
                             }
@@ -156,6 +203,7 @@ class Tutorial:AppCompatActivity()
 
                         } else {
                             Log.d("DragAndDrop", "Atributos no coinciden")
+                            intentos++
                         }
                     }
                     true
@@ -165,15 +213,35 @@ class Tutorial:AppCompatActivity()
                     draggedView?.alpha = 1.0f
                     true
                 }
-                else -> true
+            else -> true
             }
         }
     }
 
     private fun nextLevel() {
-        val intent = Intent(this, ColoresEstaciones::class.java)
-        intent.putExtra(ColoresEstaciones.ColoresConstats.INFONEN, infoNen)
-        startActivity(intent)
+
+        val endTime = System.currentTimeMillis()
+        val elapsedTime = endTime - startTime // en milisegundos
+        Log.d("Timer", "Tiempo transcurrido: ${elapsedTime}ms")
+        infoNen.tempsNVL1 = ((elapsedTime/1000).toInt())
+        val intent = Intent(this, SimbolosEstaciones::class.java)
+        infoNen.erradesNVL1 = intentos.toString()
+        intent.putExtra(SimbolosEstaciones.SimbolosConstats.INFONEN,infoNen)
+
+        lifecycleScope.launch {
+            delay(500)
+            startActivity(intent)
+        }
+
+    }
+
+    private fun runAnimatic(index: Int, arrayAnimations: MutableList<LottieAnimationView>){
+        arrayAnimations[index].visibility = View.VISIBLE
+        arrayAnimations[index].playAnimation()
+        lifecycleScope.launch {
+            delay(1500)
+            arrayAnimations[index].visibility = View.GONE
+        }
     }
 
     private fun animateTxt(textView: TextView, text: String){
@@ -196,5 +264,4 @@ class Tutorial:AppCompatActivity()
             start()
         }
     }
-
 }

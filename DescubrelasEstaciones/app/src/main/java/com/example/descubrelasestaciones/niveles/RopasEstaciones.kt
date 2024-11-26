@@ -1,4 +1,4 @@
-package com.example.descubrelasestaciones
+package com.example.descubrelasestaciones.niveles
 
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
@@ -16,7 +16,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
-import com.example.descubrelasestaciones.ColoresEstaciones.ColoresConstats
+import com.example.descubrelasestaciones.classes.ItemEstaciones
+import com.example.descubrelasestaciones.adapters.ItemsEstacionesAdapter
+import com.example.descubrelasestaciones.R
+import com.example.descubrelasestaciones.niveles.ColoresEstaciones.ColoresConstats
+import com.example.descubrelasestaciones.classes.InfoNen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -71,15 +75,18 @@ class RopasEstaciones: AppCompatActivity ()
         anmCorrect4 = findViewById(R.id.ANMCorrect4)
         anmConfetti = findViewById(R.id.ANMConfetti)
 
-        itemsEstaciones.addAll(mutableListOf( ItemEstaciones("1", "Banyador", R.drawable.banyador,MediaPlayer.create(this, R.raw.samarreta)),
+        itemsEstaciones.addAll(mutableListOf( ItemEstaciones("1", "Banyador", R.drawable.banyador,MediaPlayer.create(this, R.raw.banyador)),
             ItemEstaciones("2", "Samarreta", R.drawable.camisetaflor,MediaPlayer.create(this, R.raw.samarreta)),
             ItemEstaciones("3", "Impermeable", R.drawable.chubasquero,MediaPlayer.create(this, R.raw.impermeable)),
-            ItemEstaciones("4", "Bufanda", R.drawable.bufanda,MediaPlayer.create(this, R.raw.bufanda))))
+            ItemEstaciones("4", "Bufanda", R.drawable.bufanda,MediaPlayer.create(this, R.raw.bufanda))
+        ))
 
-        arrayEstaciones.addAll(mutableListOf(ItemEstaciones("1", "Verano", R.drawable.estiu,MediaPlayer.create(this, R.raw.estiu)),
+        arrayEstaciones.addAll(mutableListOf(
+            ItemEstaciones("1", "Verano", R.drawable.estiu,MediaPlayer.create(this, R.raw.estiu)),
             ItemEstaciones("2", "Primavera", R.drawable.primavera,MediaPlayer.create(this, R.raw.primavera)),
             ItemEstaciones("3", "Otoño", R.drawable.tardor,MediaPlayer.create(this, R.raw.tardor)),
-            ItemEstaciones("4", "Invierno", R.drawable.hivern,MediaPlayer.create(this, R.raw.hivern))))
+            ItemEstaciones("4", "Invierno", R.drawable.hivern,MediaPlayer.create(this, R.raw.hivern))
+        ))
 
         val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewRopas)
         val arrayEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewRopas2)

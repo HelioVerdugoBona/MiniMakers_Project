@@ -23,23 +23,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ColoresEstaciones"
+            android:name=".niveles.ColoresEstaciones"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".SimbolosEstaciones"
+            android:name=".niveles.SimbolosEstaciones"
             android:screenOrientation="landscape"/>
 
         <activity
-            android:name=".RopasEstaciones"
+            android:name=".niveles.RopasEstaciones"
             android:screenOrientation="landscape"/>
 
-        <activity android:name=".PantallaFinal"
+        <activity android:name=".niveles.PantallaFinal"
             android:screenOrientation="landscape"/>
 
-        <activity android:name=".Tutorial"
+        <activity android:name=".niveles.Tutorial"
             android:screenOrientation="landscape"/>
 
-        <service android:name=".BackgroundSound"/>
+        <service android:name=".misc.BackgroundSound"/>
     </application>
 
 </manifest>

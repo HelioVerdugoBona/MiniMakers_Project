@@ -1,4 +1,4 @@
-package com.example.descubrelasestaciones
+package com.example.descubrelasestaciones.niveles
 
 import android.content.Intent
 import android.media.MediaPlayer
@@ -6,7 +6,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.descubrelasestaciones.ColoresEstaciones.ColoresConstats
+import com.example.descubrelasestaciones.misc.BackgroundSound
+import com.example.descubrelasestaciones.misc.FileManager
+import com.example.descubrelasestaciones.MainActivity
+import com.example.descubrelasestaciones.R
+import com.example.descubrelasestaciones.niveles.ColoresEstaciones.ColoresConstats
+import com.example.descubrelasestaciones.classes.InfoNen
 
 class PantallaFinal:AppCompatActivity()
 {
@@ -41,7 +46,7 @@ class PantallaFinal:AppCompatActivity()
     }
 
     private fun endMusic() {
-        val intent = Intent(this,BackgroundSound::class.java)
+        val intent = Intent(this, BackgroundSound::class.java)
         stopService(intent)
     }
 
@@ -62,11 +67,11 @@ class PantallaFinal:AppCompatActivity()
             val exemple = InfoNen("Error",0,0,0,0,
             0.00,"Error","Error","Error","Error")
             arrayInfoNen.add(exemple)
-            FileManager.saveUsersStats(this,arrayInfoNen)
+            FileManager.saveUsersStats(this, arrayInfoNen)
         }
 
         arrayInfoNen = FileManager.getUsersStats(this) as ArrayList<InfoNen>
         arrayInfoNen.add(infoNen)
-        FileManager.saveUsersStats(this,arrayInfoNen)
+        FileManager.saveUsersStats(this, arrayInfoNen)
     }
 }

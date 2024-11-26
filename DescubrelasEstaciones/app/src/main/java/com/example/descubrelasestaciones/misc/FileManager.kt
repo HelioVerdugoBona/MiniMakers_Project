@@ -1,6 +1,7 @@
-package com.example.descubrelasestaciones
+package com.example.descubrelasestaciones.misc
 
 import android.content.Context
+import com.example.descubrelasestaciones.classes.InfoNen
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.File
