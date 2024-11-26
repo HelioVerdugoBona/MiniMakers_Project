@@ -141,12 +141,11 @@ class Tutorial:AppCompatActivity()
                             }
                             if(itemsEstaciones.size == 0){ // Aqui pasa al siguiente nivel
                                 val txtFelicitarView: TextView = findViewById(R.id.txtFelicitar)
-                               val  txtFelicitar = "Ho has aconseguit!"
+                                val  txtFelicitar = "Ho has aconseguit!"
 
                                 lifecycleScope.launch {
                                     txtFelicitarView.visibility = View.VISIBLE
                                     animateTxt(txtFelicitarView, txtFelicitar)
-
                                     aconseguit.start()
                                     anmConfetti.playAnimation()
                                     confetti.start()
@@ -184,7 +183,6 @@ class Tutorial:AppCompatActivity()
             for (i in text.indices) {
                 textView.text = textView.text.toString() + text[i]
                 animacionLetras(textView, i)
-//                delay(200)
             }
         }
     }

@@ -1,5 +1,7 @@
 package com.example.descubrelasestaciones
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -15,6 +17,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.example.descubrelasestaciones.ColoresEstaciones.ColoresConstats
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -219,4 +223,26 @@ class RopasEstaciones: AppCompatActivity ()
             arrayAnimations[index].visibility = View.GONE
         }
     }
+
+    private fun animateTxt(textView: TextView, text: String){
+        CoroutineScope(Dispatchers.Main).launch {
+            textView.text = ""
+            for (i in text.indices) {
+                textView.text = textView.text.toString() + text[i]
+                animacionLetras(textView, i)
+            }
+        }
+    }
+
+    private fun animacionLetras(textView: TextView, index: Int) {
+        val scaleX = PropertyValuesHolder.ofFloat("scaleX", 1f, 1.5f, 1f)
+        val scaleY = PropertyValuesHolder.ofFloat("scaleY", 1f, 1.5f, 1f)
+        val translationY = PropertyValuesHolder.ofFloat("translationY", 0f, -50f, 0f)
+
+        ObjectAnimator.ofPropertyValuesHolder(textView, scaleX, scaleY, translationY).apply {
+            duration = 1000 // Duración del salto en milisegundos
+            start()
+        }
+    }
+
 }
