@@ -1,5 +1,7 @@
 package com.example.descubrelasestaciones
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.media.MediaPlayer
@@ -16,6 +18,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -176,10 +180,11 @@ class ColoresEstaciones: AppCompatActivity() {
                                 }
                             }
                             if(itemsEstaciones.size == 0){
-                                val txtFelicitar: TextView = findViewById(R.id.txtFelicitar)
+                                val txtFelicitarView: TextView = findViewById(R.id.txtFelicitar)
+                                val  txtFelicitar = "Ho has aconseguit!"
                                 lifecycleScope.launch {
-                                    delay(1000)
-                                    txtFelicitar.visibility = View.VISIBLE
+                                    txtFelicitarView.visibility = View.VISIBLE
+                                    animateTxt(txtFelicitarView, txtFelicitar)
                                     aconseguit.start()
                                     anmConfetti.playAnimation()
                                     confetti.start()
@@ -229,6 +234,27 @@ class ColoresEstaciones: AppCompatActivity() {
         lifecycleScope.launch {
             delay(1500)
             arrayAnimations[index].visibility = View.GONE
+        }
+    }
+
+    private fun animateTxt(textView: TextView, text: String){
+        CoroutineScope(Dispatchers.Main).launch {
+            textView.text = ""
+            for (i in text.indices) {
+                textView.text = textView.text.toString() + text[i]
+                animacionLetras(textView, i)
+            }
+        }
+    }
+
+    private fun animacionLetras(textView: TextView, index: Int) {
+        val scaleX = PropertyValuesHolder.ofFloat("scaleX", 1f, 1.5f, 1f)
+        val scaleY = PropertyValuesHolder.ofFloat("scaleY", 1f, 1.5f, 1f)
+        val translationY = PropertyValuesHolder.ofFloat("translationY", 0f, -50f, 0f)
+
+        ObjectAnimator.ofPropertyValuesHolder(textView, scaleX, scaleY, translationY).apply {
+            duration = 1000 // Duración del salto en milisegundos
+            start()
         }
     }
 }
