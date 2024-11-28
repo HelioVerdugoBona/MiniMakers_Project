@@ -15,3 +15,20 @@ C:\Users\cep\source\repos\C# Mini Makers\C# Mini Makers\obj\Debug\C# Mini Makers
 C:\Users\cep\source\repos\C# Mini Makers\C# Mini Makers\bin\Debug\Newtonsoft.Json.dll
 C:\Users\cep\source\repos\C# Mini Makers\C# Mini Makers\bin\Debug\Newtonsoft.Json.xml
 C:\Users\cep\source\repos\C# Mini Makers\C# Mini Makers\obj\Debug\C# Mini .56225636.Up2Date
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\bin\Debug\C# Mini Makers.exe.config
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\bin\Debug\C# Mini Makers.exe
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\bin\Debug\C# Mini Makers.pdb
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\bin\Debug\Newtonsoft.Json.dll
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\bin\Debug\Newtonsoft.Json.xml
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\obj\Debug\C# Mini Makers.csproj.AssemblyReference.cache
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\obj\Debug\C__Mini_Makers.FormEliminar.resources
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\obj\Debug\C__Mini_Makers.FormEstaciones.resources
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\obj\Debug\C__Mini_Makers.FormParticipantes.resources
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\obj\Debug\C__Mini_Makers.FormPrincipal.resources
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\obj\Debug\C__Mini_Makers.FormSimon.resources
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\obj\Debug\C__Mini_Makers.Properties.Resources.resources
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\obj\Debug\C# Mini Makers.csproj.GenerateResource.cache
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\obj\Debug\C# Mini Makers.csproj.CoreCompileInputs.cache
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\obj\Debug\C# Mini .56225636.Up2Date
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\obj\Debug\C# Mini Makers.exe
+C:\Users\helio\Documents\GitHub\MiniMakers_Project\MiniMakers_Project\Aplicacion_C#\C# Mini Makers\C# Mini Makers\C# Mini Makers\obj\Debug\C# Mini Makers.pdb

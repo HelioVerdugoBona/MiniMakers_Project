@@ -2,6 +2,7 @@ package com.example.descubrelasestaciones.niveles
 
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -32,70 +33,42 @@ class RopasEstaciones: AppCompatActivity ()
         const val INFONEN = "INFONEN"
     }
 
+    // Tiempo total en pasar el nivel
     private var startTime = System.currentTimeMillis()
+
+    // Intentos (errores) totales en este nivel
     private var intentos = 0
+
+    // Todos los Media Players
     private var infoNen = InfoNen("Error",0,0,0,0,
         0.00,"Error","Error","Error","Error")
 
+    // Todos los Media Players
     private lateinit var correctSFX: MediaPlayer
     private lateinit var confetti: MediaPlayer
     private lateinit var yay: MediaPlayer
     private lateinit var aconseguit: MediaPlayer
 
-    private lateinit var anmCorrect1: LottieAnimationView
-    private lateinit var anmCorrect2: LottieAnimationView
-    private lateinit var anmCorrect3: LottieAnimationView
-    private lateinit var anmCorrect4: LottieAnimationView
+    //Array donde guardar todas las animaciones
+    private val arrayAnimationsCorrect = mutableListOf<LottieAnimationView>()
 
-    private val arrayAnimationsCorrect by lazy {
-        mutableListOf (anmCorrect1,
-            anmCorrect2,
-            anmCorrect3,
-            anmCorrect4)
-
-    }
-
-    private lateinit var anmConfetti: LottieAnimationView
-
+    //Array del RecyclerView de los Items (los objetos que se relacionarán)
     private val itemsEstaciones = mutableListOf<ItemEstaciones>()
+
+    //Array del RecyclerView de las Estaciones
     private val arrayEstaciones = mutableListOf<ItemEstaciones>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.ropas_estaciones)
-        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-        correctSFX = MediaPlayer.create(this, R.raw.correctsfx)
-        confetti = MediaPlayer.create(this, R.raw.confetti)
-        yay = MediaPlayer.create(this, R.raw.yay)
-        aconseguit = MediaPlayer.create(this, R.raw.hohasaconseguit)
-
-        anmCorrect1 = findViewById(R.id.ANMCorrect1)
-        anmCorrect2 = findViewById(R.id.ANMCorrect2)
-        anmCorrect3 = findViewById(R.id.ANMCorrect3)
-        anmCorrect4 = findViewById(R.id.ANMCorrect4)
-        anmConfetti = findViewById(R.id.ANMConfetti)
-
-        itemsEstaciones.addAll(mutableListOf( ItemEstaciones("1", "Banyador", R.drawable.banyador,MediaPlayer.create(this, R.raw.banyador)),
-            ItemEstaciones("2", "Samarreta", R.drawable.camisetaflor,MediaPlayer.create(this, R.raw.samarreta)),
-            ItemEstaciones("3", "Impermeable", R.drawable.chubasquero,MediaPlayer.create(this, R.raw.impermeable)),
-            ItemEstaciones("4", "Bufanda", R.drawable.bufanda,MediaPlayer.create(this, R.raw.bufanda))
-        ))
-
-        arrayEstaciones.addAll(mutableListOf(
-            ItemEstaciones("1", "Verano", R.drawable.estiu,MediaPlayer.create(this, R.raw.estiu)),
-            ItemEstaciones("2", "Primavera", R.drawable.primavera,MediaPlayer.create(this, R.raw.primavera)),
-            ItemEstaciones("3", "Otoño", R.drawable.tardor,MediaPlayer.create(this, R.raw.tardor)),
-            ItemEstaciones("4", "Invierno", R.drawable.hivern,MediaPlayer.create(this, R.raw.hivern))
-        ))
+        setAllGlobal()
 
         val itemEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewRopas)
         val arrayEstacionesList = findViewById<RecyclerView>(R.id.recyclerViewRopas2)
-
-        val intent = intent
-        infoNen = intent.getSerializableExtra(ColoresConstats.INFONEN) as InfoNen
         setupRecyclerView(itemEstacionesList, itemsEstaciones,arrayEstacionesList,arrayEstaciones)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun setupRecyclerView(
         recyclerView1: RecyclerView,
         itemsEstaciones: MutableList<ItemEstaciones>,
@@ -112,7 +85,7 @@ class RopasEstaciones: AppCompatActivity ()
         val adapterEstacion = ItemsEstacionesAdapter(this, arrayEstaciones, false)
         recyclerView2.layoutManager = GridLayoutManager(this,4)
         recyclerView2.adapter = adapterEstacion
-        recyclerView1.setOnDragListener { view, event ->
+        recyclerView1.setOnDragListener { _, event ->
             when (event.action) {
                 DragEvent.ACTION_DRAG_STARTED  -> {
                     val draggedView = event.localState as? View
@@ -164,7 +137,6 @@ class RopasEstaciones: AppCompatActivity ()
                                 if (draggedAttribute == item.id) {
                                     iterator.remove() // Elimina usando el iterador
                                     adapterItem.notifyDataSetChanged()
-                                    // viewUnder?.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
                                     runAnimatic(targetItem.id.toInt()-1,arrayAnimationsCorrect)
                                     correctSFX.start()
                                     Handler(Looper.getMainLooper()).postDelayed({
@@ -178,6 +150,7 @@ class RopasEstaciones: AppCompatActivity ()
                             }
                             if(itemsEstaciones.size == 0){
                                 val txtFelicitarView: TextView = findViewById(R.id.txtFelicitar)
+                                val anmConfetti = findViewById<LottieAnimationView>(R.id.ANMConfetti)
                                 val  txtFelicitar = "Ho has aconseguit!"
                                 lifecycleScope.launch {
                                     txtFelicitarView.visibility = View.VISIBLE
@@ -232,17 +205,18 @@ class RopasEstaciones: AppCompatActivity ()
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun animateTxt(textView: TextView, text: String){
         CoroutineScope(Dispatchers.Main).launch {
             textView.text = ""
             for (i in text.indices) {
                 textView.text = textView.text.toString() + text[i]
-                animacionLetras(textView, i)
+                animacionLetras(textView)
             }
         }
     }
 
-    private fun animacionLetras(textView: TextView, index: Int) {
+    private fun animacionLetras(textView: TextView) {
         val scaleX = PropertyValuesHolder.ofFloat("scaleX", 1f, 1.5f, 1f)
         val scaleY = PropertyValuesHolder.ofFloat("scaleY", 1f, 1.5f, 1f)
         val translationY = PropertyValuesHolder.ofFloat("translationY", 0f, -50f, 0f)
@@ -251,6 +225,38 @@ class RopasEstaciones: AppCompatActivity ()
             duration = 1000 // Duración del salto en milisegundos
             start()
         }
+    }
+
+    private fun setAllGlobal() {
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+
+        val anmCorrect1 = findViewById<LottieAnimationView>(R.id.ANMCorrect1)
+        val anmCorrect2 = findViewById<LottieAnimationView>(R.id.ANMCorrect2)
+        val anmCorrect3 = findViewById<LottieAnimationView>(R.id.ANMCorrect3)
+        val anmCorrect4 = findViewById<LottieAnimationView>(R.id.ANMCorrect4)
+        arrayAnimationsCorrect.addAll(mutableListOf(anmCorrect1,anmCorrect2,anmCorrect3,anmCorrect4))
+
+        correctSFX = MediaPlayer.create(this, R.raw.correctsfx)
+        confetti = MediaPlayer.create(this, R.raw.confetti)
+        yay = MediaPlayer.create(this, R.raw.yay)
+        aconseguit = MediaPlayer.create(this, R.raw.hohasaconseguit)
+
+        itemsEstaciones.addAll(mutableListOf(
+            ItemEstaciones("1", "Banyador", R.drawable.banyador,MediaPlayer.create(this, R.raw.banyador)),
+            ItemEstaciones("2", "Samarreta", R.drawable.camisetaflor,MediaPlayer.create(this, R.raw.samarreta)),
+            ItemEstaciones("3", "Impermeable", R.drawable.chubasquero,MediaPlayer.create(this, R.raw.impermeable)),
+            ItemEstaciones("4", "Bufanda", R.drawable.bufanda,MediaPlayer.create(this, R.raw.bufanda))
+        ))
+
+        arrayEstaciones.addAll(mutableListOf(
+            ItemEstaciones("1", "Verano", R.drawable.estiu,MediaPlayer.create(this, R.raw.estiu)),
+            ItemEstaciones("2", "Primavera", R.drawable.primavera,MediaPlayer.create(this, R.raw.primavera)),
+            ItemEstaciones("3", "Otoño", R.drawable.tardor,MediaPlayer.create(this, R.raw.tardor)),
+            ItemEstaciones("4", "Invierno", R.drawable.hivern,MediaPlayer.create(this, R.raw.hivern))
+        ))
+
+        val intent = intent
+        infoNen = intent.getSerializableExtra(ColoresConstats.INFONEN) as InfoNen
     }
 
 }

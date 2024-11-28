@@ -1,18 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\cep\\source\\repos\\C# Mini Makers\\",
+  "WorkspaceRootPath": "C:\\Users\\helio\\Documents\\GitHub\\MiniMakers_Project\\MiniMakers_Project\\Aplicacion_C#\\C# Mini Makers\\C# Mini Makers\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AEDA9193-3F49-4B00-B684-BE9E304667E4}|C# Mini Makers\\C# Mini Makers.csproj|C:\\Users\\cep\\source\\repos\\C# Mini Makers\\c# mini makers\\formestaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{AEDA9193-3F49-4B00-B684-BE9E304667E4}|C# Mini Makers\\C# Mini Makers.csproj|C:\\Users\\helio\\Documents\\GitHub\\MiniMakers_Project\\MiniMakers_Project\\Aplicacion_C#\\C# Mini Makers\\C# Mini Makers\\c# mini makers\\formparticipantes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AEDA9193-3F49-4B00-B684-BE9E304667E4}|C# Mini Makers\\C# Mini Makers.csproj|solutionrelative:c# mini makers\\formparticipantes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AEDA9193-3F49-4B00-B684-BE9E304667E4}|C# Mini Makers\\C# Mini Makers.csproj|c:\\users\\helio\\documents\\github\\minimakers_project\\minimakers_project\\aplicacion_c#\\c# mini makers\\c# mini makers\\c# mini makers\\formestaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{AEDA9193-3F49-4B00-B684-BE9E304667E4}|C# Mini Makers\\C# Mini Makers.csproj|solutionrelative:c# mini makers\\formestaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AEDA9193-3F49-4B00-B684-BE9E304667E4}|C# Mini Makers\\C# Mini Makers.csproj|c:\\users\\cep\\source\\repos\\c# mini makers\\c# mini makers\\formestaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AEDA9193-3F49-4B00-B684-BE9E304667E4}|C# Mini Makers\\C# Mini Makers.csproj|solutionrelative:c# mini makers\\formestaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AEDA9193-3F49-4B00-B684-BE9E304667E4}|C# Mini Makers\\C# Mini Makers.csproj|C:\\Users\\cep\\source\\repos\\C# Mini Makers\\c# mini makers\\formparticipantes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AEDA9193-3F49-4B00-B684-BE9E304667E4}|C# Mini Makers\\C# Mini Makers.csproj|solutionrelative:c# mini makers\\formparticipantes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{AEDA9193-3F49-4B00-B684-BE9E304667E4}|C# Mini Makers\\C# Mini Makers.csproj|C:\\Users\\helio\\Documents\\GitHub\\MiniMakers_Project\\MiniMakers_Project\\Aplicacion_C#\\C# Mini Makers\\C# Mini Makers\\C# Mini Makers\\FormEstaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AEDA9193-3F49-4B00-B684-BE9E304667E4}|C# Mini Makers\\C# Mini Makers.csproj|solutionrelative:C# Mini Makers\\FormEstaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,12 +25,16 @@
           "SelectedChildIndex": 2,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "FormEstaciones.cs",
-              "DocumentMoniker": "C:\\Users\\cep\\source\\repos\\C# Mini Makers\\C# Mini Makers\\FormEstaciones.cs",
+              "DocumentMoniker": "C:\\Users\\helio\\Documents\\GitHub\\MiniMakers_Project\\MiniMakers_Project\\Aplicacion_C#\\C# Mini Makers\\C# Mini Makers\\C# Mini Makers\\FormEstaciones.cs",
               "RelativeDocumentMoniker": "C# Mini Makers\\FormEstaciones.cs",
-              "ToolTip": "C:\\Users\\cep\\source\\repos\\C# Mini Makers\\C# Mini Makers\\FormEstaciones.cs",
+              "ToolTip": "C:\\Users\\helio\\Documents\\GitHub\\MiniMakers_Project\\MiniMakers_Project\\Aplicacion_C#\\C# Mini Makers\\C# Mini Makers\\C# Mini Makers\\FormEstaciones.cs",
               "RelativeToolTip": "C# Mini Makers\\FormEstaciones.cs",
               "ViewState": "AgIAAAABAAAAAAAAAAAYwAoBAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -39,11 +43,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "FormParticipantes.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\cep\\source\\repos\\C# Mini Makers\\C# Mini Makers\\FormParticipantes.cs",
+              "DocumentMoniker": "C:\\Users\\helio\\Documents\\GitHub\\MiniMakers_Project\\MiniMakers_Project\\Aplicacion_C#\\C# Mini Makers\\C# Mini Makers\\C# Mini Makers\\FormParticipantes.cs",
               "RelativeDocumentMoniker": "C# Mini Makers\\FormParticipantes.cs",
-              "ToolTip": "C:\\Users\\cep\\source\\repos\\C# Mini Makers\\C# Mini Makers\\FormParticipantes.cs [Dise\u00F1o]",
+              "ToolTip": "C:\\Users\\helio\\Documents\\GitHub\\MiniMakers_Project\\MiniMakers_Project\\Aplicacion_C#\\C# Mini Makers\\C# Mini Makers\\C# Mini Makers\\FormParticipantes.cs [Dise\u00F1o]",
               "RelativeToolTip": "C# Mini Makers\\FormParticipantes.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-20T17:58:59.13Z",
@@ -51,11 +55,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "FormEstaciones.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\cep\\source\\repos\\C# Mini Makers\\C# Mini Makers\\FormEstaciones.cs",
+              "DocumentMoniker": "C:\\Users\\helio\\Documents\\GitHub\\MiniMakers_Project\\MiniMakers_Project\\Aplicacion_C#\\C# Mini Makers\\C# Mini Makers\\C# Mini Makers\\FormEstaciones.cs",
               "RelativeDocumentMoniker": "C# Mini Makers\\FormEstaciones.cs",
-              "ToolTip": "C:\\Users\\cep\\source\\repos\\C# Mini Makers\\C# Mini Makers\\FormEstaciones.cs [Dise\u00F1o]",
+              "ToolTip": "C:\\Users\\helio\\Documents\\GitHub\\MiniMakers_Project\\MiniMakers_Project\\Aplicacion_C#\\C# Mini Makers\\C# Mini Makers\\C# Mini Makers\\FormEstaciones.cs [Dise\u00F1o]",
               "RelativeToolTip": "C# Mini Makers\\FormEstaciones.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-20T17:52:06.013Z",

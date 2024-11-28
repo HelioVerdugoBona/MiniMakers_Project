@@ -15,7 +15,7 @@ class BackgroundSound : Service() {
         mediaPlayer =
             MediaPlayer.create(this, R.raw.musicafondo)
         mediaPlayer.isLooping = true // Repetir audio
-        mediaPlayer.setVolume(1.0f, 1.0f)
+        mediaPlayer.setVolume(0.5f, 0.5f)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
