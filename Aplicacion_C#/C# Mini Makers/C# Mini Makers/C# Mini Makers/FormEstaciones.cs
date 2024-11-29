@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace C__Mini_Makers
 {
     public partial class FormEstaciones : Form
-{
+    {
         List<PartidasEstaciones> partidas;
         string ruta;
 
@@ -80,7 +80,7 @@ namespace C__Mini_Makers
                     // Elimina los datos de ejemplo
                     partidas.RemoveAll(p => p.avatar == "Exemple");
 
-                    // Comprueba que el fichero seleccionado es compatible 
+                    // Comprueba que el fichero seleccionado es compatible
                     if (partidas.Any() && partidas.Any(avatar => !string.IsNullOrEmpty(avatar.avatar)) && partidas.Any(data => !string.IsNullOrEmpty(data.data)))
                     {
                         labelFichero.Text = fichero.SafeFileName;
@@ -94,11 +94,12 @@ namespace C__Mini_Makers
                     }
                     ActualizarDataGridView();
                 }
-                
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Este archivo esta vacío.");
+
+                MessageBox.Show("Este archivo esta vacío." );
             }
         }
 
@@ -109,7 +110,7 @@ namespace C__Mini_Makers
         /// <param name="e"></param>
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            // Abre la ventana para guardar un fichero 
+            // Abre la ventana para guardar un fichero
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
                 Filter = "JSON files (*.json)|*.json",
@@ -126,25 +127,34 @@ namespace C__Mini_Makers
                 {
                     if (!row.IsNewRow)
                     {
-                        int errada1 = 0, errada2 = 0, errada3 = 0, erradesTotals = 0;
+                        int errada1 = 0, errada2 = 0, errada3 = 0, erradesTotals = 0, temps1 = 0, temps2 = 0, temps3 = 0, tempsTotal = 0;
+                        Double tempsProm = 0;
 
                         int.TryParse(row.Cells["erradesNVL1"].Value?.ToString(), out errada1);
                         int.TryParse(row.Cells["erradesNVL2"].Value?.ToString(), out errada2);
                         int.TryParse(row.Cells["erradesNVL3"].Value?.ToString(), out errada3);
                         int.TryParse(row.Cells["erradesTotals"].Value?.ToString(), out erradesTotals);
+                        int.TryParse(row.Cells["tempsNVL1"].Value?.ToString(), out temps1);
+                        int.TryParse(row.Cells["tempsNVL2"].Value?.ToString(), out temps2);
+                        int.TryParse(row.Cells["tempsNVL3"].Value?.ToString(), out temps3);
+                        int.TryParse(row.Cells["tempsTotal"].Value?.ToString(), out tempsTotal);
+                        Double.TryParse(row.Cells["tempsProm"].Value?.ToString(), out tempsProm);
 
                         Dictionary<string, object> rowData = new Dictionary<string, object>
                 {
                     { "avatar", row.Cells["avatar"].Value ?? string.Empty },
-                    { "tempsNVL1", row.Cells["tempsNVL1"].Value ?? string.Empty },
-                    { "tempsNVL2", row.Cells["tempsNVL2"].Value ?? string.Empty },
-                    { "tempsNVL3", row.Cells["tempsNVL3"].Value ?? string.Empty },
-                    { "tempsTotal", row.Cells["tempsTotal"].Value ?? string.Empty },
+                    { "tempsNVL1", temps1 },
+                    { "tempsNVL2", temps2 },
+                    { "tempsNVL3", temps3 },
+                    { "tempsTotal", tempsTotal },
+                    { "tempsProm", tempsProm },
                     { "erradesNVL1", errada1 },
                     { "erradesNVL2", errada2 },
                     { "erradesNVL3", errada3 },
                     { "erradesTotals", erradesTotals },
-                    { "data", row.Cells["data"].Value ?? string.Empty }
+                    { "data", row.Cells["data"].Value ?? string.Empty },
+                    { "hora", row.Cells["hora"].Value ?? string.Empty }
+
                 };
                         data.Add(rowData);
                     }
@@ -239,6 +249,10 @@ namespace C__Mini_Makers
             {
                 partidasFiltradas = partidasFiltradas.OrderBy(partida => partida.tempsTotal);
             }
+            else if (criterioSeleccionado == "Temps Promig")
+            {
+                partidasFiltradas = partidasFiltradas.OrderBy(partida => partida.tempsProm);
+            }
             else if (criterioSeleccionado == "Errades 1")
             {
                 partidasFiltradas = partidasFiltradas.OrderBy(partida => partida.erradesNVL1);
@@ -326,6 +340,8 @@ namespace C__Mini_Makers
                 dataGridViewEstaciones.Columns["tempsNVL3"].HeaderText = "Temps 3";
             if (dataGridViewEstaciones.Columns["tempsTotal"] != null)
                 dataGridViewEstaciones.Columns["tempsTotal"].HeaderText = "Temps Total";
+            if (dataGridViewEstaciones.Columns["tempsProm"] != null)
+                dataGridViewEstaciones.Columns["tempsProm"].HeaderText = "Temps Promig";
             if (dataGridViewEstaciones.Columns["erradesNVL1"] != null)
                 dataGridViewEstaciones.Columns["erradesNVL1"].HeaderText = "Errades 1";
             if (dataGridViewEstaciones.Columns["erradesNVL2"] != null)
@@ -336,6 +352,8 @@ namespace C__Mini_Makers
                 dataGridViewEstaciones.Columns["erradesTotals"].HeaderText = "Errades Totals";
             if (dataGridViewEstaciones.Columns["data"] != null)
                 dataGridViewEstaciones.Columns["data"].HeaderText = "Data";
+            if (dataGridViewEstaciones.Columns["hora"] != null)
+                dataGridViewEstaciones.Columns["hora"].HeaderText = "Hora";
 
 
             comboBoxAvatar.Items.Clear();
