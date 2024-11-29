@@ -1,17 +1,24 @@
 package com.example.descubrelasestaciones.niveles
 
 import android.content.Intent
+import android.icu.util.Calendar
 import android.media.MediaPlayer
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.descubrelasestaciones.misc.BackgroundSound
 import com.example.descubrelasestaciones.misc.FileManager
 import com.example.descubrelasestaciones.MainActivity
 import com.example.descubrelasestaciones.R
+import com.example.descubrelasestaciones.classes.Avatar
 import com.example.descubrelasestaciones.niveles.ColoresEstaciones.ColoresConstats
 import com.example.descubrelasestaciones.classes.InfoNen
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.ZonedDateTime
 
 class PantallaFinal:AppCompatActivity()
 {
@@ -20,11 +27,12 @@ class PantallaFinal:AppCompatActivity()
         const val INFONEN = "INFONEN"
     }
     private var infoNen = InfoNen("Error",0,0,0,0,
-        0.00,"Error","Error","Error","Error")
+        0.00,"Error","Error","Error","Error","Error","Exemple")
     private var arrayInfoNen = mutableListOf<InfoNen>()
 
     private lateinit var aconseguit: MediaPlayer
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.final_layout)
@@ -37,10 +45,7 @@ class PantallaFinal:AppCompatActivity()
         infoNen = intent.getSerializableExtra(ColoresConstats.INFONEN) as InfoNen
         setAllInformation(infoNen)
         buttonVolver.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java) // Reemplaza `MainActivity` con la actividad que deseas abrir
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             endMusic()
-            startActivity(intent)
             finish()
         }
     }
@@ -50,10 +55,14 @@ class PantallaFinal:AppCompatActivity()
         stopService(intent)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setAllInformation(infoNen: InfoNen) {
         val tmpTotal = infoNen.tempsNVL1 + infoNen.tempsNVL2 + infoNen.tempsNVL3
         infoNen.tempsTotal = tmpTotal
         infoNen.tempsProm = (tmpTotal/3).toDouble()
+        infoNen.data = SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+        infoNen.hora= SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
+
         val intentosTotal = infoNen.erradesNVL1.toInt() + infoNen.erradesNVL2.toInt() + infoNen.erradesNVL3.toInt()
         infoNen.erradesTotals = intentosTotal.toString()
         println("La Info total es:" + " Avatar: " + infoNen.avatar + " Tiempo nivel 1: " + infoNen.tempsNVL1
@@ -64,8 +73,8 @@ class PantallaFinal:AppCompatActivity()
 
         if(!FileManager.comproveFile(this))
         {
-            val exemple = InfoNen("Error",0,0,0,0,
-            0.00,"Error","Error","Error","Error")
+            val exemple = InfoNen("Exemple",0,0,0,0,
+            0.00,"Exemple","Exemple","Exemple","Exemple","Exemple","Exemple")
             arrayInfoNen.add(exemple)
             FileManager.saveUsersStats(this, arrayInfoNen)
         }

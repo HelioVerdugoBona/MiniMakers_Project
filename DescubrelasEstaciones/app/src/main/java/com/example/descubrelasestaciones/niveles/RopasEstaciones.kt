@@ -20,6 +20,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.example.descubrelasestaciones.classes.ItemEstaciones
 import com.example.descubrelasestaciones.adapters.ItemsEstacionesAdapter
 import com.example.descubrelasestaciones.R
+import com.example.descubrelasestaciones.classes.Avatar
 import com.example.descubrelasestaciones.niveles.ColoresEstaciones.ColoresConstats
 import com.example.descubrelasestaciones.classes.InfoNen
 import kotlinx.coroutines.CoroutineScope
@@ -41,7 +42,7 @@ class RopasEstaciones: AppCompatActivity ()
 
     // Todos los Media Players
     private var infoNen = InfoNen("Error",0,0,0,0,
-        0.00,"Error","Error","Error","Error")
+        0.00,"Error","Error","Error","Error","Error","Exemple")
 
     // Todos los Media Players
     private lateinit var correctSFX: MediaPlayer
@@ -193,6 +194,7 @@ class RopasEstaciones: AppCompatActivity ()
         lifecycleScope.launch {
             delay(500)
             startActivity(intent)
+            finish()
         }
     }
 

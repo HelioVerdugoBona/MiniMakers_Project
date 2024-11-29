@@ -18,6 +18,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.example.descubrelasestaciones.classes.ItemEstaciones
 import com.example.descubrelasestaciones.adapters.ItemsEstacionesAdapter
 import com.example.descubrelasestaciones.R
+import com.example.descubrelasestaciones.classes.Avatar
 import com.example.descubrelasestaciones.classes.InfoNen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -38,7 +39,7 @@ class Tutorial:AppCompatActivity()
     private lateinit var aconseguit: MediaPlayer
 
      private var infoNen = InfoNen("Error",0,0,0,0,
-        0.00,"Error","Error","Error","Error")
+        0.00,"Error","Error","Error","Error","Error","Exemple")
 
     private lateinit var anmConfetti: LottieAnimationView
 
@@ -178,6 +179,7 @@ class Tutorial:AppCompatActivity()
         val intent = Intent(this, ColoresEstaciones::class.java)
         intent.putExtra(ColoresEstaciones.ColoresConstats.INFONEN, infoNen)
         startActivity(intent)
+        finish()
     }
 
     private fun animateTxt(textView: TextView, text: String){

@@ -1,3 +1,5 @@
 package com.example.descubrelasestaciones.classes
 
-class Avatar(val nombre: String, val imagen: Int)
+import java.io.Serializable
+
+class Avatar(val nombre: String, val imagen: Int): Serializable
