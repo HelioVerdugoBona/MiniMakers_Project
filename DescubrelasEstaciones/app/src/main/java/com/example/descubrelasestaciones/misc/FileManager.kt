@@ -1,6 +1,8 @@
 package com.example.descubrelasestaciones.misc
 
 import android.content.Context
+
+import android.os.Environment
 import com.example.descubrelasestaciones.classes.InfoNen
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -15,14 +17,16 @@ class FileManager
 
         fun comproveFile(context: Context): Boolean
         {
-            val jsonFilePath = context.filesDir.toString() + "/EstacionesData.json"
-            val jsonFile = File(jsonFilePath)
-            return jsonFile.exists() && jsonFile.length() != 0L
+            val jsonFilePath =File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "/EstacionesData.json")
+//            val jsonFilePath = context.filesDir.toString() + "/EstacionesData.json"
+//            val jsonFile = File(jsonFilePath)
+            return jsonFilePath.exists() && jsonFilePath.length() != 0L
         }
 
         fun getUsersStats(context: Context): MutableList<InfoNen>
         {
-            val jsonFilePath = context.filesDir.toString() + "/EstacionesData.json"
+            val jsonFilePath =File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "/EstacionesData.json")
+//            val jsonFilePath = context.filesDir.toString() + "/EstacionesData.json"
             val jsonFile = FileReader(jsonFilePath)
             val listUsersType = object : TypeToken<MutableList<InfoNen>>() {}.type
             val arrayUsersData: MutableList<InfoNen> = Gson().fromJson(jsonFile,listUsersType)
@@ -31,9 +35,10 @@ class FileManager
 
         fun saveUsersStats(context: Context, arrayUsersData: List<InfoNen>)
         {
-            val jsonFilePath = context.filesDir.toString() + "/EstacionesData.json"
+            val jsonFilePath =File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "/EstacionesData.json")
+//            val jsonFilePath = context.filesDir.toString() + "/EstacionesData.json"
             val jsonFile = FileWriter(jsonFilePath)
-            var gson = Gson()
+            val gson = Gson()
             val jsonElement = gson.toJson(arrayUsersData)
             jsonFile.write(jsonElement)
             jsonFile.close()
