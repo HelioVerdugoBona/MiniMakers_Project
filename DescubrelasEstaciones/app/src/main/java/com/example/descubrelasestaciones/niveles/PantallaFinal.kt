@@ -26,8 +26,8 @@ class PantallaFinal:AppCompatActivity()
     object InfoNens {
         const val INFONEN = "INFONEN"
     }
-    private var infoNen = InfoNen("Error",0,0,0,0,
-        0.00,"Error","Error","Error","Error","Error","Exemple")
+    private var infoNen = InfoNen("Exemple",0,0,0,0,
+        0.00,0,0,0,0,"Exemple","Exemple")
     private var arrayInfoNen = mutableListOf<InfoNen>()
 
     private lateinit var aconseguit: MediaPlayer
@@ -63,8 +63,8 @@ class PantallaFinal:AppCompatActivity()
         infoNen.data = SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
         infoNen.hora= SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
 
-        val intentosTotal = infoNen.erradesNVL1.toInt() + infoNen.erradesNVL2.toInt() + infoNen.erradesNVL3.toInt()
-        infoNen.erradesTotals = intentosTotal.toString()
+        val intentosTotal = infoNen.erradesNVL1 + infoNen.erradesNVL2 + infoNen.erradesNVL3
+        infoNen.erradesTotals = intentosTotal
         println("La Info total es:" + " Avatar: " + infoNen.avatar + " Tiempo nivel 1: " + infoNen.tempsNVL1
                 + " Tiempo nivel 2: " + infoNen.tempsNVL2 + " Tiempo nivel 3: " + infoNen.tempsNVL3
                 + " Tiempo Total: " + infoNen.tempsTotal + " Tiempo Promedio: " + infoNen.tempsProm
@@ -73,8 +73,8 @@ class PantallaFinal:AppCompatActivity()
 
         if(!FileManager.comproveFile(this))
         {
-            val exemple = InfoNen("Exemple",0,0,0,0,
-            0.00,"Exemple","Exemple","Exemple","Exemple","Exemple","Exemple")
+            var exemple = InfoNen("Exemple",0,0,0,0,
+                0.00,0,0,0,0,"Exemple","Exemple")
             arrayInfoNen.add(exemple)
             FileManager.saveUsersStats(this, arrayInfoNen)
         }

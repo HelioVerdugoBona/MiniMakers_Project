@@ -38,8 +38,8 @@ class Tutorial:AppCompatActivity()
     private lateinit var yay: MediaPlayer
     private lateinit var aconseguit: MediaPlayer
 
-     private var infoNen = InfoNen("Error",0,0,0,0,
-        0.00,"Error","Error","Error","Error","Error","Exemple")
+     private var infoNen = InfoNen("Exemple",0,0,0,0,
+         0.00,0,0,0,0,"Exemple","Exemple")
 
     private lateinit var anmConfetti: LottieAnimationView
 

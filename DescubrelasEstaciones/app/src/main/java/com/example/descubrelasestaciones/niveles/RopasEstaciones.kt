@@ -41,8 +41,8 @@ class RopasEstaciones: AppCompatActivity ()
     private var intentos = 0
 
     // Todos los Media Players
-    private var infoNen = InfoNen("Error",0,0,0,0,
-        0.00,"Error","Error","Error","Error","Error","Exemple")
+    private var infoNen = InfoNen("Exemple",0,0,0,0,
+        0.00,0,0,0,0,"Exemple","Exemple")
 
     // Todos los Media Players
     private lateinit var correctSFX: MediaPlayer
@@ -189,7 +189,7 @@ class RopasEstaciones: AppCompatActivity ()
         val elapsedTime = endTime - startTime // en milisegundos
         Log.d("Timer", "Tiempo transcurrido: ${elapsedTime}ms")
         infoNen.tempsNVL3 = (elapsedTime/1000).toInt()
-        infoNen.erradesNVL3 = intentos.toString()
+        infoNen.erradesNVL3 = intentos
         intent.putExtra(PantallaFinal.InfoNens.INFONEN,infoNen)
         lifecycleScope.launch {
             delay(500)

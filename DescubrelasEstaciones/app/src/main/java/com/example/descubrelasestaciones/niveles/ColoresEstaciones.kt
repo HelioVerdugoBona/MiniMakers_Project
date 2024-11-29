@@ -41,8 +41,8 @@ class ColoresEstaciones: AppCompatActivity() {
     private var intentos = 0
 
     // Todos los Media Players
-    private var infoNen = InfoNen("Error",0,0,0,0,
-        0.00,"Error","Error","Error","Error","Error","Exemple")
+    private var infoNen = InfoNen("Exemple",0,0,0,0,
+        0.00,0,0,0,0,"Exemple","Exemple")
 
     // Todos los Media Players
     private lateinit var correctSFX: MediaPlayer
@@ -193,7 +193,7 @@ class ColoresEstaciones: AppCompatActivity() {
         Log.d("Timer", "Tiempo transcurrido: ${elapsedTime}ms")
         infoNen.tempsNVL1 = ((elapsedTime/1000).toInt())
         val intent = Intent(this, SimbolosEstaciones::class.java)
-        infoNen.erradesNVL1 = intentos.toString()
+        infoNen.erradesNVL1 = intentos
         intent.putExtra(SimbolosEstaciones.SimbolosConstats.INFONEN,infoNen)
 
         lifecycleScope.launch {

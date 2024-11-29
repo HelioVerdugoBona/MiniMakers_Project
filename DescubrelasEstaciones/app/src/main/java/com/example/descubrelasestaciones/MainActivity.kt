@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: AvataresAdapter
 
-    private var infoNen = InfoNen("Error",0,0,0,0,
-        0.00,"Error","Error","Error","Error","Error","Exemple")
+    private var infoNen = InfoNen("Exemple",0,0,0,0,
+        0.00,0,0,0,0,"Exemple","Exemple")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
