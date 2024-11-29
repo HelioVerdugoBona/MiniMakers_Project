@@ -10,39 +10,44 @@ import androidx.recyclerview.widget.RecyclerView
 class AvataresAdapter(
     private val context: Context,
     private val avatares: MutableList<Avatar>,
-    private val onItemClickListener: (Avatar) -> Unit // Función de clic como parámetro
+    private val onItemClickListener: (Avatar) -> Unit
 ) : RecyclerView.Adapter<AvataresAdapter.AvataresViewHolder>() {
 
     private val layout = R.layout.avatar_item
 
-    // ViewHolder para almacenar la vista de cada item
+//  Creamos el ViewHolder para mostrar la vista de cada item
     inner class AvataresViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imagenImageView: ImageView = itemView.findViewById(R.id.ImgAvatar)
 
         fun bindAvatar(avatar: Avatar) {
             imagenImageView.setImageResource(avatar.imagen)
 
-            // Configurar el evento de clic para este elemento
+            // Creamos el evento click de cada item
             itemView.setOnClickListener {
-                onItemClickListener(avatar) // Llama a la función de clic con el avatar seleccionado
+                onItemClickListener(avatar)
             }
         }
     }
 
+
+
+//  Añadimos al layout un nuevo item del RecycleView
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AvataresViewHolder {
-        // Inflar el layout para el item del RecyclerView
-        val view = LayoutInflater.from(context).inflate(layout, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
         return AvataresViewHolder(view)
     }
 
+
+
+//  Recogemos la posicion del avatar seleccionado y lo enlazamos a la vista
     override fun onBindViewHolder(holder: AvataresViewHolder, position: Int) {
-        // Obtener el avatar en la posición actual y enlazarlo a la vista
         val avatar = avatares[position]
         holder.bindAvatar(avatar)
     }
 
+
+//  Devuelve el tamaño de la lista de avatares
     override fun getItemCount(): Int {
-        // Retornar el tamaño de la lista de avatares
         return avatares.size
     }
 }

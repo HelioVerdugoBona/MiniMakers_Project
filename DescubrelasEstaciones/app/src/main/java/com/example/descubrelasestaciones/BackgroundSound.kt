@@ -11,6 +11,7 @@ class BackgroundSound : Service() {
 
     override fun onCreate() {
         super.onCreate()
+
         mediaPlayer =
             MediaPlayer.create(this, R.raw.musicafondo)
         mediaPlayer.isLooping = true // Repetir audio
@@ -38,7 +39,9 @@ class BackgroundSound : Service() {
         super.onDestroy()
     }
 
+
+//  No usamos bound services aquí
     override fun onBind(intent: Intent): IBinder? {
-        return null // No usamos bound services aquí
+        return null
     }
 }
