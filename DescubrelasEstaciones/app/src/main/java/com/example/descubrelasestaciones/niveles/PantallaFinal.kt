@@ -19,6 +19,7 @@ import com.example.descubrelasestaciones.classes.InfoNen
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.ZonedDateTime
+import kotlin.math.log
 
 class PantallaFinal:AppCompatActivity()
 {
@@ -61,6 +62,7 @@ class PantallaFinal:AppCompatActivity()
         infoNen.tempsTotal = tmpTotal
         infoNen.tempsProm = (tmpTotal/3).toDouble()
         infoNen.data = SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+
         infoNen.hora= SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
 
         val intentosTotal = infoNen.erradesNVL1 + infoNen.erradesNVL2 + infoNen.erradesNVL3
@@ -68,13 +70,13 @@ class PantallaFinal:AppCompatActivity()
         println("La Info total es:" + " Avatar: " + infoNen.avatar + " Tiempo nivel 1: " + infoNen.tempsNVL1
                 + " Tiempo nivel 2: " + infoNen.tempsNVL2 + " Tiempo nivel 3: " + infoNen.tempsNVL3
                 + " Tiempo Total: " + infoNen.tempsTotal + " Tiempo Promedio: " + infoNen.tempsProm
-                + " Intentos Nivel 1: " + infoNen.erradesNVL1 + " Intentos Nivel 2: " + infoNen.erradesNVL2
-                + " Intentos Nivel 3: " + infoNen.erradesNVL3 + " IntentosTotales: " + infoNen.erradesTotals)
+                + " Intentos Nivel 3: " + infoNen.erradesNVL3 + " IntentosTotales: " + infoNen.erradesTotals
+                + " Intentos Nivel 1: " + infoNen.erradesNVL1 + " Intentos Nivel 2: " + infoNen.erradesNVL2)
 
         if(!FileManager.comproveFile(this))
         {
             var exemple = InfoNen("Exemple",0,0,0,0,
-                0.00,0,0,0,0,"Exemple","Exemple")
+                0.00,0,0,0,0,"data","hora")
             arrayInfoNen.add(exemple)
             FileManager.saveUsersStats(this, arrayInfoNen)
         }
